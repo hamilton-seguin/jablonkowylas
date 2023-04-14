@@ -1,3 +1,122 @@
 @tailwind base;
+:root {
+  --bar-width: clamp(20px, 7vw, 46px);
+  --bar-height: clamp(2.4px, 0.4vh, 4px);
+  --hamburger-gap: calc(var(--bar-height) + (var(--bar-height) * 0.20));
+  --hamburger-margin-right: 6vw;
+  --animation-timing: 750ms ease;
+  --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2 + 5px);
+}
+body {
+  background-color: #FFF8E7;
+  color: #283618;
+  font-weight: 400
+}
+
 @tailwind components;
+
+/** Hamburger */
+.hamburger-menu {
+  --x-width: calc(var(--hamburger-height) * 1.41421356237);
+  gap: var(--hamburger-gap);
+  position: absolute;
+  z-index: 60;
+  right: var(--hamburger-margin-right);
+  height: min-content;
+}
+.hamburger-menu::before,
+.hamburger-menu::after,
+.hamburger-menu input {
+  content: "";
+  width: var(--bar-width);
+  height: var(--bar-height);
+  background-color: #283618;
+  transform-origin: right center;
+  transition: opacity var(--animation-timing), width var(--animation-timing),
+    rotate var(--animation-timing), translate var(--animation-timing);
+}
+.hamburger-menu input {
+  appearance: none;
+  border-radius: 0px;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  pointer-events: none;
+}
+.hamburger-menu:has(input:checked)::before {
+  rotate: -45deg;
+  width: var(--x-width);
+  translate: 0 calc((var(--bar-height) + 5px)  / -2);
+}
+.hamburger-menu:has(input:checked)::after {
+  rotate: 45deg;
+  width: var(--x-width);
+  translate: 0 calc((var(--bar-height) + 5px) / 2);
+}
+.hamburger-menu:has(input:focus-visible)::before,
+.hamburger-menu:has(input:focus-visible)::after,
+.hamburger-menu input:focus-visible {
+  border: 1px solid #fefae0;
+  box-shadow: 0 0 0 1px #283618;
+}
+.hamburger-menu input:checked {
+  opacity: 0;
+  width: 0;
+}
+
+/** Menu */
+#menu {
+  left: -100%;
+  position: fixed;
+  width: 50%;
+  z-index: 50;
+}
+.openMenu {
+  animation-name: menu-in, reveals;
+  animation-duration: 750ms, 750ms;
+  animation-delay: 0s, 10s;
+  animation-timing-function: ease, ease;
+  animation-fill-mode: forwards, forwards;
+}
+.closeMenu {
+  animation-name: menu-out, hiddens;
+  animation-duration: 750ms, 750ms;
+  animation-delay: 0s, 10s;
+  animation-timing-function: ease, ease;
+  animation-fill-mode: forwards, forwards;
+}
+
+/** Menu Animation */
+@keyframes menu-in {
+  0% {
+    right: 100%;
+  }
+  100% {
+    left: 0;
+  }
+}
+@keyframes menu-out {
+  0% {
+    left: 0;
+  }
+  100% {
+    right: 100%;
+  }
+}
+@keyframes hiddens {
+  0% {
+    visibility: visible;
+  }
+  100% {
+    visibility: hidden;
+  }
+}
+@keyframes reveals {
+  0% {
+    visibility: hidden;
+  }
+  100% {
+    visibility: visible;
+  }
+}
 @tailwind utilities;

@@ -13,14 +13,13 @@ const config: GatsbyConfig = {
     "gatsby-plugin-postcss",
     "gatsby-plugin-image",
     "gatsby-plugin-sitemap",
+    "gatsby-transformer-sharp",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
         icon: "src/images/icon.png",
       },
     },
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -28,6 +27,33 @@ const config: GatsbyConfig = {
         path: "./src/images/",
       },
       __key: "images",
+    },
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        defaults: {
+          formats: [`auto`, `webp`, `avif`],
+          avifOptions: { quality: 40 },
+          webpOptions: { quality: 70 },
+        },
+      },
+    },
+    {
+      resolve: "@nathanpate/gatsby-omni-font-loader",
+      options: {
+        mode: "async",
+        enableListener: true,
+        preconnect: [
+          "https://fonts.gstatic.com",
+          "https://fonts.googleapis.com",
+        ],
+        web: [
+          {
+            name: "Roboto Flex",
+            file: "https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400;8..144,700&display=swap",
+          },
+        ],
+      },
     },
   ],
 };
