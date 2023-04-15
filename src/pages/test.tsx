@@ -134,7 +134,7 @@ const links = [
   },
 ];
 
-const IndexPage: React.FC<PageProps> = () => {
+const Test: React.FC<PageProps> = () => {
   return (
     <main style={pageStyles}>
       <h1 style={headingStyles}>
@@ -188,7 +188,7 @@ const IndexPage: React.FC<PageProps> = () => {
   );
 };
 
-export default IndexPage;
+export default Test;
 
 export const Head: HeadFC = () => {
   return (

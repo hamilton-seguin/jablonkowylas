@@ -23,7 +23,7 @@ export const Navigation = () => {
     <nav id="Nav" className="z-10 w-full max-w-[100vw]">
       <div className="flex items-center justify-center">
         <div className="lg:flex flex-1 justify-evenly hidden uppercase">
-          <Link to="/#" title="Houses & Shacks">Houses & Shacks</Link>
+          <Link to="/houses-huts" title="Houses & Shacks">Houses & Hut</Link>
           <Link to="/#" title="Prices & Availability">
           Prices & Availability
           </Link>
