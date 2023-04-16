@@ -6,10 +6,12 @@
   --hamburger-margin-right: 6vw;
   --animation-timing: 750ms ease;
   --hamburger-height: calc(var(--bar-height) * 3 + var(--hamburger-gap) * 2 + 5px);
+  --color-bg: #fbfefb;
+  --color-text: #1b311e;
 }
 body {
-  background-color: #FFF8E7;
-  color: #283618;
+  background-color: var(--color-bg);
+  color: var(--color-text);
   font-weight: 400
 }
 
@@ -30,7 +32,7 @@ body {
   content: "";
   width: var(--bar-width);
   height: var(--bar-height);
-  background-color: #283618;
+  background-color: var(--color-text);
   transform-origin: right center;
   transition: opacity var(--animation-timing), width var(--animation-timing),
     rotate var(--animation-timing), translate var(--animation-timing);
@@ -56,8 +58,8 @@ body {
 .hamburger-menu:has(input:focus-visible)::before,
 .hamburger-menu:has(input:focus-visible)::after,
 .hamburger-menu input:focus-visible {
-  border: 1px solid #fefae0;
-  box-shadow: 0 0 0 1px #283618;
+  border: 1px solid var(--color-bg);
+  box-shadow: 0 0 0 1px var(--color-text);
 }
 .hamburger-menu input:checked {
   opacity: 0;

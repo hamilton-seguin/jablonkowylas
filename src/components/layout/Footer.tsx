@@ -7,7 +7,7 @@ export const Footer = () => {
       id="contactUs"
       className="mt-16"
     >
-      <div className="flex flex-col text-center bg-secondary pb-10 pt-5">
+      <div className="flex flex-col text-center bg-grass9 pb-10 pt-5">
         <div className="uppercase">
           <p>JABLONKOWYLAS</p>
           <p>Ryn, Poland</p>

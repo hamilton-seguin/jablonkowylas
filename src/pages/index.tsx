@@ -8,17 +8,11 @@ const IndexPage: React.FC<PageProps> = () => {
   return (
     <Layout>
       <main>
-        <div className="flex bg-primary">
-          <h1 className="flex w-full flex-col font-bold">
-            JABLONKOWYLAS
-            <br />
-            <span className="bg-tertiary">
-              — you just made a Gatsby site! 🎉🎉🎉
-            </span>
-          </h1>
-        </div>
+        <div className="flex bg-grass3"></div>
         <div className="relative flex items-center justify-center">
-          <h1 className="absolute z-10 text-3xl md:text-6xl lg:text-8xl font-bold text-background mb-[15%]">JABLONKOWYLAS</h1>
+          <h1 className="absolute z-10 text-3xl md:text-6xl lg:text-8xl font-bold text-background mb-[15%]">
+            JABLONKOWYLAS
+          </h1>
           <StaticImage src="../images/image3.jpg" alt="" />
         </div>
       </main>

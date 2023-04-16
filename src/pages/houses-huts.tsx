@@ -24,7 +24,7 @@ const Houses: FC<PageProps> = () => {
             <h1 className="text-center lg:col-start-2 font-bold text-4xl lg:px-16 xl:px-[8%] xl:mt-[4vw] my-8 lg:mt-0">
               House & Huts
             </h1>
-            <div className="text-center lg:col-start-2 mx-auto mb-8  xl:mt-[4vw] border-t-[2px] border-secondary w-1/3"></div>
+            <div className="text-center lg:col-start-2 mx-auto mb-8  xl:mt-[4vw] border-t-[2px] border-grass9 w-1/3"></div>
             <h2 className="text-center lg:col-start-2 font-bold text-2xl lg:px-16 xl:px-[8%] mb-8  xl:mt-[4vw]">
               Houses
             </h2>
