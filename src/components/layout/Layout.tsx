@@ -1,6 +1,6 @@
 import React from "react";
 import { Footer } from "./Footer";
-import { Navigation } from "./Navigation";
+import { NavBar } from "./NavBar";
 
 type LayoutProps = {
   children: JSX.Element;
@@ -9,7 +9,7 @@ type LayoutProps = {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <>
-      <Navigation />
+      <NavBar />
       {children}
       <Footer />
     </>

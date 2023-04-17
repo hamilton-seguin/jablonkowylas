@@ -25,19 +25,19 @@ export const Menu = ({ closeMenu }: MenuProps) => {
     <>
       <aside
         id="menu"
-        className={`${menuState} top-10 md:top-[60px] bg-background h-[100vh]`}
+        className={`${menuState} top-10 md:top-[60px] bg-grass3 h-[100vh]`}
       >
         <nav className="flex flex-col px-4 pt-4 justify-evenly align-start h-[70vh] font-bold min-h-max text-sm sm:text-[19px] uppercase">
-          <Link to="/#" title="Houses & Shacks">
+          <Link to="/houses-huts" title="Houses & Shacks"  onClick={closeMenu}>
             Houses & Shacks
           </Link>
-          <Link to="/#" title="Prices & Availability">
+          <Link to="/#" title="Prices & Availability"  onClick={closeMenu}>
             Prices & Availability
           </Link>
-          <Link to="/#" title="Our Neighborhood">
+          <Link to="/#" title="Our Neighborhood"  onClick={closeMenu}>
             Our Neighborhood
           </Link>
-          <Link to="/#" title="Contact us">
+          <Link to="/#" title="Contact us"  onClick={closeMenu}>
             Contact us
           </Link>
           <div className="border-t-[2px] border-font w-full"></div>
@@ -46,7 +46,7 @@ export const Menu = ({ closeMenu }: MenuProps) => {
           <div className="border-t-[2px] border-font w-full"></div>
           <div>
             <p className="pb-4">Contact:</p>
-            <p className="font-light lowercase">contact@jablonkowylas.pl</p>
+            <p className="font-light lowercase break-words"> contact@jablonkowylas.pl</p>
             <p className="font-light lowercase">+3465 785 552</p>
           </div>
         </nav>

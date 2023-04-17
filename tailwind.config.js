@@ -8,7 +8,9 @@ module.exports = {
     colors: {
       font: "#1b311e",
       background: "#f3fcf3",
-      grass3: "#dff3df",
+      grass1: "#fbfefb",
+      grass2: "#f3fcf3",
+      grass3: "#ebf9eb",
       grass4: "#dff3df", // Hovered UI element background
       grass5: "#ceebcf", // Active / Selected UI element background
       grass6: "#b7dfba",
