@@ -1,8 +1,9 @@
 import React, { FC } from "react";
 import { Link, HeadFC, PageProps } from "gatsby";
-import Layout from "../components/layout/Layout";
 import { StaticImage } from "gatsby-plugin-image";
-import { CameraIcon, ChevronRightIcon } from "@radix-ui/react-icons";
+import { Camera, Flower, ChevronRight } from "lucide-react";
+
+import Layout from "../components/layout/Layout";
 import { Button } from "../components/ui/Button";
 
 const Houses: FC<PageProps> = () => {
@@ -14,15 +15,17 @@ const Houses: FC<PageProps> = () => {
             <div className="relative lg:flex lg:absolute lg:left-0 -mx-4 lg:mx-0 lg:order-first">
               <StaticImage
                 src="../images/image10.jpg"
-                alt="jablonkowylas house on the lake"
+                alt="Jablonkowy Las house on the lake"
                 className="max-h-[70vh] lg:max-h-fit lg:max-w-[49vw] w-full"
               />
               <Button className="group absolute inset-x-0 bottom-[6%] w-max m-auto rounded">
-                <p className=" text-font m-1 font-bold flex items-center">
-                  <CameraIcon className=" w-6 h-6 mr-4" />
-                  Houses
-                  <ChevronRightIcon className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-all" />
-                </p>
+                <Link to="/houses-huts/gallery">
+                  <p className=" text-font m-1 font-bold flex items-center">
+                    <Camera className=" w-6 h-6 mr-3" />
+                    Houses
+                    <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-all" />
+                  </p>
+                </Link>
               </Button>
             </div>
             <h1 className="text-center lg:col-start-2 font-bold text-4xl lg:px-16 xl:px-[8%] xl:mt-[4vw] my-8 lg:mt-0">
@@ -79,16 +82,18 @@ const Houses: FC<PageProps> = () => {
             <div className="relative order-first lg:flex lg:absolute lg:right-0 min-h-fit -mx-4 lg:mx-0">
               <StaticImage
                 src="../images/image11.jpg"
-                alt="jablonkowylas hut on the lake"
+                alt="Jablonkowy Las hut on the lake"
                 className="max-h-[70vh] lg:max-h-fit lg:max-w-[49vw] w-full lg:w-[49vw]"
                 objectPosition={"center"}
               />
               <Button className="group absolute inset-x-0 bottom-[6%] w-max m-auto rounded">
-                <p className=" text-font m-1 font-bold flex items-center">
-                  <CameraIcon className="w-6 h-6 mr-4" />
-                  Huts
-                </p>
-                  <ChevronRightIcon className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-all" />
+                <Link to="">
+                  <p className=" text-font m-1 font-bold flex items-center">
+                    <Camera className="w-6 h-6 mr-3" />
+                    Huts
+                    <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-all" />
+                  </p>
+                </Link>
               </Button>
             </div>
           </div>
@@ -99,16 +104,18 @@ const Houses: FC<PageProps> = () => {
             <div className="relative lg:flex lg:absolute lg:left-0 min-h-fit -mx-4 lg:mx-0 lg:order-first sm:mx-auto">
               <StaticImage
                 src="../images/image8.jpg"
-                alt="jablonkowylas big house on the lake"
+                alt="Jablonkowy Las big house on the lake"
                 className="max-h-[70vh] lg:max-h-fit lg:max-w-[49vw]"
                 objectPosition={"top"}
               />
               <Button className="group absolute inset-x-0 bottom-[6%] w-max m-auto rounded">
-                <p className=" text-font m-1 font-bold flex items-center">
-                  <CameraIcon className="w-6 h-6 mr-4" />
-                  Big House
-                </p>
-                  <ChevronRightIcon className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-all" />
+                <Link to="">
+                  <p className=" text-font m-1 font-bold flex items-center">
+                    <Camera className="w-6 h-6 mr-3" />
+                    Big House
+                    <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-all" />
+                  </p>
+                </Link>
               </Button>
             </div>
             <h2 className="text-center lg:col-start-2 font-bold text-2xl lg:px-16 xl:px-[8%] xl:mt-[4vw] my-8 lg:mt-0 underline underline-offset-4 decoration-grass9">
@@ -132,6 +139,9 @@ const Houses: FC<PageProps> = () => {
               </p>
             </div>
           </div>
+        </div>
+        <div className="min-w-20 w-[15vw] max-w-[150px] mx-auto">
+          <Flower className="fill-grass7 stroke-grass5 w-full h-full mx-auto" />
         </div>
       </main>
     </Layout>

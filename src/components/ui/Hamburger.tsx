@@ -31,13 +31,14 @@ export const Hamburger = ({ openMenu, closeMenu }: HamburgerProps) => {
   return (
     <label
       htmlFor="hamburger"
-      className={` hamburger-menu flex flex-col max-w-max cursor-pointer lg:hidden`}
+      className="hamburger-menu flex flex-col max-w-max cursor-pointer lg:hidden hover:before:bg-grass11 hover:after:bg-grass11 "
     >
       <input
         id="hamburger"
         type="checkbox"
         onChange={handleChange}
         aria-label="toggle menu"
+        className="hover:bg-grass11"
       />
     </label>
   );

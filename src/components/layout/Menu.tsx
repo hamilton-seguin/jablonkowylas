@@ -25,7 +25,7 @@ export const Menu = ({ closeMenu }: MenuProps) => {
     <>
       <aside
         id="menu"
-        className={`${menuState} top-10 md:top-[60px] bg-grass3 h-[100vh]`}
+        className={`${menuState} top-[56px] bg-grass4 h-[100vh] min-w-[50%]`}
       >
         <nav className="flex flex-col px-4 pt-4 justify-evenly align-start h-[70vh] font-bold min-h-max text-sm sm:text-[19px] uppercase">
           <Link to="/houses-huts" title="Houses & Shacks"  onClick={closeMenu}>

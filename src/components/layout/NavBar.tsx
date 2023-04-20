@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "gatsby";
-import { HomeIcon } from "@radix-ui/react-icons";
+import { Home } from "lucide-react";
 
 import { Menu } from "./Menu";
 import { Hamburger } from "../ui/Hamburger";
@@ -9,7 +9,7 @@ import { Button } from "../ui/Button";
 import { MenuContext, menuStateEnum } from "../../utils/context";
 
 export const NavBar = () => {
-  const { setMenuState } = useContext(MenuContext);
+  const { menuState, setMenuState } = useContext(MenuContext);
   const openMenu = () => {
     setMenuState(menuStateEnum.isOpen);
   };
@@ -22,7 +22,11 @@ export const NavBar = () => {
       <div className="flex items-center justify-center h-6">
         <div className="lg:flex flex-1 justify-evenly hidden items-center">
           <Button>
-            <Link to="/houses-huts" title="Houses & Shacks" className="uppercase">
+            <Link
+              to="/houses-huts"
+              title="Houses & Shacks"
+              className="uppercase"
+            >
               Houses & Hut
             </Link>
           </Button>
@@ -31,9 +35,18 @@ export const NavBar = () => {
               Prices & Availability
             </Link>
           </Button>
-          <Link to="/" title="Home" className="hidden lg:flex w-10 h-10 justify-center">
-            <HomeIcon className="transition-all duration-300 w-8 h-10 hover:w-10  hover:text-grass11"/>
+        </div>
+        <div className="">
+          <Link
+            to="/"
+            title="Home"
+            className="lg:flex w-10 h-10 justify-center"
+            {...(menuState === "openMenu" ? { onClick: closeMenu } : {})}
+          >
+            <Home className="transition-all duration-300 w-8 h-10 hover:w-10  hover:fill-grass8 hover:stroke-grass6" />
           </Link>
+        </div>
+        <div className="hidden lg:flex justify-evenly flex-1">
           <Button>
             <Link to="/#" title="Our Neighborhood" className="uppercase">
               Our Neighborhood
@@ -45,9 +58,7 @@ export const NavBar = () => {
             </Link>
           </Button>
         </div>
-        <Link to="/" title="Home" className="flex lg:hidden w-12 h-12 justify-center items-center" onClick={closeMenu}>
-          <HomeIcon className="w-10 h-10 hover:w-14 hover:h-14 hover:text-grass11 transition-all duration-300" />
-        </Link>
+
         <Hamburger openMenu={openMenu} closeMenu={closeMenu} />
       </div>
       <Menu closeMenu={closeMenu} />
