@@ -23,16 +23,16 @@ const modalStyles = {
   },
 };
 
-const GalleryModal = ({ data, pageContext }: any) => {
-  // const building = typeof window === "undefined"
-  // const [indexPageData, setIndexPageData] = useState(
-  //   (!building) && window.indexPageData
-  // )
-  // useEffect(() => {
-  //   window.setIndexPageData = () => {
-  //     setIndexPageData(window.indexPageData)
-  //   }
-  // }, [])
+const GalleryModal = ({ data }: any) => {
+  const building = typeof window === "undefined"
+  const [indexPageData, setIndexPageData] = useState(
+    (!building) && window.indexPageData
+  )
+  useEffect(() => {
+    window.setIndexPageData = () => {
+      setIndexPageData(window.indexPageData)
+    }
+  }, [])
 
   const [modalOpen, setModalOpen] = useState(true);
   const [selectedImage, setSelectedImage] = useState("houses1");
@@ -45,10 +45,6 @@ const GalleryModal = ({ data, pageContext }: any) => {
     setModalOpen(false);
     setTimeout(() => navigate("/houses-huts"), modalCloseTimeout);
   };
-  const handleClick = (e: any) => {
-    e.preventDefault();
-    setModalOpen(false);
-    setTimeout(() => navigate(`/houses-huts/gallery/${selectedImage}`), modalCloseTimeout);}
 
   return (
     <div id="Gallery">
