@@ -5,6 +5,24 @@ import { GatsbyImage } from "gatsby-plugin-image";
 
 Modal.setAppElement(`#___gatsby`);
 
+const modalStyles: ReactModal.Styles = {
+  overlay: {
+    backgroundColor: "rgba(17, 28, 24, 0.7)",
+    height: "100%",
+  },
+  content: {
+    backgroundColor: "#fbfefb",
+    position: "relative",
+    inset: "auto",
+    maxWidth: "960px",
+    height: "-webkit-fill-available",
+    boxSizing: "content-box",
+    margin: "32px auto",
+    padding: "2rem",
+    border: 0,
+  },
+};
+
 const ImageModal = ({ pageContext }: any) => {
   const [modalOpen, setModalOpen] = useState(true);
   const modalCloseTimeout = 0;
@@ -13,7 +31,7 @@ const ImageModal = ({ pageContext }: any) => {
     setTimeout(() => navigate("/houses-huts"), modalCloseTimeout);
   };
   return (
-    <div id="Gallery">
+    <>
       <PageRenderer
         key={"/houses-huts/"}
         location={{ pathname: "/houses-huts/" } as any}
@@ -21,7 +39,7 @@ const ImageModal = ({ pageContext }: any) => {
       <Modal
         isOpen={modalOpen}
         onRequestClose={closeModal}
-        className=""
+        style={modalStyles}
         contentLabel="Modal"
         closeTimeoutMS={modalCloseTimeout}
         shouldCloseOnOverlayClick
@@ -39,7 +57,7 @@ const ImageModal = ({ pageContext }: any) => {
           </Link>
         </div>
       </Modal>
-    </div>
+    </>
   );
 };
 

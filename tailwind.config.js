@@ -29,6 +29,11 @@ module.exports = {
     fontFamily: {
       sans: ["Roboto Flex", "sans-serif"],
     },
+    extend: {
+      screens: {
+        "3xl": "1920px",
+      },
+    },
   },
   plugins: [],
 };
