@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Modal from "react-modal";
 import { navigate, PageRenderer, Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
-import { Button } from "../components/ui/Button";
-import { X } from "lucide-react";
+import Modal from "react-modal";
+
+import { Pagination } from "../components/ui/Pagination";
 
 Modal.setAppElement(`#___gatsby`);
 
@@ -27,10 +27,9 @@ const modalStyles: ReactModal.Styles = {
 
 const ImageModal = ({ pageContext, location }: any) => {
   const [modalOpen, setModalOpen] = useState(true);
-  const modalCloseTimeout = 0;
   const closeModal = () => {
     setModalOpen(false);
-    setTimeout(() => navigate("/houses-huts"), modalCloseTimeout);
+    setTimeout(() => navigate("/houses-huts"));
   };
   return (
     <>
@@ -43,20 +42,14 @@ const ImageModal = ({ pageContext, location }: any) => {
         onRequestClose={closeModal}
         style={modalStyles}
         contentLabel="Modal"
-        closeTimeoutMS={modalCloseTimeout}
         shouldCloseOnOverlayClick
         shouldCloseOnEsc
       >
         <div id="ModalId">
-          <Link
-            to={`${location.state.prevPath}`}
-            draggable={false}
-            aria-label="Previous page"
-          >
-            <Button className="absolute top-8 z-50 right-4 md:right-12 px-2.5 md:px-4 !rounded-xl">
-              <X className="w-5 h-5 md:w-8 md:h-8" />
-            </Button>
-          </Link>
+          <Pagination
+            toGalleryModal
+            toGalleryModalRoute={`${location.state.prevPath}`}
+          />
           <Link
             to={`${location.state.prevPath}`}
             draggable={false}

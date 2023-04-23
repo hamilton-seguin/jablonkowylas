@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { MouseEvent, useEffect, useState } from "react";
 import { graphql, navigate, PageRenderer, Link } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Modal from "react-modal";
 
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { Draggable } from "../components/Draggable";
-import { Button } from "../components/ui/Button";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { Pagination } from "../components/ui/Pagination";
 
 Modal.setAppElement(`#___gatsby`);
 
@@ -38,13 +37,21 @@ const GalleryModal = ({ data, location }: any) => {
   const [modalOpen, setModalOpen] = useState(true);
   const [selectedImage, setSelectedImage] = useState("houses1");
   const [currentImageId, setCurrentImageId] = useState(0);
+
   const getCurrentImageId = data.allFile.edges[currentImageId].node;
   const imageNumber = data.allFile.edges.length;
 
-  const modalCloseTimeout = 100;
+  const handleClick = (e: MouseEvent) => {
+    e.preventDefault();
+    let newCurrentImageId = currentImageId - 1;
+    if (newCurrentImageId < 0) newCurrentImageId = imageNumber - 1;
+    setCurrentImageId(newCurrentImageId);
+    setSelectedImage(data.allFile.edges[newCurrentImageId].node.name);
+  };
+
   const closeModal = () => {
     setModalOpen(false);
-    setTimeout(() => navigate("/houses-huts"), modalCloseTimeout);
+    setTimeout(() => navigate("/houses-huts"));
   };
 
   return (
@@ -58,48 +65,11 @@ const GalleryModal = ({ data, location }: any) => {
         onRequestClose={closeModal}
         style={modalStyles}
         contentLabel="Modal"
-        closeTimeoutMS={modalCloseTimeout}
         shouldCloseOnOverlayClick
         shouldCloseOnEsc
       >
         <div id="ModalId" className="flex flex-col h-full justify-end relative">
-          <Link to="/houses-huts/" draggable={false} aria-label="Previous page">
-            <Button className="absolute top-8 z-50 right-4 md:right-12 px-2.5 md:px-4 !rounded-xl">
-              <X className="w-5 h-5 md:w-8 md:h-8" />
-            </Button>
-          </Link>
-          <Link
-            to="/"
-            draggable={false}
-            aria-label="Previous image"
-            onClick={(e) => {
-              e.preventDefault();
-              let newCurrentImageId = currentImageId - 1;
-              if (newCurrentImageId < 0) newCurrentImageId = imageNumber - 1;
-              setCurrentImageId(newCurrentImageId);
-              setSelectedImage(data.allFile.edges[newCurrentImageId].node.name);
-            }}
-          >
-            <Button className="group absolute top-[30vh] h-fit m-auto !rounded-xl z-50 left-4 md:left-12 px-2.5 md:px-4">
-              <ChevronLeft className="w-5 h-5 md:w-8 md:h-8 group-active:-translate-x-1 transition-all" />
-            </Button>
-          </Link>
-          <Link
-            to="/"
-            draggable={false}
-            aria-label="Next image"
-            onClick={(e) => {
-              e.preventDefault();
-              let newCurrentImageId = currentImageId + 1;
-              if (newCurrentImageId > imageNumber - 1) newCurrentImageId = 0;
-              setCurrentImageId(newCurrentImageId);
-              setSelectedImage(data.allFile.edges[newCurrentImageId].node.name);
-            }}
-          >
-            <Button className="group absolute top-[30vh] h-fit m-auto !rounded-xl z-50 right-4 md:right-12 px-2.5 md:px-4">
-              <ChevronRight className="w-5 h-5 md:w-8 md:h-8 group-active:translate-x-1 transition-all" />
-            </Button>
-          </Link>
+          <Pagination withArrows arrowsFn={handleClick}/>
           <div className="m-auto">
             <Link
               to={`/houses-huts/gallery/${selectedImage}`}
@@ -126,8 +96,6 @@ const GalleryModal = ({ data, location }: any) => {
                     aria-label="Display image"
                     style={{ cursor: "inherit" }}
                     onClick={(e) => {
-                      console.log("i:", i);
-
                       e.preventDefault();
                       setCurrentImageId(i);
                       setSelectedImage(image.node.name);
