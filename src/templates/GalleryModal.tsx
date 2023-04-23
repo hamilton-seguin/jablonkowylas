@@ -5,7 +5,7 @@ import Modal from "react-modal";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { Draggable } from "../components/Draggable";
 import { Button } from "../components/ui/Button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 Modal.setAppElement(`#___gatsby`);
 
@@ -26,11 +26,9 @@ const modalStyles: ReactModal.Styles = {
   },
 };
 
-const GalleryModal = ({ data }: any) => {
+const GalleryModal = ({ data, location }: any) => {
   const building = typeof window === "undefined";
-  const [, setIndexPageData] = useState(
-    !building && window.indexPageData
-  );
+  const [, setIndexPageData] = useState(!building && window.indexPageData);
   useEffect(() => {
     window.setIndexPageData = () => {
       setIndexPageData(window.indexPageData);
@@ -65,6 +63,11 @@ const GalleryModal = ({ data }: any) => {
         shouldCloseOnEsc
       >
         <div id="ModalId" className="flex flex-col h-full justify-end relative">
+          <Link to="/houses-huts/" draggable={false} aria-label="Previous page">
+            <Button className="absolute top-8 z-50 right-4 md:right-12 px-2.5 md:px-4 !rounded-xl">
+              <X className="w-5 h-5 md:w-8 md:h-8" />
+            </Button>
+          </Link>
           <Link
             to="/"
             draggable={false}
@@ -77,7 +80,7 @@ const GalleryModal = ({ data }: any) => {
               setSelectedImage(data.allFile.edges[newCurrentImageId].node.name);
             }}
           >
-            <Button className="group absolute top-[24vh] md:top-[30vh] h-fit m-auto !rounded-xl z-50 left-4 md:left-12 px-2.5 md:px-4">
+            <Button className="group absolute top-[30vh] h-fit m-auto !rounded-xl z-50 left-4 md:left-12 px-2.5 md:px-4">
               <ChevronLeft className="w-5 h-5 md:w-8 md:h-8 group-active:-translate-x-1 transition-all" />
             </Button>
           </Link>
@@ -93,12 +96,15 @@ const GalleryModal = ({ data }: any) => {
               setSelectedImage(data.allFile.edges[newCurrentImageId].node.name);
             }}
           >
-            <Button className="group absolute top-[24vh] md:top-[30vh] h-fit m-auto !rounded-xl z-50 right-4 md:right-12 px-2.5 md:px-4">
+            <Button className="group absolute top-[30vh] h-fit m-auto !rounded-xl z-50 right-4 md:right-12 px-2.5 md:px-4">
               <ChevronRight className="w-5 h-5 md:w-8 md:h-8 group-active:translate-x-1 transition-all" />
             </Button>
           </Link>
           <div className="m-auto">
-            <Link to={`/houses-huts/gallery/${selectedImage}`}>
+            <Link
+              to={`/houses-huts/gallery/${selectedImage}`}
+              state={{ prevPath: location.pathname }}
+            >
               <GatsbyImage
                 image={getImage(getCurrentImageId)!}
                 alt={getCurrentImageId.name}
@@ -148,15 +154,22 @@ const GalleryModal = ({ data }: any) => {
 export default GalleryModal;
 
 export const query = graphql`
-  query GalleryRenderQuery {
+  query GalleryRenderQuery($folderName: String!) {
     allFile(
-      filter: { extension: { regex: "/(jpg)|(jpeg)/" } }
       sort: { name: ASC }
+      filter: {
+        extension: { regex: "/(jpg)|(jpeg)/" }
+        sourceInstanceName: { eq: $folderName }
+      }
     ) {
       edges {
         node {
           name
           childImageSharp {
+            # fluid(maxWidth: 960) {
+            #   srcSet
+            #   ...GatsbyImageSharpFluid
+            # }
             gatsbyImageData(formats: [AUTO, WEBP, AVIF])
           }
         }

@@ -9,7 +9,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
           node {
             name
             childImageSharp {
-              gatsbyImageData(formats: NO_CHANGE)
+              gatsbyImageData(formats: [AUTO, WEBP, AVIF])
             }
           }
         }
@@ -31,23 +31,15 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       },
     });
   });
-  createPage({
-    path: `/houses-huts/gallery/`,
-    component: require.resolve("./src/templates/GalleryModal.tsx"),
-    context: {
-      images: result.data.allFile.edges.map(({ node }) => ({
-        name: node.name,
-        imageData: node.childImageSharp.gatsbyImageData,
-      })),
-    },
+  // createPage({
+  //   path: `/houses-huts/gallery/`,
+  //   component: require.resolve("./src/templates/GalleryModal.tsx")
+  // });
+  ["big-house", "houses", "huts"].forEach((folderName) => {
+    createPage({
+      path: `/houses-huts/gallery/${folderName}`,
+      component: require.resolve("./src/templates/GalleryModal.tsx"),
+      context: { folderName },
+    });
   });
 };
-
-
-
-
-/**
- * TODO Make a createPage for each image in the gallery
- * TODO Make a createPage for each gallery: Big House, Houses, Huts
- * TODO or make a createPage for each gallery as /houses-huts/gallery-big-house /gallery-houses /gallery-huts
- */

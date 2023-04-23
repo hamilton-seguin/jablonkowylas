@@ -19,7 +19,11 @@ const Houses: FC<PageProps> = () => {
                 className="max-h-[70vh] lg:max-h-fit lg:max-w-[49vw] w-full"
               />
               <Button className="group absolute inset-x-0 bottom-[6%] w-max m-auto rounded">
-                <Link to="/houses-huts/gallery">
+                <Link
+                  draggable={false}
+                  to="/houses-huts/gallery/houses"
+                  state={{ prevPath: location.pathname }}
+                >
                   <p className=" text-font m-1 font-bold flex items-center">
                     <Camera className=" w-6 h-6 mr-3" />
                     Houses
@@ -87,7 +91,11 @@ const Houses: FC<PageProps> = () => {
                 objectPosition={"center"}
               />
               <Button className="group absolute inset-x-0 bottom-[6%] w-max m-auto rounded">
-                <Link to="">
+                <Link
+                  draggable={false}
+                  to="/houses-huts/gallery/huts"
+                  state={{ prevPath: location.pathname }}
+                >
                   <p className=" text-font m-1 font-bold flex items-center">
                     <Camera className="w-6 h-6 mr-3" />
                     Huts
@@ -109,7 +117,11 @@ const Houses: FC<PageProps> = () => {
                 objectPosition={"top"}
               />
               <Button className="group absolute inset-x-0 bottom-[6%] w-max m-auto rounded">
-                <Link to="">
+                <Link
+                  draggable={false}
+                  to="/houses-huts/gallery/big-house"
+                  state={{ prevPath: location.pathname }}
+                >
                   <p className=" text-font m-1 font-bold flex items-center">
                     <Camera className="w-6 h-6 mr-3" />
                     Big House

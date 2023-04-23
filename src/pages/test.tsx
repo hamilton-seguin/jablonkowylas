@@ -5,7 +5,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Layout from "../components/layout/Layout";
 import { Draggable } from "../components/Draggable";
 import { Button } from "../components/ui/Button";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 const Test: React.FC<PageProps> = ({ data }: any) => {
   const [selectedImage, setSelectedImage] = useState("house1");
@@ -16,6 +16,11 @@ const Test: React.FC<PageProps> = ({ data }: any) => {
   return (
     <Layout>
       <div id="ModalId" className="flex flex-col h-full justify-end relative">
+      <Link to="/houses-huts/" draggable={false} aria-label="Previous page">
+            <Button className="absolute top-8 z-50 right-4 md:right-12 px-2.5 md:px-4 !rounded-xl">
+              <X className="w-5 h-5 md:w-8 md:h-8" />
+            </Button>
+          </Link>
         <Link
           to="/"
           draggable={false}
@@ -27,7 +32,7 @@ const Test: React.FC<PageProps> = ({ data }: any) => {
             setSelectedImage(data.allFile.edges[newCurrentImageId].node.name);
           }}
         >
-          <Button className="group absolute top-[24vh] md:top-[30vh] h-fit m-auto !rounded-xl z-50 left-4 md:left-12 px-2.5 md:px-4">
+          <Button className="group absolute top-[30vh] md:top-[30vh] h-fit m-auto !rounded-xl z-50 left-4 md:left-12 px-2.5 md:px-4">
             <ChevronLeft className="w-5 h-5 md:w-8 md:h-8 group-active:-translate-x-1 transition-all" />
           </Button>
         </Link>

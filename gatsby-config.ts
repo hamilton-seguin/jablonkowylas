@@ -24,9 +24,30 @@ const config: GatsbyConfig = {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "images",
-        path: "./src/images/",
+        path: `${__dirname}/src/images/`,
       },
       __key: "images",
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `houses`,
+        path: `${__dirname}/src/houses`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `huts`,
+        path: `${__dirname}/src/huts`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `big-house`,
+        path: `${__dirname}/src/big-house`,
+      },
     },
     {
       resolve: `gatsby-plugin-sharp`,
