@@ -1,7 +1,9 @@
-import React, { MouseEvent, useEffect, useState } from "react";
+import React, { MouseEvent, useEffect, useState, createRef } from "react";
 import { graphql, navigate, PageRenderer, Link } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Modal from "react-modal";
+
+import { useKeyPress } from "../hooks/useKeyPress";
 
 import { Draggable } from "../components/Draggable";
 import { Pagination } from "../components/ui/Pagination";
@@ -41,10 +43,22 @@ const GalleryModal = ({ data, location }: any) => {
   const getCurrentImageId = data.allFile.edges[currentImageId].node;
   const imageNumber = data.allFile.edges.length;
 
-  const handleClick = (e: MouseEvent) => {
+  // const directionalArrows = createRef<any>();
+  // const leftPress = useKeyPress("ArrowLeft", directionalArrows);
+  // const rightPress = useKeyPress("ArrowRight", directionalArrows);
+  // console.log(leftPress, rightPress);
+
+  const prevImage = (e: MouseEvent) => {
     e.preventDefault();
     let newCurrentImageId = currentImageId - 1;
     if (newCurrentImageId < 0) newCurrentImageId = imageNumber - 1;
+    setCurrentImageId(newCurrentImageId);
+    setSelectedImage(data.allFile.edges[newCurrentImageId].node.name);
+  };
+  const nextImage = (e: MouseEvent) => {
+    e.preventDefault();
+    let newCurrentImageId = currentImageId + 1;
+    if (newCurrentImageId > imageNumber) newCurrentImageId = 0;
     setCurrentImageId(newCurrentImageId);
     setSelectedImage(data.allFile.edges[newCurrentImageId].node.name);
   };
@@ -68,8 +82,12 @@ const GalleryModal = ({ data, location }: any) => {
         shouldCloseOnOverlayClick
         shouldCloseOnEsc
       >
-        <div id="ModalId" className="flex flex-col h-full justify-end relative">
-          <Pagination withArrows arrowsFn={handleClick}/>
+        <div
+          id="ModalId"
+          className="flex flex-col h-full justify-end relative"
+          // ref={directionalArrows}
+        >
+          <Pagination withArrows prevImage={prevImage} nextImage={nextImage} />
           <div className="m-auto">
             <Link
               to={`/houses-huts/gallery/${selectedImage}`}

@@ -47,8 +47,8 @@ const ImageModal = ({ pageContext, location }: any) => {
       >
         <div id="ModalId">
           <Pagination
-            toGalleryModal
-            toGalleryModalRoute={`${location.state.prevPath}`}
+            closeToGalleryModal
+            closeToGalleryModalRoute={`${location.state.prevPath}`}
           />
           <Link
             to={`${location.state.prevPath}`}
