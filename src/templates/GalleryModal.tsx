@@ -28,17 +28,55 @@ const modalStyles: ReactModal.Styles = {
 };
 
 const GalleryModal = ({ data, location }: any) => {
-  const building = typeof window === "undefined";
-  const [, setIndexPageData] = useState(!building && window.indexPageData);
+  // const building = typeof window === "undefined";
+  // const [, setIndexPageData] = useState(!building && window.indexPageData);
+  // useEffect(() => {
+  //   window.setIndexPageData = () => {
+  //     setIndexPageData(window.indexPageData);
+  //   };
+  // }, []);
+  console.log(data);
+
+  const [modalOpen, setModalOpen] = useState(true);
+  const [currentImageId, setCurrentImageId] = useState(0);
+  const [selectedImageName, setSelectedImageName] = useState(
+    data.allFile.edges[currentImageId].node.name
+  );
+
+  //use localStorage to save currentImageId to return to the current immage after opening and closing Imagemodal
   useEffect(() => {
-    window.setIndexPageData = () => {
-      setIndexPageData(window.indexPageData);
+    const localStorageId = window.localStorage.getItem("localStorageId");
+    if (!localStorageId) return;
+    setCurrentImageId(JSON.parse(localStorageId));
+    setSelectedImageName(
+      data.allFile.edges[JSON.parse(localStorageId)].node.name
+    );
+    console.log("initial currentImageId", currentImageId);
+    console.log(
+      "initial 'localStorageId'",
+      window.localStorage.getItem("localStorageId")!
+    );
+    console.log("initial selectedImageName", selectedImageName);
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      setTimeout(() => {
+        console.log("cache cleared");
+        window.localStorage.removeItem("localStorageId");
+      }, 1000);
     };
   }, []);
 
-  const [modalOpen, setModalOpen] = useState(true);
-  const [selectedImage, setSelectedImage] = useState("houses1");
-  const [currentImageId, setCurrentImageId] = useState(0);
+  useEffect(() => {
+    window.localStorage.setItem("localStorageId", currentImageId.toString());
+    console.log("currentImageId", currentImageId);
+    console.log(
+      "localStorageId",
+      window.localStorage.getItem("localStorageId")!
+    );
+    console.log("selectedImageName", selectedImageName);
+  }, [currentImageId]);
 
   const getCurrentImageId = data.allFile.edges[currentImageId].node;
   const imageNumber = data.allFile.edges.length;
@@ -53,14 +91,14 @@ const GalleryModal = ({ data, location }: any) => {
     let newCurrentImageId = currentImageId - 1;
     if (newCurrentImageId < 0) newCurrentImageId = imageNumber - 1;
     setCurrentImageId(newCurrentImageId);
-    setSelectedImage(data.allFile.edges[newCurrentImageId].node.name);
+    setSelectedImageName(data.allFile.edges[newCurrentImageId].node.name);
   };
   const nextImage = (e: MouseEvent) => {
     e.preventDefault();
     let newCurrentImageId = currentImageId + 1;
-    if (newCurrentImageId > imageNumber) newCurrentImageId = 0;
+    if (newCurrentImageId > imageNumber - 1) newCurrentImageId = 0;
     setCurrentImageId(newCurrentImageId);
-    setSelectedImage(data.allFile.edges[newCurrentImageId].node.name);
+    setSelectedImageName(data.allFile.edges[newCurrentImageId].node.name);
   };
 
   const closeModal = () => {
@@ -83,14 +121,19 @@ const GalleryModal = ({ data, location }: any) => {
         shouldCloseOnEsc
       >
         <div
-          id="ModalId"
+          id="GalleryId"
           className="flex flex-col h-full justify-end relative"
           // ref={directionalArrows}
         >
-          <Pagination withArrows prevImage={prevImage} nextImage={nextImage} />
+          <Pagination
+            withArrows
+            prevImage={prevImage}
+            nextImage={nextImage}
+            closeToGalleryModalRoute={"/houses-huts/"}
+          />
           <div className="m-auto">
             <Link
-              to={`/houses-huts/gallery/${selectedImage}`}
+              to={`/houses-huts/gallery/${selectedImageName}`}
               state={{ prevPath: location.pathname }}
             >
               <GatsbyImage
@@ -116,7 +159,7 @@ const GalleryModal = ({ data, location }: any) => {
                     onClick={(e) => {
                       e.preventDefault();
                       setCurrentImageId(i);
-                      setSelectedImage(image.node.name);
+                      setSelectedImageName(image.node.name);
                     }}
                   >
                     <GatsbyImage
@@ -151,6 +194,7 @@ export const query = graphql`
       edges {
         node {
           name
+          publicURL
           childImageSharp {
             # fluid(maxWidth: 960) {
             #   srcSet
@@ -160,6 +204,12 @@ export const query = graphql`
           }
         }
       }
+    }
+    file(extension: { eq: "json" }) {
+      publicURL
+      name
+      relativePath
+      sourceInstanceName
     }
   }
 `;

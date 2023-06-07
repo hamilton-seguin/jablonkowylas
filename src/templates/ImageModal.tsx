@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { navigate, PageRenderer, Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import Modal from "react-modal";
@@ -45,12 +45,11 @@ const ImageModal = ({ pageContext, location }: any) => {
         shouldCloseOnOverlayClick
         shouldCloseOnEsc
       >
-        <div id="ModalId">
+        <div id="GalleryId" className="h-full flex justify-center items-center">
           <Pagination
-            closeToGalleryModal
             closeToGalleryModalRoute={`${location.state.prevPath}`}
           />
-          <Link
+          <Link 
             to={`${location.state.prevPath}`}
             draggable={false}
             aria-label="Previous page"
@@ -58,8 +57,6 @@ const ImageModal = ({ pageContext, location }: any) => {
             <GatsbyImage
               image={pageContext.imageData}
               alt={pageContext.name}
-              className="h-full w-full flex m-auto"
-              imgClassName=""
               imgStyle={{ objectFit: "contain" }}
             />
           </Link>

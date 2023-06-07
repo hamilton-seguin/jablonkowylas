@@ -17,7 +17,7 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        icon: "src/images/icon.png",
+        icon: "src/images/favicon-apple.png",
       },
     },
     {
@@ -33,6 +33,14 @@ const config: GatsbyConfig = {
       options: {
         name: `houses`,
         path: `${__dirname}/src/houses`,
+      },
+    },
+
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `gallery`,
+        path: `${__dirname}/src/gallery`,
       },
     },
     {

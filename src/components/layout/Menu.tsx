@@ -29,38 +29,29 @@ export const Menu = ({ closeMenu }: MenuProps) => {
         className={`${menuState} top-[56px] bg-grass4 h-[100vh] min-w-[50%]`}
       >
         <nav className="flex flex-col px-4 pt-4 justify-evenly align-start h-[70vh] font-bold min-h-max text-sm sm:text-[19px] uppercase">
-          <Button className="md:py-4">
-            <Link to="/houses-huts" title="Houses & Shacks" onClick={closeMenu}>
-              Houses & Shacks
-            </Link>
-          </Button>
-          <Button className="md:py-4">
-            <Link to="/#" title="Prices & Availability" onClick={closeMenu}>
-              Prices & Availability
-            </Link>
-          </Button>
-          <Button className="md:py-4">
-            <Link to="/#" title="Our Neighborhood" onClick={closeMenu}>
-              Our Neighborhood
-            </Link>
-          </Button>
-          <Button className="md:py-4">
-            <Link to="/#" title="Contact us" onClick={closeMenu}>
-              Contact us
-            </Link>
-          </Button>
+          <Link to="/houses-huts" title="Houses & Shacks" onClick={closeMenu} className="text-center">
+            <Button className="md:py-4 w-full">Houses & Huts</Button>
+          </Link>
+          <Link to="/restaurant" title="Restaurant" onClick={closeMenu} className="text-center">
+            <Button className="md:py-4 w-full">Restaurant</Button>
+          </Link>
+          <Link to="/neighborhood" title="Our Neighborhood" onClick={closeMenu} className="text-center">
+            <Button className="md:py-4 w-full">Our Neighborhood</Button>
+          </Link>
+          <Link to="/gallery" title="Gallery" onClick={closeMenu} className="text-center">
+            <Button className="md:py-4 w-full">Gallery</Button>
+          </Link>
           <div className="border-t-[2px] border-font w-full"></div>
-          <Button className="md:py-4">
-            <a href="#">Instagram</a>
-          </Button>
-          <Button className="md:py-4">
-            <a href="#">LinkedIn</a>
-          </Button>
+          <Link to="/#" title="Prices & Availability" onClick={closeMenu} className="text-center">
+            <Button className="md:py-4 w-full">Prices & Availability</Button>
+          </Link>
+          <Link to="/#" title="Contact us" onClick={closeMenu} className="text-center">
+            <Button className="md:py-4 w-full">Contact us</Button>
+          </Link>
           <div className="border-t-[2px] border-font w-full"></div>
           <div className="text-center">
             <p className="pb-4">Contact:</p>
             <p className="font-light lowercase break-words">
-              {" "}
               contact@jablonkowylas.pl
             </p>
             <p className="font-light lowercase pt-4">+3465 785 552</p>
@@ -70,5 +61,3 @@ export const Menu = ({ closeMenu }: MenuProps) => {
     </>
   );
 };
-
-

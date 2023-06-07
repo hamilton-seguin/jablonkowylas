@@ -18,13 +18,11 @@ export const Pagination = ({
   prevImage,
   nextImage,
   withArrows,
-  closeToGalleryModal,
   closeToGalleryModalRoute,
 }: PaginationProps) => {
-
   return (
     <>
-      {closeToGalleryModal ? (
+      {closeToGalleryModalRoute ? (
         <Link
           to={closeToGalleryModalRoute!}
           draggable={false}
@@ -34,13 +32,7 @@ export const Pagination = ({
             <X className="w-5 h-5 md:w-8 md:h-8" />
           </Button>
         </Link>
-      ) : (
-        <Link to="/houses-huts/" draggable={false} aria-label="Previous page">
-          <Button className="absolute top-8 z-50 right-4 md:right-12 px-2.5 md:px-4 !rounded-xl">
-            <X className="w-5 h-5 md:w-8 md:h-8" />
-          </Button>
-        </Link>
-      )}
+      ) : null}
       {withArrows && (
         <>
           {/* Left */}

@@ -5,7 +5,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Layout from "../components/layout/Layout";
 import { Draggable } from "../components/Draggable";
 import { Button } from "../components/ui/Button";
-import { ChevronLeft, ChevronRight, X } from "lucide-react";
+import { Apple, ChevronLeft, ChevronRight, X } from "lucide-react";
 
 const Test: React.FC<PageProps> = ({ data }: any) => {
   const [selectedImage, setSelectedImage] = useState("house1");
@@ -15,12 +15,18 @@ const Test: React.FC<PageProps> = ({ data }: any) => {
   const getCurrentImageId = data.allFile.edges[currentImageId].node;
   return (
     <Layout>
+      <div>
+      <div className="min-w-20 w-[15vw] max-w-[150px] mx-auto">
+        <Apple className="fill-grass5 stroke-grass7 w-full h-full mx-auto" />
+      </div>
+
+
       <div id="ModalId" className="flex flex-col h-full justify-end relative">
-      <Link to="/houses-huts/" draggable={false} aria-label="Previous page">
-            <Button className="absolute top-8 z-50 right-4 md:right-12 px-2.5 md:px-4 !rounded-xl">
-              <X className="w-5 h-5 md:w-8 md:h-8" />
-            </Button>
-          </Link>
+        <Link to="/houses-huts/" draggable={false} aria-label="Previous page">
+          <Button className="absolute top-8 z-50 right-4 md:right-12 px-2.5 md:px-4 !rounded-xl">
+            <X className="w-5 h-5 md:w-8 md:h-8" />
+          </Button>
+        </Link>
         <Link
           to="/"
           draggable={false}
@@ -92,6 +98,7 @@ const Test: React.FC<PageProps> = ({ data }: any) => {
             ))}
           </div>
         </Draggable>
+      </div>
       </div>
     </Layout>
   );

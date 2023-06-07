@@ -21,20 +21,15 @@ export const NavBar = () => {
     <nav id="Nav" className="z-10 w-full max-w-[100vw] bg-grass4 py-4">
       <div className="flex items-center justify-center h-6">
         <div className="lg:flex flex-1 justify-evenly hidden items-center">
-          <Button>
-            <Link
-              to="/houses-huts"
-              title="Houses & Shacks"
-              className="uppercase"
-            >
-              Houses & Hut
-            </Link>
-          </Button>
-          <Button>
-            <Link to="/#" title="Prices & Availability" className="uppercase">
-              Prices & Availability
-            </Link>
-          </Button>
+          <Link to="/houses-huts" title="Houses & Shacks">
+            <Button className="uppercase">Houses & Hut</Button>
+          </Link>
+          <Link to="/restaurant" title="Restaurant">
+            <Button className="uppercase">Restaurant</Button>
+          </Link>
+          <Link to="/neighborhood" title="Our Neighborhood">
+            <Button className="uppercase">Our Neighborhood</Button>
+          </Link>
         </div>
         <div className="">
           <Link
@@ -47,16 +42,15 @@ export const NavBar = () => {
           </Link>
         </div>
         <div className="hidden lg:flex justify-evenly flex-1">
-          <Button>
-            <Link to="/#" title="Our Neighborhood" className="uppercase">
-              Our Neighborhood
-            </Link>
-          </Button>
-          <Button>
-            <Link to="/#" title="Contact us" className="uppercase">
-              Contact us
-            </Link>
-          </Button>
+          <Link to="/gallery" title="Gallery">
+            <Button className="uppercase">Gallery</Button>
+          </Link>
+          <Link to="/#" title="Prices & Availibility">
+            <Button className="uppercase">Prices & Availibility</Button>
+          </Link>
+          <Link to="/#" title="Contact us">
+            <Button className="uppercase">Contact us</Button>
+          </Link>
         </div>
 
         <Hamburger openMenu={openMenu} closeMenu={closeMenu} />
