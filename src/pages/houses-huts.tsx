@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Link, HeadFC, PageProps } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import { Camera, Flower, ChevronRight } from "lucide-react";
@@ -7,6 +7,15 @@ import Layout from "../components/layout/Layout";
 import { Button } from "../components/ui/Button";
 
 const Houses: FC<PageProps> = () => {
+  const [prevPath, setPrevPath] = useState("");
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+    setPrevPath(location.pathname);
+  }, []);
+
   return (
     <Layout>
       <main className="mt-16">
@@ -21,7 +30,7 @@ const Houses: FC<PageProps> = () => {
               <Link
                 draggable={false}
                 to="/houses-huts/gallery/houses"
-                state={{ prevPath: location.pathname }}
+                state={{prevPath}}
               >
                 <Button className="group absolute inset-x-0 bottom-[6%] w-max m-auto rounded">
                   <p className=" text-font m-1 font-bold flex items-center">
@@ -86,7 +95,7 @@ const Houses: FC<PageProps> = () => {
               <Link
                 draggable={false}
                 to="/houses-huts/gallery/huts"
-                state={{ prevPath: location.pathname }}
+                state={{prevPath}}
               >
                 <Button className="group absolute inset-x-0 bottom-[6%] w-max m-auto rounded">
                   <p className=" text-font m-1 font-bold flex items-center">
@@ -112,7 +121,7 @@ const Houses: FC<PageProps> = () => {
               <Link
                 draggable={false}
                 to="/houses-huts/gallery/big-house"
-                state={{ prevPath: location.pathname }}
+                state={{prevPath}}
               >
                 <Button className="group absolute inset-x-0 bottom-[6%] w-max m-auto rounded">
                   <p className=" text-font m-1 font-bold flex items-center">
