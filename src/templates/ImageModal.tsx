@@ -26,6 +26,15 @@ const modalStyles: ReactModal.Styles = {
 };
 
 const ImageModal = ({ pageContext, location }: any) => {
+  let prevPath;
+  console.log("location", location);
+  
+  if (!location.state) {
+    prevPath = "/houses-huts";
+  } else {
+    prevPath = location.state.prevPath;
+  }
+  
   const [modalOpen, setModalOpen] = useState(true);
   const closeModal = () => {
     setModalOpen(false);
@@ -47,10 +56,10 @@ const ImageModal = ({ pageContext, location }: any) => {
       >
         <div id="GalleryId" className="h-full flex justify-center items-center">
           <Pagination
-            closeToGalleryModalRoute={`${location.state.prevPath}`}
+            closeToGalleryModalRoute={`${prevPath}`}
           />
           <Link 
-            to={`${location.state.prevPath}`}
+            to={`${prevPath}`}
             draggable={false}
             aria-label="Previous page"
           >

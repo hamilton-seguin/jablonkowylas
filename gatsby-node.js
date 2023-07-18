@@ -1,4 +1,17 @@
-exports.createPages = async ({ graphql, actions: { createPage } }) => {
+exports.createPages = async ({ graphql, actions }) => {
+  const { createRedirect, createPage } = actions
+
+  // createRedirect({
+  //   fromPath: `/houses-huts/gallery/*`,
+  //   toPath: `/houses-huts/`,
+  //   statusCode: 404
+  // })
+  // createRedirect({
+  //   fromPath: `/houses-huts/gallery/`,
+  //   toPath: `/gallery/`,
+  //   statusCode: 404
+  // })
+
   const result = await graphql(`
     query ModalRenderQuery {
       allFile(
