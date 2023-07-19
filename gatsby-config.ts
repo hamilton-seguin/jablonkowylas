@@ -14,6 +14,7 @@ const config: GatsbyConfig = {
     "gatsby-plugin-image",
     "gatsby-plugin-sitemap",
     "gatsby-transformer-sharp",
+    "gatsby-plugin-gatsby-cloud",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
@@ -85,7 +86,6 @@ const config: GatsbyConfig = {
         ],
       },
     },
-    "gatsby-plugin-meta-redirect",
   ],
 };
 
