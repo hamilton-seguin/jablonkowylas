@@ -85,6 +85,7 @@ const config: GatsbyConfig = {
         ],
       },
     },
+    "gatsby-plugin-meta-redirect",
   ],
 };
 
