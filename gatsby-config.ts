@@ -54,6 +54,13 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        name: `outdoor`,
+        path: `${__dirname}/src/outdoor`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
         name: `big-house`,
         path: `${__dirname}/src/big-house`,
       },

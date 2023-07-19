@@ -1,10 +1,13 @@
-import React, { FC } from "react";
-import { Link, HeadFC, PageProps } from "gatsby";
-import { StaticImage } from "gatsby-plugin-image";
+import React, { FC, useEffect, useState } from "react";
+import { Link, HeadFC, PageProps, graphql, navigate } from "gatsby";
+import { GatsbyImage, StaticImage, getImage } from "gatsby-plugin-image";
 import Layout from "../components/layout/Layout";
 import { TreePine } from "lucide-react";
+import { Draggable } from "../components/Draggable";
 
-const Neighborhood: FC<PageProps> = () => {
+const Neighborhood: FC<PageProps> = ({ data }: any) => {
+
+
   return (
     <Layout>
       <main>
@@ -56,9 +59,38 @@ const Neighborhood: FC<PageProps> = () => {
             </p>
           </div>
         </div>
-        <div></div>
+        <div
+          id="GalleryId"
+          className="flex flex-col h-full justify-end relative"
+          // ref={directionalArrows}
+        >
+          <Draggable className="bg-grass3 pt-4 pb-3 md:pt-10 md:pb-8">
+            <div className="flex snap-x overflow-x-auto scroll-smooth gap-2 items-center h-[18vh] overflow-y-hidden">
+              {data.allFile.edges.map((image: any, i: number) => (
+                <div
+                  key={image.node.name}
+                  className="flex snap-start shrink-0 max-w-fit"
+                >
+                  <Link
+                    to={`/gallery/${image.node.name}`}
+                    aria-label="Display image"
+                    style={{ cursor: "inherit" }}
+                    state={{ prevPath: location.pathname }}
+                  >
+                    <GatsbyImage
+                      image={getImage(image.node)!}
+                      alt={image.node.name}
+                      className="w-[27vw] lg:w-[21vw] 2xl:w-[14vw] 3xl:w-[10vw] h-[24vw] lg:h-[18vw] 2xl:h-[11vw] 3xl:h-[8vw]"
+                      draggable={false}
+                    />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </Draggable>
+        </div>
         <div className="min-w-20 w-[15vw] max-w-[135px] mx-auto my-16">
-          <TreePine className="fill-grass7 stroke-grass5 w-full h-full mx-auto" />
+          <TreePine className="fill-grass7 stroke-grass5 w-full h-full http://localhost:8000/mx-auto" />
         </div>
       </main>
     </Layout>
@@ -67,3 +99,25 @@ const Neighborhood: FC<PageProps> = () => {
 
 export default Neighborhood;
 export const Head: HeadFC = () => <title>Neighborhood</title>;
+
+export const query = graphql`
+  query GalleryRenderQuery {
+    allFile(
+      sort: { name: ASC }
+      filter: {
+        extension: { regex: "/(jpg)|(jpeg)/" }
+        sourceInstanceName: { eq: "outdoor" }
+      }
+    ) {
+      edges {
+        node {
+          name
+          publicURL
+          childImageSharp {
+            gatsbyImageData(formats: [AUTO, WEBP, AVIF])
+          }
+        }
+      }
+    }
+  }
+`;

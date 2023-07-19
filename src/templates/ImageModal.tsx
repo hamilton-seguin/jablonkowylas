@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { navigate, PageRenderer, Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import Modal from "react-modal";
@@ -43,8 +43,8 @@ const ImageModal = ({ pageContext, location }: any) => {
   return (
     <>
       <PageRenderer
-        key={"/houses-huts/"}
-        location={{ pathname: "/houses-huts/" } as any}
+        key={prevPath}
+        location={{ pathname: prevPath } as any}
       />
       <Modal
         isOpen={modalOpen}
@@ -66,6 +66,7 @@ const ImageModal = ({ pageContext, location }: any) => {
             <GatsbyImage
               image={pageContext.imageData}
               alt={pageContext.name}
+              className="h-[85vh]"
               imgStyle={{ objectFit: "contain" }}
             />
           </Link>

@@ -1,8 +1,8 @@
 import React, { FC } from "react";
-import { Link, HeadFC, PageProps } from "gatsby";
+import { HeadFC, PageProps } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import Layout from "../components/layout/Layout";
-import { Carrot, Croissant, Soup } from "lucide-react";
+import { Carrot } from "lucide-react";
 
 const Restaurant: FC<PageProps> = () => {
   return (

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "gatsby";
+import { Link } from "gatsby"
 import { Home } from "lucide-react";
 
 import { Menu } from "./Menu";
@@ -21,13 +21,16 @@ export const NavBar = () => {
     <nav id="Nav" className="z-10 w-full max-w-[100vw] bg-grass4 py-4">
       <div className="flex items-center justify-center h-6">
         <div className="lg:flex flex-1 justify-evenly hidden items-center">
-          <Link to="/houses-huts" title="Houses & Shacks">
+          <Link to="/houses-huts" title="Houses & Shacks" 
+          draggable={false}>
             <Button className="uppercase">Houses & Hut</Button>
           </Link>
-          <Link to="/restaurant" title="Restaurant">
+          <Link to="/restaurant" title="Restaurant" 
+          draggable={false}>
             <Button className="uppercase">Restaurant</Button>
           </Link>
-          <Link to="/neighborhood" title="Our Neighborhood">
+          <Link to="/neighborhood" title="Our Neighborhood" 
+          draggable={false}>
             <Button className="uppercase">Our Neighborhood</Button>
           </Link>
         </div>
@@ -35,6 +38,7 @@ export const NavBar = () => {
           <Link
             to="/"
             title="Home"
+            draggable={false}
             className="lg:flex w-10 h-10 justify-center"
             {...(menuState === "openMenu" ? { onClick: closeMenu } : {})}
           >
@@ -42,13 +46,16 @@ export const NavBar = () => {
           </Link>
         </div>
         <div className="hidden lg:flex justify-evenly flex-1">
-          <Link to="/gallery" title="Gallery">
+          <Link to="/gallery" title="Gallery" 
+          draggable={false}>
             <Button className="uppercase">Gallery</Button>
           </Link>
-          <Link to="/#" title="Prices & Availibility">
+          <Link to="/#" title="Prices & Availibility" 
+          draggable={false}>
             <Button className="uppercase">Prices & Availibility</Button>
           </Link>
-          <Link to="/#" title="Contact us">
+          <Link to="/contact" title="Contact us" 
+          draggable={false}>
             <Button className="uppercase">Contact us</Button>
           </Link>
         </div>

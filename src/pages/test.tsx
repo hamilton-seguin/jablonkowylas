@@ -38,7 +38,7 @@ const Test: React.FC<PageProps> = ({ data }: any) => {
             setSelectedImage(data.allFile.edges[newCurrentImageId].node.name);
           }}
         >
-          <Button className="group absolute top-[30vh] md:top-[30vh] h-fit m-auto !rounded-xl z-50 left-4 md:left-12 px-2.5 md:px-4">
+          <Button className="group absolute md:h-[85vh] md:top-[85vh] h-fit m-auto !rounded-xl z-50 left-4 md:left-12 px-2.5 md:px-4">
             <ChevronLeft className="w-5 h-5 md:w-8 md:h-8 group-active:-translate-x-1 transition-all" />
           </Button>
         </Link>
@@ -58,11 +58,11 @@ const Test: React.FC<PageProps> = ({ data }: any) => {
           </Button>
         </Link>
         <div className="m-auto">
-          <Link to={`/houses-huts/gallery/${selectedImage}`}>
+          <Link to={`/gallery/${selectedImage}`}>
             <GatsbyImage
               image={getImage(getCurrentImageId)!}
               alt={getCurrentImageId.name}
-              className="h-[50vh] md:h-[65vh]"
+              className="h-[85vh]]"
               imgStyle={{ objectFit: "contain" }}
               draggable={false}
             />

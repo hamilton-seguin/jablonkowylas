@@ -21,6 +21,8 @@ exports.createPages = async ({ graphql, actions }) => {
     toPath: "https://jablonkowylas.pl/",
     isPermanent: true,
   });
+
+
   const result = await graphql(`
     query ModalRenderQuery {
       allFile(
@@ -44,7 +46,7 @@ exports.createPages = async ({ graphql, actions }) => {
   }
   result.data.allFile.edges.forEach(({ node }) => {
     createPage({
-      path: `/houses-huts/gallery/${node.name}`,
+      path: `/gallery/${node.name}`,
       component: require.resolve("./src/templates/ImageModal.tsx"),
       context: {
         // passed as props to the component (in my case component is the gallery template)
@@ -53,10 +55,7 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
-  // createPage({
-  //   path: `/houses-huts/gallery/`,
-  //   component: require.resolve("./src/templates/GalleryModal.tsx")
-  // });
+
   ["big-house", "houses", "huts"].forEach((folderName) => {
     createPage({
       path: `/houses-huts/gallery/${folderName}`,
@@ -64,4 +63,8 @@ exports.createPages = async ({ graphql, actions }) => {
       context: { folderName },
     });
   });
+    // createPage({
+  //   path: `/houses-huts/gallery/`,
+  //   component: require.resolve("./src/templates/GalleryModal.tsx")
+  // });
 };

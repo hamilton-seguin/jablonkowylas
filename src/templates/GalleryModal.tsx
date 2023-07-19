@@ -35,7 +35,7 @@ const GalleryModal = ({ data, location }: any) => {
   //     setIndexPageData(window.indexPageData);
   //   };
   // }, []);
-  console.log(data);
+  console.log("data", data);
 
   const [modalOpen, setModalOpen] = useState(true);
   const [currentImageId, setCurrentImageId] = useState(0);
@@ -86,6 +86,8 @@ const GalleryModal = ({ data, location }: any) => {
   // const rightPress = useKeyPress("ArrowRight", directionalArrows);
   // console.log(leftPress, rightPress);
 
+
+  // PAGINATION
   const prevImage = (e: MouseEvent) => {
     e.preventDefault();
     let newCurrentImageId = currentImageId - 1;
@@ -133,7 +135,7 @@ const GalleryModal = ({ data, location }: any) => {
           />
           <div className="m-auto">
             <Link
-              to={`/houses-huts/gallery/${selectedImageName}`}
+              to={`/gallery/${selectedImageName}`}
               state={{ prevPath: location.pathname }}
             >
               <GatsbyImage
