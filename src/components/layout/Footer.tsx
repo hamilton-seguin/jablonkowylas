@@ -8,14 +8,13 @@ export const Footer = () => {
       className="mt-16"
     >
       <div className="flex flex-col text-center bg-grass4 pb-8 pt-5">
-        <div className="uppercase">
-          <p>JABLONKOWY LAS</p>
-          <p>Ryn, Poland</p>
-          <p>+3465 785 552</p>
+          <p className="uppercase">JABŁONKOWY LAS</p>
+          <p>ul. Turystyczna 5</p>
+          <p>14-133 Stare Jabłonki</p>
+          <p>+48 601 563 030</p>
           <p className="text-xs mt-4">{`© ${
             date === 2023 ? date : `2023 - ${date}`
           } DESIGN HAMILTON SEGUIN`}</p>
-        </div>
       </div>
     </footer>
   );

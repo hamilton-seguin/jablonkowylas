@@ -56,6 +56,7 @@ const Neighborhood: FC<PageProps> = () => {
             </p>
           </div>
         </div>
+        <div></div>
         <div className="min-w-20 w-[15vw] max-w-[135px] mx-auto my-16">
           <TreePine className="fill-grass7 stroke-grass5 w-full h-full mx-auto" />
         </div>
