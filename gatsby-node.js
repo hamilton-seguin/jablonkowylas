@@ -14,14 +14,10 @@ exports.createPages = async ({ graphql, actions }) => {
   createRedirect({
     fromPath: "https://jablonkowylas.com/*",
     toPath: "https://jablonkowylas.pl/",
-    isPermanent: true,
-    force: true,
   });
   createRedirect({
     fromPath: "https://www.jablonkowylas.com/*",
     toPath: "https://jablonkowylas.pl/",
-    isPermanent: true,
-    force: true,
   });
   const result = await graphql(`
     query ModalRenderQuery {
