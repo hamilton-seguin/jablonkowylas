@@ -1,12 +1,19 @@
 import React, { FC, useEffect, useState } from "react";
-import { Link, HeadFC, PageProps, graphql, navigate } from "gatsby";
+import { Link, HeadFC, PageProps, graphql } from "gatsby";
 import { GatsbyImage, StaticImage, getImage } from "gatsby-plugin-image";
 import Layout from "../components/layout/Layout";
 import { TreePine } from "lucide-react";
 import { Draggable } from "../components/Draggable";
 
 const Neighborhood: FC<PageProps> = ({ data }: any) => {
+  const [prevPath, setPrevPath] = useState("");
 
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+    setPrevPath(location.pathname);
+  }, []);
 
   return (
     <Layout>
@@ -75,7 +82,7 @@ const Neighborhood: FC<PageProps> = ({ data }: any) => {
                     to={`/gallery/${image.node.name}`}
                     aria-label="Display image"
                     style={{ cursor: "inherit" }}
-                    state={{ prevPath: location.pathname }}
+                    state={{ prevPath }}
                   >
                     <GatsbyImage
                       image={getImage(image.node)!}
