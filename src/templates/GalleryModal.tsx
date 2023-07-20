@@ -86,7 +86,6 @@ const GalleryModal = ({ data, location }: any) => {
   // const rightPress = useKeyPress("ArrowRight", directionalArrows);
   // console.log(leftPress, rightPress);
 
-
   // PAGINATION
   const prevImage = (e: MouseEvent) => {
     e.preventDefault();
@@ -119,6 +118,7 @@ const GalleryModal = ({ data, location }: any) => {
         onRequestClose={closeModal}
         style={modalStyles}
         contentLabel="Modal"
+        bodyOpenClassName={"overflow-hidden"}
         shouldCloseOnOverlayClick
         shouldCloseOnEsc
       >

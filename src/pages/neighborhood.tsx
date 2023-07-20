@@ -4,6 +4,12 @@ import { GatsbyImage, StaticImage, getImage } from "gatsby-plugin-image";
 import Layout from "../components/layout/Layout";
 import { TreePine } from "lucide-react";
 import { Draggable } from "../components/Draggable";
+import {
+  scrollPosition,
+  saveScrollPosition,
+  getSavedScrollPosition,
+  scrollToSavedPosition,
+} from "../utils/scrollToPosition";
 
 const Neighborhood: FC<PageProps> = ({ data }: any) => {
   const [prevPath, setPrevPath] = useState("");
@@ -13,6 +19,14 @@ const Neighborhood: FC<PageProps> = ({ data }: any) => {
       return;
     }
     setPrevPath(location.pathname);
+
+    window.addEventListener("scroll", scrollPosition);
+    getSavedScrollPosition();
+    scrollToSavedPosition();
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("scroll", saveScrollPosition);
+    };
   }, []);
 
   return (
@@ -83,6 +97,7 @@ const Neighborhood: FC<PageProps> = ({ data }: any) => {
                     aria-label="Display image"
                     style={{ cursor: "inherit" }}
                     state={{ prevPath }}
+                    onClick={saveScrollPosition}
                   >
                     <GatsbyImage
                       image={getImage(image.node)!}

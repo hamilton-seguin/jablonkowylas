@@ -5,6 +5,12 @@ import { Camera, Flower, ChevronRight } from "lucide-react";
 
 import Layout from "../components/layout/Layout";
 import { Button } from "../components/ui/Button";
+import {
+  scrollPosition,
+  saveScrollPosition,
+  getSavedScrollPosition,
+  scrollToSavedPosition,
+} from "../utils/scrollToPosition";
 
 const Houses: FC<PageProps> = () => {
   const [prevPath, setPrevPath] = useState("");
@@ -14,6 +20,14 @@ const Houses: FC<PageProps> = () => {
       return;
     }
     setPrevPath(location.pathname);
+
+    window.addEventListener("scroll", scrollPosition);
+    getSavedScrollPosition();
+    scrollToSavedPosition();
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("scroll", saveScrollPosition);
+    };
   }, []);
 
   return (
@@ -30,7 +44,8 @@ const Houses: FC<PageProps> = () => {
               <Link
                 draggable={false}
                 to="/houses-huts/gallery/houses"
-                state={{prevPath}}
+                state={{ prevPath }}
+                onClick={saveScrollPosition}
               >
                 <Button className="group absolute inset-x-0 bottom-[6%] w-max m-auto rounded">
                   <p className=" text-font m-1 font-bold flex items-center">
@@ -95,7 +110,8 @@ const Houses: FC<PageProps> = () => {
               <Link
                 draggable={false}
                 to="/houses-huts/gallery/huts"
-                state={{prevPath}}
+                state={{ prevPath }}
+                onClick={saveScrollPosition}
               >
                 <Button className="group absolute inset-x-0 bottom-[6%] w-max m-auto rounded">
                   <p className=" text-font m-1 font-bold flex items-center">
@@ -121,7 +137,8 @@ const Houses: FC<PageProps> = () => {
               <Link
                 draggable={false}
                 to="/houses-huts/gallery/big-house"
-                state={{prevPath}}
+                state={{ prevPath }}
+                onClick={saveScrollPosition}
               >
                 <Button className="group absolute inset-x-0 bottom-[6%] w-max m-auto rounded">
                   <p className=" text-font m-1 font-bold flex items-center">

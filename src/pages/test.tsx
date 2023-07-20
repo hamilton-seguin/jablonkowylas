@@ -17,7 +17,7 @@ const Test: React.FC<PageProps> = ({ data }: any) => {
     <Layout>
       <div>
       <div className="min-w-20 w-[15vw] max-w-[150px] mx-auto">
-        <Apple className="fill-grass5 stroke-grass7 w-full h-full mx-auto" />
+        <Apple className="fill-grass5 stroke-grass7 w-full h-full mx-auto overflow-hidden" />
       </div>
 
 

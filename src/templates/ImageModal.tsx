@@ -26,7 +26,7 @@ const modalStyles: ReactModal.Styles = {
 };
 
 const ImageModal = ({ pageContext, location }: any) => {
-  let prevPath;
+  let prevPath: string;
   console.log("location", location);
   
   if (!location.state) {
@@ -38,7 +38,7 @@ const ImageModal = ({ pageContext, location }: any) => {
   const [modalOpen, setModalOpen] = useState(true);
   const closeModal = () => {
     setModalOpen(false);
-    setTimeout(() => navigate("/houses-huts"));
+    setTimeout(() => navigate(prevPath));
   };
   return (
     <>
