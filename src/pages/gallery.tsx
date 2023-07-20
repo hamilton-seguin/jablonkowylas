@@ -1,13 +1,15 @@
 import React, { FC, MouseEvent, useState } from "react";
 import { Link, HeadFC, PageProps, graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import Layout from "../components/layout/Layout";
 import { Camera } from "lucide-react";
+
+import Layout from "../components/layout/Layout";
 import { Pagination } from "../components/ui/Pagination";
+import { Divider } from "../components/ui/Divider";
 import { Draggable } from "../components/Draggable";
 
 const Gallery: FC<PageProps> = ({ data }: any) => {
-  console.log(data);
+
 
   const [currentImageId, setCurrentImageId] = useState(0);
 
@@ -35,7 +37,7 @@ const Gallery: FC<PageProps> = ({ data }: any) => {
             <h1 className="font-bold text-4xl lg:px-16 xl:px-[8%] xl:mt-[2vw] my-8 lg:mt-0">
               Gallery
             </h1>
-            <div className="mx-auto mb-8 xl:mt-[2vw] border-t-[2px] border-grass9 w-1/5"></div>
+            <Divider />
             <div
               id="GalleryId"
               className="flex flex-col h-full justify-end relative"

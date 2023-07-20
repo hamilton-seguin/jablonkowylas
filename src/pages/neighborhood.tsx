@@ -1,9 +1,11 @@
 import React, { FC, useEffect, useState } from "react";
 import { Link, HeadFC, PageProps, graphql } from "gatsby";
 import { GatsbyImage, StaticImage, getImage } from "gatsby-plugin-image";
-import Layout from "../components/layout/Layout";
 import { TreePine } from "lucide-react";
+
+import Layout from "../components/layout/Layout";
 import { Draggable } from "../components/Draggable";
+import { Divider } from "../components/ui/Divider";
 import {
   scrollPosition,
   saveScrollPosition,
@@ -37,7 +39,7 @@ const Neighborhood: FC<PageProps> = ({ data }: any) => {
             <h1 className="font-bold text-4xl lg:px-16 xl:px-[8%] xl:mt-[2vw] my-8 lg:mt-0">
               Our Neighborhood
             </h1>
-            <div className="mx-auto mb-8 xl:mt-[2vw] border-t-[2px] border-grass9 w-1/5"></div>
+            <Divider />
           </div>
           <div>
             <StaticImage

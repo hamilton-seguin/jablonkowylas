@@ -50,7 +50,7 @@ export const NavBar = () => {
           draggable={false}>
             <Button className="uppercase">Gallery</Button>
           </Link>
-          <Link to="/#" title="Prices & Availibility" 
+          <Link to="/prices" title="Prices & Availibility" 
           draggable={false}>
             <Button className="uppercase">Prices & Availibility</Button>
           </Link>

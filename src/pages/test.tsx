@@ -24,7 +24,7 @@ const Test: React.FC<PageProps> = ({ data }: any) => {
       <div id="ModalId" className="flex flex-col h-full justify-end relative">
         <Link to="/houses-huts/" draggable={false} aria-label="Previous page">
           <Button className="absolute top-8 z-50 right-4 md:right-12 px-2.5 md:px-4 !rounded-xl">
-            <X className="w-5 h-5 md:w-8 md:h-8" />
+            <X className="w-5 h-5 md:w-8 md:h-8 mr-[15px]" />
           </Button>
         </Link>
         <Link
@@ -80,7 +80,6 @@ const Test: React.FC<PageProps> = ({ data }: any) => {
                   aria-label="Display image"
                   style={{ cursor: "inherit" }}
                   onClick={(e) => {
-                    console.log("i:", i);
 
                     e.preventDefault();
                     setCurrentImageId(i);

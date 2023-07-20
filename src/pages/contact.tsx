@@ -1,8 +1,10 @@
 import React, { FC } from "react";
 import { HeadFC, PageProps } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
-import Layout from "../components/layout/Layout";
 import { Phone, Instagram, Facebook } from "lucide-react";
+
+import Layout from "../components/layout/Layout";
+import { Divider } from "../components/ui/Divider";
 
 const Contact: FC<PageProps> = () => {
   return (
@@ -13,7 +15,7 @@ const Contact: FC<PageProps> = () => {
             <h1 className="font-bold text-4xl lg:px-16 xl:px-[8%] xl:mt-[2vw] my-8 lg:mt-0">
               Contact Us
             </h1>
-            <div className="mx-auto mb-8 xl:mt-[2vw] border-t-[2px] border-grass9 w-1/5"></div>
+            <Divider />
             <h1 className=" text-font font-bold items-center text-2xl mt-8">
               We are reachable by phone & email
             </h1>

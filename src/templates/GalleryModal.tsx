@@ -35,7 +35,6 @@ const GalleryModal = ({ data, location }: any) => {
   //     setIndexPageData(window.indexPageData);
   //   };
   // }, []);
-  console.log("data", data);
 
   const [modalOpen, setModalOpen] = useState(true);
   const [currentImageId, setCurrentImageId] = useState(0);
@@ -47,35 +46,25 @@ const GalleryModal = ({ data, location }: any) => {
   useEffect(() => {
     const localStorageId = window.localStorage.getItem("localStorageId");
     if (!localStorageId) return;
+    if (JSON.parse(localStorageId) > data.allFile.edges.length - 1) {
+      setCurrentImageId(0);
+      return;
+    }
     setCurrentImageId(JSON.parse(localStorageId));
+
     setSelectedImageName(
       data.allFile.edges[JSON.parse(localStorageId)].node.name
     );
-    console.log("initial currentImageId", currentImageId);
-    console.log(
-      "initial 'localStorageId'",
-      window.localStorage.getItem("localStorageId")!
-    );
-    console.log("initial selectedImageName", selectedImageName);
   }, []);
 
   useEffect(() => {
-    return () => {
-      setTimeout(() => {
-        console.log("cache cleared");
-        window.localStorage.removeItem("localStorageId");
-      }, 1000);
-    };
-  }, []);
+    if (!modalOpen) {
+      window.localStorage.removeItem("localStorageId");
+    }
+  }, [modalOpen]);
 
   useEffect(() => {
     window.localStorage.setItem("localStorageId", currentImageId.toString());
-    console.log("currentImageId", currentImageId);
-    console.log(
-      "localStorageId",
-      window.localStorage.getItem("localStorageId")!
-    );
-    console.log("selectedImageName", selectedImageName);
   }, [currentImageId]);
 
   const getCurrentImageId = data.allFile.edges[currentImageId].node;
@@ -118,7 +107,7 @@ const GalleryModal = ({ data, location }: any) => {
         onRequestClose={closeModal}
         style={modalStyles}
         contentLabel="Modal"
-        bodyOpenClassName={"overflow-hidden"}
+        bodyOpenClassName={"overflow-hidden mr-[15px]"}
         shouldCloseOnOverlayClick
         shouldCloseOnEsc
       >

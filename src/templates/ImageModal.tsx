@@ -27,7 +27,6 @@ const modalStyles: ReactModal.Styles = {
 
 const ImageModal = ({ pageContext, location }: any) => {
   let prevPath: string;
-  console.log("location", location);
   
   if (!location.state) {
     prevPath = "/houses-huts";
