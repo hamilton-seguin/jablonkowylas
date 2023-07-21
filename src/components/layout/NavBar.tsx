@@ -20,13 +20,15 @@ export const NavBar = () => {
   const closeMenu = () => {
     setMenuState(menuStateEnum.isClose);
   };
-
-  menuState !== "openMenu" &&
+  if (typeof document !== "undefined") {
+    menuState !== "openMenu" &&
     (document.body.style.overflow = "") &&
     (document.body.style.right = "0");
   menuState === "openMenu" &&
     (document.body.style.overflow = "hidden") &&
     (document.body.style.right = "14px");
+  }
+
 
   return (
     <nav id="Nav" className={` z-10 w-full max-w-[100vw] bg-grass4 py-4`}>
