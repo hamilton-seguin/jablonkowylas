@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import { HeadFC, PageProps } from "gatsby";
-import { StaticImage } from "gatsby-plugin-image";
+import { HeadFC, PageProps, graphql } from "gatsby";
+import { Trans } from "gatsby-plugin-react-i18next";
 import { CalendarCheck } from "lucide-react";
 
 import Layout from "../components/layout/Layout";
@@ -11,48 +11,54 @@ const Prices: FC<PageProps> = () => {
     <Layout>
       <main>
         <div className="mx-4 my-8">
-          <div className="text-center md:max-w-[60%] mx-auto">
+          <div className="text-center md:max-w-[66%] mx-auto">
             <h1 className="font-bold text-4xl lg:px-16 xl:px-[8%] xl:mt-[2vw] my-8 lg:mt-0">
-              Prices & Availibility
+              <Trans i18nKey="title" />
             </h1>
             <Divider />
             <h1 className=" text-font font-bold items-center text-2xl my-8">
-              Jabłonkowy Las operates seasonally
+              <Trans i18nKey="section1" />
             </h1>
 
-            <p>In 2023, we start on July 1 and end on September 30.</p>
-            <p>Minimum stay is 2 nights.</p>
+            <p>
+              <Trans i18nKey="section1-1" />
+            </p>
+            <p>
+              <Trans i18nKey="section1-2" />
+            </p>
 
             <p className="my-8">
-              Reservations can be made by e-mail by sending an inquiry to the
-              following address: <span className="bg-grass4 hover:bg-grass6"><a href="mailto://rezerwacje@jablonkowylas.pl">rezerwacje@jablonkowylas.pl</a></span> or by calling <span className="bg-grass4 hover:bg-grass6">+48 601 563 030</span>. Please provide the date of your planned stay and information
-              about the selected house or cottage and the number of people.
+              <Trans i18nKey="section2-1" />
+              <span className="bg-grass4 hover:bg-grass6">
+                <a href="mailto://rezerwacje@jablonkowylas.pl">
+                  rezerwacje@jablonkowylas.pl
+                </a>
+              </span>
+              <Trans i18nKey="section2-2" />
+              <span className="bg-grass4 hover:bg-grass6">+48 601 563 030</span>
+              <Trans i18nKey="section2-3" />
             </p>
             <p className="my-8">
-              Please reserve the date and house or cottage in advance. To
-              confirm the reservation, an advance payment is required: in the
-              case of a stay longer than 5 days, 30% of the cost of
-              accommodation, in the case of stays shorter than 5 days, 50% of
-              the cost of accommodation.
+              <Trans i18nKey="section3" />
             </p>
             <p className="my-8">
-              We collect the rest of the amount due for the stay on the day of
-              arrival. In the event of an earlier departure than on the date
-              booked by you, the amount due for the entire stay does not change.
+              <Trans i18nKey="section4" />
             </p>
             <p className="my-8">
-              The check in starts at 15:00 on the day of arrival and check out
-              is 11:00 on the day of departure. Of course, it is possible to
-              arrive earlier and leave later, everything in Jabłonkowy Las,
-              apart from the houses and cottages will be available to you.
+              <Trans i18nKey="section5" />
             </p>
             <br />
-            <p className="my-8">In addition, meals can be purchased on site:</p>
-            <p>Breakfast and dinner PLN 120 (children PLN 90)</p>
-            <p>Breakfast PLN 45 (children PLN 35)</p>
-            <p>Dinner PLN 90 (children PLN 70)</p>
             <p className="my-8">
-              Please purchase meals at least one day in advance.
+              <Trans i18nKey="section6" />
+            </p>
+            <p>
+              <Trans i18nKey="section7" /></p>
+            <p>
+              <Trans i18nKey="section8" /></p>
+            <p>
+              <Trans i18nKey="section9" /></p>
+            <p className="my-8">
+              <Trans i18nKey="section10" />
             </p>
           </div>
         </div>
@@ -66,3 +72,19 @@ const Prices: FC<PageProps> = () => {
 
 export default Prices;
 export const Head: HeadFC = () => <title>Prices & Availibility</title>;
+
+export const query = graphql`
+  query ($language: String!) {
+    locales: allLocale(
+      filter: { ns: { in: ["prices"] }, language: { eq: $language } }
+    ) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
+  }
+`;

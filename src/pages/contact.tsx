@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import { HeadFC, PageProps } from "gatsby";
+import { HeadFC, PageProps, graphql } from "gatsby";
+import { Trans } from "gatsby-plugin-react-i18next";
 import { StaticImage } from "gatsby-plugin-image";
 import { Phone, Instagram, Facebook } from "lucide-react";
 
@@ -11,18 +12,18 @@ const Contact: FC<PageProps> = () => {
     <Layout>
       <main>
         <div className="mx-4 my-8">
-          <div className="text-center">
+          <div className="text-center md:max-w-[66%] mx-auto">
             <h1 className="font-bold text-4xl lg:px-16 xl:px-[8%] xl:mt-[2vw] my-8 lg:mt-0">
-              Contact Us
+              <Trans i18nKey="title" />
             </h1>
             <Divider />
             <h1 className=" text-font font-bold items-center text-2xl mt-8">
-              We are reachable by phone & email
+              <Trans i18nKey="section1" />
             </h1>
             <p className="my-8">
-              If you wish to make a reservation, you can call us at{" "}
-              <span className="bg-grass4 hover:bg-grass6">+48 601 563 030</span> or send us an
-              email at{" "}
+              <Trans i18nKey="section1_2" />
+              <span className="bg-grass4 hover:bg-grass6">+48 601 563 030</span> 
+              <Trans i18nKey="section1_3" />
               <span className="bg-grass4 hover:bg-grass6">
                 <a href="mailto://rezerwacje@jablonkowylas.pl">
                   rezerwacje@jablonkowylas.pl
@@ -30,7 +31,7 @@ const Contact: FC<PageProps> = () => {
               </span>
             </p>
             <p className="my-8">
-              For any other information, you can call us or send an email to{" "}
+              <Trans i18nKey="section1_4" />
               <span className="bg-grass4 hover:bg-grass6">
                 <a href="mailto://info@jablonkowylas.pl">
                   info@jablonkowylas.pl
@@ -38,7 +39,7 @@ const Contact: FC<PageProps> = () => {
               </span>
             </p>
             <p className="my-8">
-              You can also find us on Instagram and Facebook
+              <Trans i18nKey="section1_5" />
             </p>
             <div className="mx-auto mb-8 inline-flex ">
               <a
@@ -56,10 +57,10 @@ const Contact: FC<PageProps> = () => {
             </div>
             <div className="mx-auto">
               <h1 className=" text-font font-bold items-center text-2xl mb-8">
-                Find us on Google Maps
+              <Trans i18nKey="title2" />
               </h1>
               <p className="mt-8 mb-4">
-                Our location is: 
+              <Trans i18nKey="section2_1" />
               </p>
               <p className="mb-8"><a className="bg-grass4 hover:bg-grass6" href="https://goo.gl/maps/34eRjKWey5sPBgFY9">ul. Turystyczna 5 <br />14-133 Stare Jabłonki</a></p>
               <iframe
@@ -91,3 +92,17 @@ const Contact: FC<PageProps> = () => {
 
 export default Contact;
 export const Head: HeadFC = () => <title>Contact Us</title>;
+
+export const query = graphql`
+  query ($language: String!) {
+    locales: allLocale(filter: {ns: {in: ["contact"]}, language: {eq: $language}}) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
+  }
+`;

@@ -42,15 +42,15 @@ export const Menu = ({ closeMenu }: MenuProps) => {
             <Button className="md:py-4 w-full">Gallery</Button>
           </Link>
           <div className="border-t-[2px] border-font w-full"></div>
-          <Link to="/#" title="Prices & Availability" onClick={closeMenu} className="text-center">
+          <Link to="/prices" title="Prices & Availability" onClick={closeMenu} className="text-center">
             <Button className="md:py-4 w-full">Prices & Availability</Button>
           </Link>
-          <Link to="/#" title="Contact us" onClick={closeMenu} className="text-center">
+          <Link to="/contact" title="Contact us" onClick={closeMenu} className="text-center">
             <Button className="md:py-4 w-full">Contact us</Button>
           </Link>
           <div className="border-t-[2px] border-font w-full"></div>
           <div className="text-center">
-            <p className="pb-4">Contact:</p>
+            <p className="pb-4 md:py-4">Contact:</p>
             <p className="font-light lowercase break-words">
               contact@jablonkowylas.pl
             </p>

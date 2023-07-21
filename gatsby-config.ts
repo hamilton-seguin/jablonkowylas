@@ -1,4 +1,5 @@
 import type { GatsbyConfig } from "gatsby";
+import { languages, defaultLanguage } from "./languages";
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -36,7 +37,13 @@ const config: GatsbyConfig = {
         path: `${__dirname}/src/houses`,
       },
     },
-
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `locale`,
+        path: `${__dirname}/locales`,
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -91,6 +98,24 @@ const config: GatsbyConfig = {
             file: "https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400;8..144,700&display=swap",
           },
         ],
+      },
+    },
+    {
+      resolve: "gatsby-plugin-react-i18next",
+      options: {
+        languages,
+        defaultLanguage,
+        siteUrl: "https://jablonkowylas.pl",
+        i18nextOptions: {
+          // debug: true,
+          fallbackLng: defaultLanguage,
+          supportedLngs: languages,
+          defaultNS: "common",
+          interpolation: {
+            escapeValue: false, // not needed for react as it escapes by default
+          },
+
+        },
       },
     },
   ],

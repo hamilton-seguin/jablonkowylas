@@ -1,14 +1,18 @@
 import React, { useContext } from "react";
-import { Link } from "gatsby"
+import { Link } from "gatsby-plugin-react-i18next";
+
 import { Home } from "lucide-react";
 
 import { Menu } from "./Menu";
 import { Hamburger } from "../ui/Hamburger";
 import { Button } from "../ui/Button";
 
+import LangSwitcher from "../LangSwitcher";
 import { MenuContext, menuStateEnum } from "../../utils/context";
 
 export const NavBar = () => {
+
+  
   const { menuState, setMenuState } = useContext(MenuContext);
   const openMenu = () => {
     setMenuState(menuStateEnum.isOpen);
@@ -17,20 +21,24 @@ export const NavBar = () => {
     setMenuState(menuStateEnum.isClose);
   };
 
+  menuState !== "openMenu" &&
+    (document.body.style.overflow = "") &&
+    (document.body.style.right = "0");
+  menuState === "openMenu" &&
+    (document.body.style.overflow = "hidden") &&
+    (document.body.style.right = "14px");
+
   return (
-    <nav id="Nav" className="z-10 w-full max-w-[100vw] bg-grass4 py-4">
+    <nav id="Nav" className={` z-10 w-full max-w-[100vw] bg-grass4 py-4`}>
       <div className="flex items-center justify-center h-6">
         <div className="lg:flex flex-1 justify-evenly hidden items-center">
-          <Link to="/houses-huts" title="Houses & Shacks" 
-          draggable={false}>
-            <Button className="uppercase">Houses & Hut</Button>
+          <Link to="/houses-huts" title="Houses & Huts" draggable={false}>
+            <Button className="uppercase">Houses & Huts</Button>
           </Link>
-          <Link to="/restaurant" title="Restaurant" 
-          draggable={false}>
+          <Link to="/restaurant" title="Restaurant" draggable={false}>
             <Button className="uppercase">Restaurant</Button>
           </Link>
-          <Link to="/neighborhood" title="Our Neighborhood" 
-          draggable={false}>
+          <Link to="/neighborhood" title="Our Neighborhood" draggable={false}>
             <Button className="uppercase">Our Neighborhood</Button>
           </Link>
         </div>
@@ -46,16 +54,13 @@ export const NavBar = () => {
           </Link>
         </div>
         <div className="hidden lg:flex justify-evenly flex-1">
-          <Link to="/gallery" title="Gallery" 
-          draggable={false}>
+          <Link to="/gallery" title="Gallery" draggable={false}>
             <Button className="uppercase">Gallery</Button>
           </Link>
-          <Link to="/prices" title="Prices & Availibility" 
-          draggable={false}>
+          <Link to="/prices" title="Prices & Availibility" draggable={false}>
             <Button className="uppercase">Prices & Availibility</Button>
           </Link>
-          <Link to="/contact" title="Contact us" 
-          draggable={false}>
+          <Link to="/contact" title="Contact us" draggable={false}>
             <Button className="uppercase">Contact us</Button>
           </Link>
         </div>
@@ -63,6 +68,7 @@ export const NavBar = () => {
         <Hamburger openMenu={openMenu} closeMenu={closeMenu} />
       </div>
       <Menu closeMenu={closeMenu} />
+      <LangSwitcher />
     </nav>
   );
 };

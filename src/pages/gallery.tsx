@@ -1,5 +1,6 @@
 import React, { FC, MouseEvent, useState } from "react";
 import { Link, HeadFC, PageProps, graphql } from "gatsby";
+import { Trans } from "gatsby-plugin-react-i18next";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { Camera } from "lucide-react";
 
@@ -9,8 +10,6 @@ import { Divider } from "../components/ui/Divider";
 import { Draggable } from "../components/Draggable";
 
 const Gallery: FC<PageProps> = ({ data }: any) => {
-
-
   const [currentImageId, setCurrentImageId] = useState(0);
 
   const getCurrentImageId = data.allFile.edges[currentImageId].node;
@@ -35,7 +34,7 @@ const Gallery: FC<PageProps> = ({ data }: any) => {
         <div className="mx-4 my-8">
           <div className="text-center">
             <h1 className="font-bold text-4xl lg:px-16 xl:px-[8%] xl:mt-[2vw] my-8 lg:mt-0">
-              Gallery
+              <Trans i18nKey="title" />
             </h1>
             <Divider />
             <div
@@ -49,10 +48,6 @@ const Gallery: FC<PageProps> = ({ data }: any) => {
                 nextImage={nextImage}
               />
               <div className="m-auto">
-                {/* <Link
-                to={`/houses-huts/gallery/${selectedImageName}`}
-                state={{ prevPath: location.pathname }}
-              > */}
                 <GatsbyImage
                   image={getImage(getCurrentImageId)!}
                   alt={getCurrentImageId.name}
@@ -62,7 +57,7 @@ const Gallery: FC<PageProps> = ({ data }: any) => {
                 />
                 {/* </Link> */}
               </div>
-              <Draggable className="bg-grass3 pt-4 pb-3 md:pt-10 md:pb-8">
+              <Draggable className="bg-grass3 pt-4 pb-3 md:pt-10 md:pb-8 -mx-4">
                 <div className="flex snap-x overflow-x-auto scroll-smooth gap-2 items-center h-[18vh] overflow-y-hidden">
                   {data.allFile.edges.map((image: any, i: number) => (
                     <div
@@ -104,7 +99,7 @@ export default Gallery;
 export const Head: HeadFC = () => <title>Gallery</title>;
 
 export const query = graphql`
-  query GalleryRenderQuery {
+  query GalleryRenderQuery($language: String!) {
     allFile(
       sort: { name: ASC }
       filter: {
@@ -119,6 +114,17 @@ export const query = graphql`
           childImageSharp {
             gatsbyImageData(formats: [AUTO, WEBP, AVIF])
           }
+        }
+      }
+    }
+    locales: allLocale(
+      filter: { ns: { in: ["gallery"] }, language: { eq: $language } }
+    ) {
+      edges {
+        node {
+          ns
+          data
+          language
         }
       }
     }

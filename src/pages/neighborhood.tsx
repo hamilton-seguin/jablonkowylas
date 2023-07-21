@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
-import { Link, HeadFC, PageProps, graphql } from "gatsby";
+import { HeadFC, PageProps, graphql } from "gatsby";
+import { Link, Trans } from "gatsby-plugin-react-i18next";
 import { GatsbyImage, StaticImage, getImage } from "gatsby-plugin-image";
 import { TreePine } from "lucide-react";
 
@@ -37,7 +38,7 @@ const Neighborhood: FC<PageProps> = ({ data }: any) => {
         <div className="mx-4 my-8">
           <div className="text-center">
             <h1 className="font-bold text-4xl lg:px-16 xl:px-[8%] xl:mt-[2vw] my-8 lg:mt-0">
-              Our Neighborhood
+              <Trans i18nKey="title" />
             </h1>
             <Divider />
           </div>
@@ -50,35 +51,16 @@ const Neighborhood: FC<PageProps> = ({ data }: any) => {
           </div>
           <div className="m-16">
             <p className="my-8">
-              Jabłonkowy Las occupies 20 hectares of idyllic, Warmian space. Our
-              resort is located in a birch and pine forest, by a private lake,
-              away from the hustle and bustle of the city. Coming to us will
-              provide everyone with close contact to nature, as well as peaceful
-              and comfortable rest.
+              <Trans i18nKey="section1" />
             </p>
             <p className="my-8">
-              Everyone will find something for themselves here. The bookworm
-              will relax in a hammock or on a bench located right by the water.
-              Families with children will actively spend time on a private beach
-              or playground. For the more active, we have water equipment
-              rentals, such as kayaks and boats, or beach volleyball. We also
-              highly recommend hiking in our beautiful Warmia forests. Perhaps
-              you will be able to spot other inhabitants of our area, such as
-              cranes, herons, storks, ravens and hawks, sometimes deer and other
-              animals.
+              <Trans i18nKey="section2" />
             </p>
             <p className="my-8">
-              However, if you miss a big city, you can go on a trip to Olsztyn,
-              30 kilometers away from Jabłonkowy Las. The beautiful Old Town and
-              the famous High Gate will delight everyone.
+              <Trans i18nKey="section3" />
             </p>
             <p className="my-8">
-              In addition, the village of Grunwald, famous for the historical
-              battle of 1410, when the Polish-Lithuanian army defeated the
-              Teutonic Knights, is located 30 kilometers from our resort. Every
-              year, on the Grunwald Field, a battle is staged with the
-              participation of nearly 1,500 knights from Poland, Europe and even
-              the world!
+              <Trans i18nKey="section4" />
             </p>
           </div>
         </div>
@@ -125,7 +107,7 @@ export default Neighborhood;
 export const Head: HeadFC = () => <title>Neighborhood</title>;
 
 export const query = graphql`
-  query GalleryRenderQuery {
+  query NeighborhoodRenderQuery($language: String!) {
     allFile(
       sort: { name: ASC }
       filter: {
@@ -140,6 +122,15 @@ export const query = graphql`
           childImageSharp {
             gatsbyImageData(formats: [AUTO, WEBP, AVIF])
           }
+        }
+      }
+    }
+    locales: allLocale(filter: {ns: {in: ["area"]}, language: {eq: $language}}) {
+      edges {
+        node {
+          ns
+          data
+          language
         }
       }
     }

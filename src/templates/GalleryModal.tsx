@@ -1,5 +1,6 @@
 import React, { MouseEvent, useEffect, useState, createRef } from "react";
-import { graphql, navigate, PageRenderer, Link } from "gatsby";
+import { graphql, navigate, PageRenderer } from "gatsby";
+import { Link } from "gatsby-plugin-react-i18next";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Modal from "react-modal";
 
@@ -7,6 +8,7 @@ import { useKeyPress } from "../hooks/useKeyPress";
 
 import { Draggable } from "../components/Draggable";
 import { Pagination } from "../components/ui/Pagination";
+import { languages } from "../../languages";
 
 Modal.setAppElement(`#___gatsby`);
 
@@ -36,17 +38,23 @@ const GalleryModal = ({ data, location }: any) => {
   //   };
   // }, []);
 
+  const lang = data.locales.edges[0].node.language;
+
+
   const [modalOpen, setModalOpen] = useState(true);
   const [currentImageId, setCurrentImageId] = useState(0);
+
+  const getCurrentImageId = data.allFile.edges[currentImageId].node;
   const [selectedImageName, setSelectedImageName] = useState(
-    data.allFile.edges[currentImageId].node.name
+    getCurrentImageId.name
   );
+  const imageNumber = data.allFile.edges.length;
 
   //use localStorage to save currentImageId to return to the current immage after opening and closing Imagemodal
   useEffect(() => {
     const localStorageId = window.localStorage.getItem("localStorageId");
     if (!localStorageId) return;
-    if (JSON.parse(localStorageId) > data.allFile.edges.length - 1) {
+    if (JSON.parse(localStorageId) > imageNumber - 1) {
       setCurrentImageId(0);
       return;
     }
@@ -58,6 +66,15 @@ const GalleryModal = ({ data, location }: any) => {
   }, []);
 
   useEffect(() => {
+    if (typeof window === "undefined" || !modalOpen) return;
+    modalOpen &&
+      document.getElementById("langSwitcher")?.classList.add("hidden");
+    return () => {
+      document.getElementById("langSwitcher")?.classList.remove("hidden");
+    };
+  }, []);
+
+  useEffect(() => {
     if (!modalOpen) {
       window.localStorage.removeItem("localStorageId");
     }
@@ -66,9 +83,6 @@ const GalleryModal = ({ data, location }: any) => {
   useEffect(() => {
     window.localStorage.setItem("localStorageId", currentImageId.toString());
   }, [currentImageId]);
-
-  const getCurrentImageId = data.allFile.edges[currentImageId].node;
-  const imageNumber = data.allFile.edges.length;
 
   // const directionalArrows = createRef<any>();
   // const leftPress = useKeyPress("ArrowLeft", directionalArrows);
@@ -100,7 +114,9 @@ const GalleryModal = ({ data, location }: any) => {
     <>
       <PageRenderer
         key={"/houses-huts/"}
-        location={{ pathname: "/houses-huts/" } as any}
+        location={
+          { pathname: `${lang === "pl" ? "/pl" : ""}/houses-huts/` } as any
+        }
       />
       <Modal
         isOpen={modalOpen}
@@ -174,7 +190,7 @@ const GalleryModal = ({ data, location }: any) => {
 export default GalleryModal;
 
 export const query = graphql`
-  query GalleryRenderQuery($folderName: String!) {
+  query GalleryRenderQuery($folderName: String!, $language: String!) {
     allFile(
       sort: { name: ASC }
       filter: {
@@ -187,20 +203,21 @@ export const query = graphql`
           name
           publicURL
           childImageSharp {
-            # fluid(maxWidth: 960) {
-            #   srcSet
-            #   ...GatsbyImageSharpFluid
-            # }
             gatsbyImageData(formats: [AUTO, WEBP, AVIF])
           }
         }
       }
     }
-    file(extension: { eq: "json" }) {
-      publicURL
-      name
-      relativePath
-      sourceInstanceName
+    locales: allLocale(
+      filter: { ns: { in: ["index"] }, language: { eq: $language } }
+    ) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
     }
   }
 `;

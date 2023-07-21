@@ -22,7 +22,6 @@ exports.createPages = async ({ graphql, actions }) => {
     isPermanent: true,
   });
 
-
   const result = await graphql(`
     query ModalRenderQuery {
       allFile(
@@ -44,6 +43,7 @@ exports.createPages = async ({ graphql, actions }) => {
     console.error(result.errors);
     return;
   }
+
   result.data.allFile.edges.forEach(({ node }) => {
     createPage({
       path: `/gallery/${node.name}`,
@@ -63,8 +63,4 @@ exports.createPages = async ({ graphql, actions }) => {
       context: { folderName },
     });
   });
-    // createPage({
-  //   path: `/houses-huts/gallery/`,
-  //   component: require.resolve("./src/templates/GalleryModal.tsx")
-  // });
 };

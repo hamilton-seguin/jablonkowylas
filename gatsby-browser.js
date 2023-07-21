@@ -16,15 +16,11 @@ export const onPrefetchPathname = ({ loadPage }) => {
     });
   }
 };
-
-// export const shouldUpdateScroll = ({
-//   routerProps: { location },
-//   getSavedScrollPosition,
-// }) => {
-//   return getSavedScrollPosition(location);
-// };
-
-// export const onRouteUpdate = ({ location, prevLocation }) => {
-//   if (location && location.state)
-//     location.state.referrer = prevLocation ? prevLocation.pathname : null
-// }
+export const onRouteUpdate = ({ location }) => {
+  // Check if the URL ends with .com
+  if (location.pathname.endsWith('.com')) {
+    // Redirect to the same URL with .pl
+    const newUrl = location.pathname.replace(/\.com$/, '.pl');
+    window.location.replace(newUrl);
+  }
+};
