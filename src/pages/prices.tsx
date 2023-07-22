@@ -1,12 +1,36 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { HeadFC, PageProps, graphql } from "gatsby";
-import { Trans } from "gatsby-plugin-react-i18next";
+import { Trans, Link } from "gatsby-plugin-react-i18next";
 import { CalendarCheck } from "lucide-react";
 
 import Layout from "../components/layout/Layout";
 import { Divider } from "../components/ui/Divider";
+import { StaticImage } from "gatsby-plugin-image";
+import {
+  scrollPosition,
+  saveScrollPosition,
+  scrollToSavedPosition,
+} from "../utils/scrollToPosition";
 
-const Prices: FC<PageProps> = () => {
+const Prices: FC<PageProps> = ({ data }: any) => {
+  console.log("data", data);
+  const image = data.allFile.edges[0].node
+
+  const [prevPath, setPrevPath] = useState("");
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+    setPrevPath(location.pathname);
+
+    window.addEventListener("scroll", scrollPosition);
+    scrollToSavedPosition();
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("scroll", saveScrollPosition);
+    };
+  }, []);
   return (
     <Layout>
       <main>
@@ -47,16 +71,34 @@ const Prices: FC<PageProps> = () => {
             <p className="my-8">
               <Trans i18nKey="section5" />
             </p>
-            <br />
+            <div className="self-center">
+              <Link
+                to={`/gallery/${image.name}`}
+                aria-label="Display image"
+                style={{ cursor: "inherit" }}
+                state={{ prevPath }}
+                onClick={saveScrollPosition}
+              >
+                <StaticImage
+                  src="../images/cennik.jpg"
+                  alt="Neighborhood"
+                  className="min-h-[35vh] max-h-[50vh]"
+                  objectFit="contain"
+                />
+              </Link>
+            </div>
             <p className="my-8">
               <Trans i18nKey="section6" />
             </p>
             <p>
-              <Trans i18nKey="section7" /></p>
+              <Trans i18nKey="section7" />
+            </p>
             <p>
-              <Trans i18nKey="section8" /></p>
+              <Trans i18nKey="section8" />
+            </p>
             <p>
-              <Trans i18nKey="section9" /></p>
+              <Trans i18nKey="section9" />
+            </p>
             <p className="my-8">
               <Trans i18nKey="section10" />
             </p>
@@ -75,6 +117,23 @@ export const Head: HeadFC = () => <title>Prices & Availibility</title>;
 
 export const query = graphql`
   query ($language: String!) {
+    allFile(
+      sort: { name: ASC }
+      filter: {
+        extension: { regex: "/(jpg)|(jpeg)/" }
+        sourceInstanceName: { eq: "images" }
+        name: { regex: "/cennik/i" }
+      }
+    ) {
+      edges {
+        node {
+          name
+          childImageSharp {
+            gatsbyImageData(formats: [AUTO, WEBP, AVIF])
+          }
+        }
+      }
+    }
     locales: allLocale(
       filter: { ns: { in: ["prices"] }, language: { eq: $language } }
     ) {

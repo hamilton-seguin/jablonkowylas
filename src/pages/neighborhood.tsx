@@ -40,7 +40,7 @@ const Neighborhood: FC<PageProps> = ({ data }: any) => {
             </h1>
             <Divider />
           </div>
-          <div className="flex self-center">
+          <div className="self-center">
             <StaticImage
               src="../images/outdoor/outdoor10.jpg"
               alt="Neighborhood"
