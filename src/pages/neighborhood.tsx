@@ -44,11 +44,11 @@ const Neighborhood: FC<PageProps> = ({ data }: any) => {
             <StaticImage
               src="../images/outdoor/outdoor10.jpg"
               alt="Neighborhood"
-              className="min-h-[35vh] max-h-[50vh] w-full lg:max-w-[70vw]"
+              className="min-h-[35vh] max-h-[50vh] w-full lg:max-w-[80vw]"
               objectPosition={"bottom"}
             />
           </div>
-          <div className="m-16">
+          <div className="my-16 max-w-[80vw] self-center">
             <p className="my-8">
               <Trans i18nKey="section1" />
             </p>

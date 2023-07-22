@@ -13,8 +13,7 @@ import {
 } from "../utils/scrollToPosition";
 
 const Prices: FC<PageProps> = ({ data }: any) => {
-  console.log("data", data);
-  const image = data.allFile.edges[0].node
+  const image = data.allFile.edges[0].node;
 
   const [prevPath, setPrevPath] = useState("");
 
@@ -34,7 +33,7 @@ const Prices: FC<PageProps> = ({ data }: any) => {
   return (
     <Layout>
       <main>
-        <div className="mx-4 my-8">
+        <div className="mx-4 my-8 flex flex-col">
           <div className="text-center md:max-w-[66%] mx-auto">
             <h1 className="font-bold text-4xl lg:px-16 xl:px-[8%] xl:mt-[2vw] my-8 lg:mt-0">
               <Trans i18nKey="title" />
@@ -103,6 +102,14 @@ const Prices: FC<PageProps> = ({ data }: any) => {
               <Trans i18nKey="section10" />
             </p>
           </div>
+          <div className="self-center flex">
+            <StaticImage
+              src="../images/outdoor/outdoor7.jpg"
+              alt="Neighborhood"
+              className="min-h-[35vh] max-h-[50vh] w-full lg:max-w-[80vw]"
+              objectPosition={"center"}
+            />
+          </div>
         </div>
         <div className="min-w-20 w-[15vw] max-w-[135px] mx-auto my-16">
           <CalendarCheck className="fill-grass7 stroke-grass5 w-full h-full mx-auto" />
@@ -122,7 +129,7 @@ export const query = graphql`
       filter: {
         extension: { regex: "/(jpg)|(jpeg)/" }
         sourceInstanceName: { eq: "images" }
-        name: { regex: "/cennik/i" }
+        name: { eq: "cennik" }
       }
     ) {
       edges {

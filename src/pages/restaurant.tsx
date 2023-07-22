@@ -1,13 +1,37 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { HeadFC, PageProps, graphql } from "gatsby";
-import { StaticImage } from "gatsby-plugin-image";
+import { GatsbyImage, StaticImage, getImage } from "gatsby-plugin-image";
 import { Carrot } from "lucide-react";
-import { Trans } from "gatsby-plugin-react-i18next";
+import { Link, Trans } from "gatsby-plugin-react-i18next";
 
 import Layout from "../components/layout/Layout";
 import { Divider } from "../components/ui/Divider";
+import { Draggable } from "../components/Draggable";
 
-const Restaurant: FC<PageProps> = () => {
+import {
+  scrollPosition,
+  saveScrollPosition,
+  scrollToSavedPosition,
+} from "../utils/scrollToPosition";
+
+const Restaurant: FC<PageProps> = ({ data }: any) => {
+
+  const [prevPath, setPrevPath] = useState("");
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+    setPrevPath(location.pathname);
+
+    window.addEventListener("scroll", scrollPosition);
+    scrollToSavedPosition();
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("scroll", saveScrollPosition);
+    };
+  }, []);
+  
   return (
     <Layout>
       <main>
@@ -21,7 +45,7 @@ const Restaurant: FC<PageProps> = () => {
               <Trans i18nKey="description" />
             </h1>
             <p className="my-8">
-            <Trans i18nKey="text"/>
+              <Trans i18nKey="text" />
             </p>
           </div>
 
@@ -36,10 +60,10 @@ const Restaurant: FC<PageProps> = () => {
             </div>
             <div className="px-16">
               <h2 className=" text-font font-bold flex items-center text-xl mt-8 underline underline-offset-4 decoration-grass9">
-              <Trans i18nKey="breakfast"/>
+                <Trans i18nKey="breakfast" />
               </h2>
               <p className="my-8 lg:col-start-1">
-              <Trans i18nKey="breakfast1"/>
+                <Trans i18nKey="breakfast1" />
               </p>
             </div>
           </div>
@@ -55,13 +79,13 @@ const Restaurant: FC<PageProps> = () => {
             </div>
             <div className="px-16">
               <h2 className=" text-font font-bold flex items-center text-xl mt-8 underline underline-offset-4 decoration-grass9">
-              <Trans i18nKey="lunch"/>
+                <Trans i18nKey="lunch" />
               </h2>
               <p className="my-8">
-              <Trans i18nKey="lunch1"/>
+                <Trans i18nKey="lunch1" />
               </p>
               <p className="my-8">
-              <Trans i18nKey="extra"/>
+                <Trans i18nKey="extra" />
               </p>
             </div>
           </div>
@@ -76,12 +100,42 @@ const Restaurant: FC<PageProps> = () => {
               />
             </div>
             <div className="px-16">
-              
               <p className="my-8">
-              <Trans i18nKey="extra1"/>
+                <Trans i18nKey="extra1" />
               </p>
             </div>
           </div>
+        </div>
+        <div
+          id="GalleryId"
+          className="flex flex-col h-full justify-end relative"
+          // ref={directionalArrows}
+        >
+          <Draggable className="bg-grass3 pt-4 pb-3 md:pt-10 md:pb-8">
+            <div className="flex snap-x overflow-x-auto scroll-smooth gap-2 items-center h-[18vh] overflow-y-hidden">
+              {data.allFile.edges.map((image: any, i: number) => (
+                <div
+                  key={image.node.name}
+                  className="flex snap-start shrink-0 max-w-fit"
+                >
+                  <Link
+                    to={`/gallery/${image.node.name}`}
+                    aria-label="Display image"
+                    style={{ cursor: "inherit" }}
+                    state={{ prevPath }}
+                    onClick={saveScrollPosition}
+                  >
+                    <GatsbyImage
+                      image={getImage(image.node)!}
+                      alt={image.node.name}
+                      className="w-[27vw] lg:w-[21vw] 2xl:w-[14vw] 3xl:w-[10vw] h-[24vw] lg:h-[18vw] 2xl:h-[11vw] 3xl:h-[8vw]"
+                      draggable={false}
+                    />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </Draggable>
         </div>
         <div className="min-w-20 w-[15vw] max-w-[135px] mx-auto my-16">
           <Carrot className="fill-grass7 stroke-grass5 w-full h-full mx-auto" />
@@ -96,6 +150,23 @@ export const Head: HeadFC = () => <title>Restaurant</title>;
 
 export const query = graphql`
   query ($language: String!) {
+    allFile(
+      sort: { name: ASC }
+      filter: {
+        extension: { regex: "/(jpg)|(jpeg)/" }
+        sourceInstanceName: { eq: "images" }
+        name: { regex: "/facilities/i" }
+      }
+    ) {
+      edges {
+        node {
+          name
+          childImageSharp {
+            gatsbyImageData(formats: [AUTO, WEBP, AVIF])
+          }
+        }
+      }
+    }
     locales: allLocale(
       filter: { ns: { in: ["restaurant"] }, language: { eq: $language } }
     ) {
