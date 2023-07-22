@@ -8,7 +8,6 @@ import { useKeyPress } from "../hooks/useKeyPress";
 
 import { Draggable } from "../components/Draggable";
 import { Pagination } from "../components/ui/Pagination";
-import { languages } from "../../languages";
 
 Modal.setAppElement(`#___gatsby`);
 
@@ -40,7 +39,6 @@ const GalleryModal = ({ data, location }: any) => {
 
   const lang = data.locales.edges[0].node.language;
 
-
   const [modalOpen, setModalOpen] = useState(true);
   const [currentImageId, setCurrentImageId] = useState(0);
 
@@ -63,6 +61,11 @@ const GalleryModal = ({ data, location }: any) => {
     setSelectedImageName(
       data.allFile.edges[JSON.parse(localStorageId)].node.name
     );
+    return () => {
+      setTimeout(() => {
+        localStorage.removeItem("savedScrollPosition");
+      }, 100);
+    };
   }, []);
 
   useEffect(() => {
@@ -201,7 +204,6 @@ export const query = graphql`
       edges {
         node {
           name
-          publicURL
           childImageSharp {
             gatsbyImageData(formats: [AUTO, WEBP, AVIF])
           }

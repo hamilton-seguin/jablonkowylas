@@ -110,7 +110,6 @@ export const query = graphql`
       edges {
         node {
           name
-          publicURL
           childImageSharp {
             gatsbyImageData(formats: [AUTO, WEBP, AVIF])
           }

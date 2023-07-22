@@ -43,7 +43,7 @@ export const Menu = ({ closeMenu }: MenuProps) => {
           </Link>
           <div className="border-t-[2px] border-font w-full"></div>
           <Link to="/prices" title="Prices & Availability" onClick={closeMenu} className="text-center">
-            <Button className="md:py-4 w-full">Prices & Availability</Button>
+            <Button className="md:py-4 w-full">Prices & Reservations</Button>
           </Link>
           <Link to="/contact" title="Contact us" onClick={closeMenu} className="text-center">
             <Button className="md:py-4 w-full">Contact us</Button>
@@ -52,9 +52,9 @@ export const Menu = ({ closeMenu }: MenuProps) => {
           <div className="text-center">
             <p className="pb-4 md:py-4">Contact:</p>
             <p className="font-light lowercase break-words">
-              contact@jablonkowylas.pl
+              info@jablonkowylas.pl
             </p>
-            <p className="font-light lowercase pt-4">+3465 785 552</p>
+            <p className="font-light lowercase pt-4">+48 601 563 030</p>
           </div>
         </nav>
       </aside>

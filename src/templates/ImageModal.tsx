@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { navigate, PageRenderer, Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import Modal from "react-modal";
@@ -27,41 +27,50 @@ const modalStyles: ReactModal.Styles = {
 
 const ImageModal = ({ pageContext, location }: any) => {
   let prevPath: string;
-  
+
   if (!location.state) {
     prevPath = "/houses-huts";
   } else {
     prevPath = location.state.prevPath;
   }
-  
+
   const [modalOpen, setModalOpen] = useState(true);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !modalOpen) return;
+    modalOpen &&
+      document.getElementById("langSwitcher")?.classList.add("hidden");
+    return () => {
+      document.getElementById("langSwitcher")?.classList.remove("hidden");
+    };
+  }, []);
+  
+  useEffect(() => {
+    return () => {
+      setTimeout(() => {
+        localStorage.removeItem("savedScrollPosition");
+      }, 100);}
+  })
+
   const closeModal = () => {
     setModalOpen(false);
     setTimeout(() => navigate(prevPath));
   };
   return (
     <>
-      <PageRenderer
-        key={prevPath}
-        location={{ pathname: prevPath } as any}
-      />
+      <PageRenderer key={prevPath} location={{ pathname: prevPath } as any} />
       <Modal
         isOpen={modalOpen}
         onRequestClose={closeModal}
         style={modalStyles}
+        bodyOpenClassName={"overflow-hidden mr-[15px]"}
         contentLabel="Modal"
         shouldCloseOnOverlayClick
         shouldCloseOnEsc
       >
         <div id="GalleryId" className="h-full flex justify-center items-center">
-          <Pagination
-            closeToGalleryModalRoute={`${prevPath}`}
-          />
-          <Link 
-            to={`${prevPath}`}
-            draggable={false}
-            aria-label="Previous page"
-          >
+          <Pagination closeToGalleryModalRoute={`${prevPath}`} />
+          <Link to={`${prevPath}`} draggable={false} aria-label="Previous page">
             <GatsbyImage
               image={pageContext.imageData}
               alt={pageContext.name}

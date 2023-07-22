@@ -12,7 +12,7 @@ export const saveScrollPosition = () => {
 }
 
 // Get the saved scroll position from localStorage
-export const getSavedScrollPosition = () => {
+const getSavedScrollPosition = () => {
   const isSaved = localStorage.getItem('savedScrollPosition')
   if (!isSaved) return 0;
   const savedScrollPosition = parseInt(isSaved, 10);
@@ -22,4 +22,5 @@ export const getSavedScrollPosition = () => {
 export const scrollToSavedPosition = () => {
   const savedPosition = getSavedScrollPosition();
   window.scrollTo(0, savedPosition);
+
 };

@@ -10,7 +10,6 @@ import { Divider } from "../components/ui/Divider";
 import {
   scrollPosition,
   saveScrollPosition,
-  getSavedScrollPosition,
   scrollToSavedPosition,
 } from "../utils/scrollToPosition";
 
@@ -24,7 +23,6 @@ const Neighborhood: FC<PageProps> = ({ data }: any) => {
     setPrevPath(location.pathname);
 
     window.addEventListener("scroll", scrollPosition);
-    getSavedScrollPosition();
     scrollToSavedPosition();
     // Clean up the event listener when the component unmounts
     return () => {
@@ -35,18 +33,19 @@ const Neighborhood: FC<PageProps> = ({ data }: any) => {
   return (
     <Layout>
       <main>
-        <div className="mx-4 my-8">
+        <div className="mx-4 my-8 flex flex-col">
           <div className="text-center">
             <h1 className="font-bold text-4xl lg:px-16 xl:px-[8%] xl:mt-[2vw] my-8 lg:mt-0">
               <Trans i18nKey="title" />
             </h1>
             <Divider />
           </div>
-          <div>
+          <div className="flex self-center">
             <StaticImage
-              src="../big-house/area3.jpeg"
+              src="../images/outdoor/outdoor10.jpg"
               alt="Neighborhood"
-              className="h-[35vh] w-full"
+              className="min-h-[35vh] max-h-[50vh] w-full lg:max-w-[70vw]"
+              objectPosition={"bottom"}
             />
           </div>
           <div className="m-16">
@@ -112,20 +111,22 @@ export const query = graphql`
       sort: { name: ASC }
       filter: {
         extension: { regex: "/(jpg)|(jpeg)/" }
-        sourceInstanceName: { eq: "outdoor" }
+        sourceInstanceName: { eq: "images" }
+        name: { regex: "/outdoor/i" }
       }
     ) {
       edges {
         node {
           name
-          publicURL
           childImageSharp {
             gatsbyImageData(formats: [AUTO, WEBP, AVIF])
           }
         }
       }
     }
-    locales: allLocale(filter: {ns: {in: ["area"]}, language: {eq: $language}}) {
+    locales: allLocale(
+      filter: { ns: { in: ["area"] }, language: { eq: $language } }
+    ) {
       edges {
         node {
           ns

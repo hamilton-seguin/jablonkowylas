@@ -17,7 +17,7 @@ const IndexPage: React.FC<PageProps> = () => {
           <h1 className="absolute z-10 text-3xl md:text-6xl lg:text-8xl font-bold text-background mb-[15%]">
             <Trans i18nKey="title" />
           </h1>
-          <StaticImage src="../images/image3.jpg" alt="" />
+          <StaticImage src="../houses/cottage-main.jpg" alt="" className="max-h-[80vh]"/>
         </div>
         <div className="text-center my-16 mx-24">
           <p>

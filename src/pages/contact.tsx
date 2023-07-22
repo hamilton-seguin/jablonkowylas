@@ -77,7 +77,7 @@ const Contact: FC<PageProps> = () => {
         </div>
         <div>
           <StaticImage
-            src="../big-house/area3.jpeg"
+            src="../images/outdoor/outdoor8.jpg"
             alt="Contact us"
             className="h-[35vh] w-full"
           />

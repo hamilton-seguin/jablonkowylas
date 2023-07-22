@@ -19,6 +19,7 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
+        name: "Jablonkowy Las",
         icon: "src/images/favicon-apple.png",
       },
     },
@@ -58,18 +59,18 @@ const config: GatsbyConfig = {
         path: `${__dirname}/src/huts`,
       },
     },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `outdoor`,
+    //     path: `${__dirname}/src/outdoor`,
+    //   },
+    // },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `outdoor`,
-        path: `${__dirname}/src/outdoor`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `big-house`,
-        path: `${__dirname}/src/big-house`,
+        name: `hunters-house`,
+        path: `${__dirname}/src/hunters-house`,
       },
     },
     {
@@ -103,14 +104,13 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-plugin-react-i18next",
       options: {
-        languages,
-        defaultLanguage,
+        languages: ["en", "pl"],
+        defaultLanguage: "en",
         siteUrl: "https://jablonkowylas.pl",
         i18nextOptions: {
-          // debug: true,
-          fallbackLng: defaultLanguage,
-          supportedLngs: languages,
-          defaultNS: "common",
+          fallbackLng: "en",
+          supportedLngs: ["en", "pl"],
+          defaultNS: "index",
           interpolation: {
             escapeValue: false, // not needed for react as it escapes by default
           },

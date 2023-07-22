@@ -56,7 +56,7 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  ["big-house", "houses", "huts"].forEach((folderName) => {
+  ["hunters-house", "houses", "huts"].forEach((folderName) => {
     createPage({
       path: `/houses-huts/gallery/${folderName}`,
       component: require.resolve("./src/templates/GalleryModal.tsx"),
@@ -64,3 +64,22 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 };
+
+// exports.createSchemaCustomization = ({actions}) => {
+//   const {createTypes} = actions;
+//   createTypes(`
+//     type SitePage implements Node {
+//       context: SitePageContext
+//     }
+//     type SitePageContext {
+//       i18n: i18nContext
+//     }
+//     type i18nContext {
+//         language: String,
+//         languages: [String],
+//         defaultLanguage: String,
+//         originalPath: String
+//         routed: Boolean
+//     }
+//   `);
+// };
