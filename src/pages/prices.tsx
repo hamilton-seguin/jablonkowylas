@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import { HeadFC, PageProps, graphql } from "gatsby";
-import { Trans, Link } from "gatsby-plugin-react-i18next";
+import { Trans, Link, useTranslation } from "gatsby-plugin-react-i18next";
 import { CalendarCheck } from "lucide-react";
 
 import Layout from "../components/layout/Layout";
@@ -13,8 +13,9 @@ import {
 } from "../utils/scrollToPosition";
 
 const Prices: FC<PageProps> = ({ data }: any) => {
-  const image = data.allFile.edges[0].node;
+  const { i18n } = useTranslation();
 
+  const image = data.allFile.edges[0].node;
   const [prevPath, setPrevPath] = useState("");
 
   useEffect(() => {
@@ -75,29 +76,23 @@ const Prices: FC<PageProps> = ({ data }: any) => {
                 state={{ prevPath }}
                 onClick={saveScrollPosition}
               >
-                <StaticImage
-                  src="../images/cennik.jpg"
-                  alt="Neighborhood"
-                  className="min-h-[35vh] max-h-[60vh]"
-                  objectFit="contain"
-                />
+                {i18n.language === "pl" ? (
+                  <StaticImage
+                    src="../images/cennik.jpg"
+                    alt="Neighborhood"
+                    className="min-h-[35vh] max-h-[60vh]"
+                    objectFit="contain"
+                  />
+                ) : (
+                  <StaticImage
+                    src="../images/price-list.jpg"
+                    alt="Neighborhood"
+                    className="min-h-[35vh] max-h-[60vh]"
+                    objectFit="contain"
+                  />
+                )}
               </Link>
             </div>
-            {/* <p className="my-8">
-              <Trans i18nKey="section6" />
-            </p>
-            <p>
-              <Trans i18nKey="section7" />
-            </p>
-            <p>
-              <Trans i18nKey="section8" />
-            </p>
-            <p>
-              <Trans i18nKey="section9" />
-            </p>
-            <p className="my-8">
-              <Trans i18nKey="section10" />
-            </p> */}
           </div>
           <div className="self-center flex my-16">
             <StaticImage

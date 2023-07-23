@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { navigate, PageRenderer, Link } from "gatsby";
+import { navigate, PageRenderer, Link, graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import Modal from "react-modal";
 
@@ -85,3 +85,19 @@ const ImageModal = ({ pageContext, location }: any) => {
 };
 
 export default ImageModal;
+
+export const query = graphql`
+  query ($language: String!) {
+    locales: allLocale(
+      filter: { ns: { in: ["index"] }, language: { eq: $language } }
+    ) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
+  }
+`;

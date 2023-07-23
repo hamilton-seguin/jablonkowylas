@@ -83,7 +83,7 @@ body {
 #menu {
   left: -100%;
   position: fixed;
-  z-index: 50;
+  z-index: 60;
 }
 .openMenu {
   animation-name: menu-in, reveals;

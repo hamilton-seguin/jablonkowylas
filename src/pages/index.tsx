@@ -12,7 +12,7 @@ const IndexPage: React.FC<PageProps> = () => {
   return (
     <Layout>
       <main>
-        <div className="relative flex items-center justify-center  mt-8">
+        <div className="relative flex items-center justify-center mt-8 md:mt-0">
           <h1 className="absolute z-10 text-5xl md:text-6xl lg:text-8xl font-bold text-background mb-[15%]">
             <Trans i18nKey="title" />
           </h1>

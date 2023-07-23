@@ -27,7 +27,7 @@ const LangSwitcher = () => {
             <Link
               to={originalPath}
               language={lng}
-              onClick={saveScrollPosition}              className={`inline-flex items-center justify-center w-4 h-4 sm:h-6 sm:w-6 ${
+              onClick={saveScrollPosition}              className={`inline-flex items-center justify-center w-5 h-5 md:h-6 md:w-6 ${
                 i18n.resolvedLanguage === lng ? "underline" : "none"} `}
             >
               <li className="p-4 uppercase text-sm">

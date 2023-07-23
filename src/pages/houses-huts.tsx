@@ -42,7 +42,7 @@ const Houses: FC<PageProps> = () => {
               <StaticImage
                 src="../houses/cottage-outside.jpg"
                 alt="Jabłonkowy Las house on the lake"
-                className="max-h-[70vh] min-h-[50vh] lg:max-h-fit lg:max-w-[49vw] w-full"
+                className="max-h-[50vh] min-h-[50vh] lg:max-w-[49vw] w-full"
                 objectPosition={"bottom"}
               />
               <Link
@@ -94,7 +94,7 @@ const Houses: FC<PageProps> = () => {
               <StaticImage
                 src="../huts/huts4.jpg"
                 alt="Jabłonkowy Las hut on the lake"
-                className="max-h-[70vh] min-h-[50vh] lg:max-h-fit lg:max-w-[49vw] w-full lg:w-[49vw]"
+                className="max-h-[50vh] min-h-[50vh] lg:max-w-[49vw] w-full lg:w-[49vw]"
                 objectPosition={"center"}
               />
               <Link
@@ -121,7 +121,7 @@ const Houses: FC<PageProps> = () => {
               <StaticImage
                 src="../hunters-house/hunters-house1.jpg"
                 alt="Jabłonkowy Las pavilion on the lake"
-                className="max-h-[70vh] min-h-[50vh] lg:max-h-fit lg:max-w-[49vw]"
+                className="max-h-[50vh] min-h-[50vh] lg:max-w-[49vw]"
                 objectPosition={"center"}
               />
               <Link
@@ -170,7 +170,7 @@ const Houses: FC<PageProps> = () => {
               <StaticImage
                 src="../camping/camping2.jpg"
                 alt="Jabłonkowy Las hut on the lake"
-                className="max-h-[70vh] min-h-[50vh] lg:max-h-fit lg:max-w-[49vw] w-full lg:w-[49vw]"
+                className="max-h-[50vh] min-h-[50vh] lg:max-w-[49vw] w-full lg:w-[49vw]"
                 objectPosition={"center"}
               />
               <Link
@@ -182,7 +182,7 @@ const Houses: FC<PageProps> = () => {
                 <Button className="group absolute inset-x-0 bottom-[6%] w-max m-auto rounded">
                   <p className=" text-font m-1 font-bold flex items-center">
                     <Camera className="w-6 h-6 mr-3" />
-                    <Trans i18nKey="section2_title" />
+                    <Trans i18nKey="section4_title" />
                     <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-all" />
                   </p>
                 </Button>
