@@ -35,7 +35,7 @@ const Neighborhood: FC<PageProps> = ({ data }: any) => {
       <main>
         <div className="mx-4 my-8 flex flex-col">
           <div className="text-center">
-            <h1 className="font-bold text-4xl lg:px-16 xl:px-[8%] xl:mt-[2vw] my-8 lg:mt-0">
+            <h1 className="font-bold text-4xl lg:px-16 xl:px-[8%] xl:mt-[2vw] mb-8 lg:mt-0">
               <Trans i18nKey="title" />
             </h1>
             <Divider />

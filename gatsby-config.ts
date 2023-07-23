@@ -3,7 +3,7 @@ import { languages, defaultLanguage } from "./languages";
 
 const config: GatsbyConfig = {
   siteMetadata: {
-    title: `Jablonkowy Las`,
+    title: `Jabłonkowy Las`,
     siteUrl: `https://www.yourdomain.tld`,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
@@ -19,7 +19,7 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        name: "Jablonkowy Las",
+        name: "Jabłonkowy Las",
         icon: "src/images/favicon-apple.png",
       },
     },
@@ -121,7 +121,6 @@ const config: GatsbyConfig = {
           interpolation: {
             escapeValue: false, // not needed for react as it escapes by default
           },
-
         },
       },
     },

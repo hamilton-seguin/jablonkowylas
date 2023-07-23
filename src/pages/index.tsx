@@ -12,12 +12,16 @@ const IndexPage: React.FC<PageProps> = () => {
   return (
     <Layout>
       <main>
-        <div className="bg-grass3"></div>
-        <div className="relative flex items-center justify-center">
-          <h1 className="absolute z-10 text-3xl md:text-6xl lg:text-8xl font-bold text-background mb-[15%]">
+        <div className="relative flex items-center justify-center  mt-8">
+          <h1 className="absolute z-10 text-5xl md:text-6xl lg:text-8xl font-bold text-background mb-[15%]">
             <Trans i18nKey="title" />
           </h1>
-          <StaticImage src="../houses/cottage-main.jpg" alt="" className="max-h-[80vh]"/>
+          <StaticImage
+            src="../gallery/facilities20.jpg"
+            alt=""
+            className="max-h-[80vh] w-full object-cover"
+            objectPosition={"center"}
+          />
         </div>
         <div className="text-center my-16 mx-24">
           <p>
@@ -40,7 +44,7 @@ export default IndexPage;
 export const Head: HeadFC = () => {
   return (
     <>
-      <title>Jablonkowy Las</title>
+      <title>Jabłonkowy Las</title>
     </>
   );
 };

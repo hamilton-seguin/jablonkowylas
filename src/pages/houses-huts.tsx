@@ -31,13 +31,17 @@ const Houses: FC<PageProps> = () => {
 
   return (
     <Layout>
-      <main className="mt-16">
-        <div className="flex flex-col lg:flex-row min-h-min mx-4 my-8">
+      <main>
+        <div className="flex flex-col lg:flex-row min-h-min mx-4 mt-8 lg:mt-16">
           <div className="lg:grid lg:grid-cols-2 lg:auto-rows-min flex flex-col text-justify leading-7 min-h-fit lg:max-h-min ">
+            <h1 className="text-center lg:col-start-2 font-bold text-4xl lg:px-16 xl:px-[8%] xl:mt-[2vw] mb-8 lg:mt-0">
+              <Trans i18nKey="title" />
+            </h1>
+            <div className="text-center lg:col-start-2 mx-auto mb-8  xl:mt-[2vw] border-t-[2px] border-grass9 w-1/3"></div>
             <div className="relative lg:flex lg:row-start-1 lg:row-end-5 lg:left-0 -mx-4 lg:mx-0 lg:order-first lg:max-h-[60vh]">
               <StaticImage
                 src="../houses/cottage-outside.jpg"
-                alt="Jablonkowy Las house on the lake"
+                alt="Jabłonkowy Las house on the lake"
                 className="max-h-[70vh] min-h-[50vh] lg:max-h-fit lg:max-w-[49vw] w-full"
                 objectPosition={"bottom"}
               />
@@ -56,11 +60,7 @@ const Houses: FC<PageProps> = () => {
                 </Button>
               </Link>
             </div>
-            <h1 className="text-center lg:col-start-2 font-bold text-4xl lg:px-16 xl:px-[8%] xl:mt-[2vw] my-8 lg:mt-0">
-              <Trans i18nKey="title" />
-            </h1>
-            <div className="text-center lg:col-start-2 mx-auto mb-8  xl:mt-[2vw] border-t-[2px] border-grass9 w-1/3"></div>
-            <h2 className="text-center lg:col-start-2 font-bold text-2xl lg:px-16 xl:px-[8%] mb-8  xl:mt-[2vw] underline underline-offset-4 decoration-grass9">
+            <h2 className="text-center lg:col-start-2 font-bold text-2xl lg:px-16 xl:px-[8%] my-8  xl:mt-[2vw] underline underline-offset-4 decoration-grass9">
               <Trans i18nKey="section1_title" />
             </h2>
             <div className="lg:col-start-2 lg:px-16 xl:px-[8%] my-8 lg:my-0 xl:max-w-[75%] xl:mx-auto">
@@ -93,7 +93,7 @@ const Houses: FC<PageProps> = () => {
             <div className="relative order-first lg:flex lg:row-start-1 lg:row-end-5 lg:col-start-2 lg:right-0 min-h-fit -mx-4 lg:mx-0 lg:max-h-[60vh]">
               <StaticImage
                 src="../huts/huts4.jpg"
-                alt="Jablonkowy Las hut on the lake"
+                alt="Jabłonkowy Las hut on the lake"
                 className="max-h-[70vh] min-h-[50vh] lg:max-h-fit lg:max-w-[49vw] w-full lg:w-[49vw]"
                 objectPosition={"center"}
               />
@@ -120,7 +120,7 @@ const Houses: FC<PageProps> = () => {
             <div className="relative lg:flex lg:row-start-1 lg:row-end-5 lg:left-0 min-h-fit -mx-4 lg:mx-0 lg:order-first lg:max-h-[60vh]">
               <StaticImage
                 src="../hunters-house/hunters-house1.jpg"
-                alt="Jablonkowy Las pavilion on the lake"
+                alt="Jabłonkowy Las pavilion on the lake"
                 className="max-h-[70vh] min-h-[50vh] lg:max-h-fit lg:max-w-[49vw]"
                 objectPosition={"center"}
               />
@@ -169,7 +169,7 @@ const Houses: FC<PageProps> = () => {
             <div className="relative order-first lg:flex lg:row-start-1 lg:row-end-5 lg:col-start-2 lg:right-0 min-h-fit -mx-4 lg:mx-0 lg:max-h-[60vh]">
               <StaticImage
                 src="../camping/camping2.jpg"
-                alt="Jablonkowy Las hut on the lake"
+                alt="Jabłonkowy Las hut on the lake"
                 className="max-h-[70vh] min-h-[50vh] lg:max-h-fit lg:max-w-[49vw] w-full lg:w-[49vw]"
                 objectPosition={"center"}
               />
