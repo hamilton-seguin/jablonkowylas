@@ -20,11 +20,6 @@ module.exports = {
       grass10: "#3d9a50", // Hovered solid backgrounds
       grass11: "#297c3b", // Low-contrast text
       grass12: "#1b311e", // High-contrast text
-      // background: "#fff8e7",
-      // font: "#283618",
-      // primary: "#606c38",
-      // secondary: "#46a758",
-      // tertiary: "#bc6c25",
     },
     fontFamily: {
       sans: ["Roboto Flex", "sans-serif"],

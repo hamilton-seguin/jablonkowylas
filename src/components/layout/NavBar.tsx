@@ -33,7 +33,7 @@ export const NavBar = () => {
     <nav id="Nav" className={` z-10 w-full max-w-[100vw] bg-grass4 py-4`}>
       <div className="flex items-center justify-center h-6">
         <div className="lg:flex flex-1 justify-evenly hidden items-center">
-          <Link to="/houses-huts" title="Houses & Huts" draggable={false}>
+          <Link to="/houses-huts" title="Accommodation" draggable={false}>
             <Button className="uppercase">{t("houses")}</Button>
           </Link>
           <Link to="/restaurant" title="Restaurant" draggable={false}>

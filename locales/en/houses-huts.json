@@ -1,18 +1,23 @@
 {
-  "title": "Cottages and Huts",
+  "title": "Accommodation",
   "section1_title": "Cottages",
-  "section1_1": "Wooden houses beautifully blending with the greenery of the forest, have two rooms and can accommodate up to 4 people. Each has a private bathroom and a fully equipped kitchenette. On the private terrace you can have breakfast or relax with a book.",
+  "section1_1": "Those wooden cottages beautifully blend with the greenery of the forest and can accommodate up to 4 people. Each have 1 bedroom with 2 single beds and a very confortable sofa bed in the living-room. Each has a private bathroom and a kitchenette with a fridge and a kettle. On the private terrace you can have breakfast or relax with a book.",
   "section1_2": "Perfect for a family or a group of friends who want to be close to nature, but appreciate the comfort of their stay.",
-  "section1_3": "One cottage located on the edge of the forest overlooking the lake has two floors, a terrace and a balcony, and an internal fireplace.",
 
   "section2_title": "Huts",
   "section2_1": "Cozy double cabins are scattered throughout the Jabłonkowy Las area. Created for people who appreciate unusual accommodation, want to be close to nature, and prefer to spend their days outdoors.",
   "section2_2": "Each hut has two single beds, a table, hangers and a corner with a mirror.",
+  "section2_3": "During your stay in the huts, you can use the showers and toilets that are located just a few steps away.",
 
   "section3_title": "The Hunter's House",
-  "section3_1": "A large two-story wooden house overlooking the lake. There are 3 bedrooms here - one on the ground floor and two on the first floor. The spacious living room has a fireplace that will surround the place with a unique atmosphere  and the features of Warmian architecture during colder summer nights.",
-  "section3_2": "The Big House has a garage and a balcony, a kitchen and a private bathroom with a separate toilet.",
-  "houses": "Houses & Huts",
+  "section3_1": "The Hunter's House large two-story wooden house overlooking the lake. There are 3 bedrooms here - one on the ground floor and two on the first floor. The spacious living room has a fireplace that feels the place with a unique atmosphere during colder summer nights.",
+  "section3_2": "The Hunter's House has a terrace and a balcony with lake views, a kitchen and a private bathroom with a separate toilet.",
+
+  "section4_title": "Camping",
+  "section4_1": "Jablonkowy Las invites you to camp on its grounds. You can arrive with a campervan or your own tent. The camping place is located directly by the lake which will let you wake up each morning with a spectacular view.",
+  "section4_2": "There are showers and toilets located just a few steps away that you can use during your stay.",
+
+  "houses": "Accommodation",
   "restaurant": "Restaurant",
   "our-neighborhood": "Our Neighborhood",
   "gallery": "Gallery",
@@ -20,3 +25,4 @@
   "contact": "Contact Us",
   "contact2": "Contact:"
 }
+ 

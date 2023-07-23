@@ -57,33 +57,35 @@ const Gallery: FC<PageProps> = ({ data }: any) => {
                 />
                 {/* </Link> */}
               </div>
-              <Draggable className="bg-grass3 pt-4 pb-3 md:pt-10 md:pb-8 -mx-4">
-                <div className="flex snap-x overflow-x-auto scroll-smooth gap-2 items-center h-[18vh] overflow-y-hidden">
-                  {data.allFile.edges.map((image: any, i: number) => (
-                    <div
-                      key={image.node.name}
-                      className="flex snap-start shrink-0 max-w-fit"
-                    >
-                      <Link
-                        to="/"
-                        aria-label="Display image"
-                        style={{ cursor: "inherit" }}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          setCurrentImageId(i);
-                        }}
+              <div className="mt-16">
+                <Draggable className="bg-grass3 pt-4 pb-3 md:pt-10 md:pb-8 -mx-4">
+                  <div className="flex snap-x overflow-x-auto scroll-smooth gap-2 items-center h-[18vh] overflow-y-hidden">
+                    {data.allFile.edges.map((image: any, i: number) => (
+                      <div
+                        key={image.node.name}
+                        className="flex snap-start shrink-0 max-w-fit"
                       >
-                        <GatsbyImage
-                          image={getImage(image.node)!}
-                          alt={image.node.name}
-                          className="w-[27vw] lg:w-[21vw] 2xl:w-[14vw] 3xl:w-[10vw] h-[24vw] lg:h-[18vw] 2xl:h-[11vw] 3xl:h-[8vw]"
-                          draggable={false}
-                        />
-                      </Link>
-                    </div>
-                  ))}
-                </div>
-              </Draggable>
+                        <Link
+                          to="/"
+                          aria-label="Display image"
+                          style={{ cursor: "inherit" }}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setCurrentImageId(i);
+                          }}
+                        >
+                          <GatsbyImage
+                            image={getImage(image.node)!}
+                            alt={image.node.name}
+                            className="w-[27vw] lg:w-[21vw] 2xl:w-[14vw] 3xl:w-[10vw] h-[24vw] lg:h-[18vw] 2xl:h-[11vw] 3xl:h-[8vw]"
+                            draggable={false}
+                          />
+                        </Link>
+                      </div>
+                    ))}
+                  </div>
+                </Draggable>
+              </div>
             </div>
           </div>
         </div>

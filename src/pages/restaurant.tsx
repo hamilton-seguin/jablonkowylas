@@ -52,7 +52,7 @@ const Restaurant: FC<PageProps> = ({ data }: any) => {
           <div className="lg:grid lg:grid-cols-2 lg:auto-rows-min flex flex-col text-justify leading-7 min-h-fit lg:max-h-min mt-16">
             <div className="lg:flex lg:col-start-2 lg:row-start-1 lg:row-end-3 ">
               <StaticImage
-                src="../images/food/pancake.jpg"
+                src="../images/food/breakfast.jpg"
                 alt="Restaurant"
                 className="h-[30vh] lg:max-w-[49vw] w-full lg:w-[49vw]"
                 objectPosition={"center"}
@@ -60,10 +60,10 @@ const Restaurant: FC<PageProps> = ({ data }: any) => {
             </div>
             <div className="px-16">
               <h2 className=" text-font font-bold flex items-center text-xl mt-8 underline underline-offset-4 decoration-grass9">
-                <Trans i18nKey="breakfast" />
+                <Trans i18nKey="breakfast1_1" />
               </h2>
               <p className="my-8 lg:col-start-1">
-                <Trans i18nKey="breakfast1" />
+                <Trans i18nKey="breakfast1_2" />
               </p>
             </div>
           </div>
@@ -79,13 +79,13 @@ const Restaurant: FC<PageProps> = ({ data }: any) => {
             </div>
             <div className="px-16">
               <h2 className=" text-font font-bold flex items-center text-xl mt-8 underline underline-offset-4 decoration-grass9">
-                <Trans i18nKey="lunch" />
+                <Trans i18nKey="lunch1_1" />
               </h2>
               <p className="my-8">
-                <Trans i18nKey="lunch1" />
+                <Trans i18nKey="lunch1_2" />
               </p>
               <p className="my-8">
-                <Trans i18nKey="extra" />
+                <Trans i18nKey="lunch1_3" />
               </p>
             </div>
           </div>
@@ -93,7 +93,7 @@ const Restaurant: FC<PageProps> = ({ data }: any) => {
           <div className="lg:grid lg:grid-cols-2 lg:auto-rows-min flex flex-col text-justify leading-7 min-h-fit lg:max-h-min">
             <div className="lg:flex lg:col-start-2 lg:row-start-1 lg:row-end-3 ">
               <StaticImage
-                src="../images/food/coffee-lake.jpeg"
+                src="../images/food/aperol-spritz-1.jpg"
                 alt="Restaurant"
                 className="h-[30vh] lg:max-w-[49vw] w-full lg:w-[49vw]"
                 objectPosition={"center"}
@@ -101,42 +101,15 @@ const Restaurant: FC<PageProps> = ({ data }: any) => {
             </div>
             <div className="px-16">
               <p className="my-8">
-                <Trans i18nKey="extra1" />
+                <Trans i18nKey="extra1_1" />
+              </p>
+              <p className="my-8">
+                <Trans i18nKey="extra1_2" />
               </p>
             </div>
           </div>
         </div>
-        <div
-          id="GalleryId"
-          className="flex flex-col h-full justify-end relative"
-          // ref={directionalArrows}
-        >
-          <Draggable className="bg-grass3 pt-4 pb-3 md:pt-10 md:pb-8">
-            <div className="flex snap-x overflow-x-auto scroll-smooth gap-2 items-center h-[18vh] overflow-y-hidden">
-              {data.allFile.edges.map((image: any, i: number) => (
-                <div
-                  key={image.node.name}
-                  className="flex snap-start shrink-0 max-w-fit"
-                >
-                  <Link
-                    to={`/gallery/${image.node.name}`}
-                    aria-label="Display image"
-                    style={{ cursor: "inherit" }}
-                    state={{ prevPath }}
-                    onClick={saveScrollPosition}
-                  >
-                    <GatsbyImage
-                      image={getImage(image.node)!}
-                      alt={image.node.name}
-                      className="w-[27vw] lg:w-[21vw] 2xl:w-[14vw] 3xl:w-[10vw] h-[24vw] lg:h-[18vw] 2xl:h-[11vw] 3xl:h-[8vw]"
-                      draggable={false}
-                    />
-                  </Link>
-                </div>
-              ))}
-            </div>
-          </Draggable>
-        </div>
+        
         <div className="min-w-20 w-[15vw] max-w-[135px] mx-auto my-16">
           <Carrot className="fill-grass7 stroke-grass5 w-full h-full mx-auto" />
         </div>

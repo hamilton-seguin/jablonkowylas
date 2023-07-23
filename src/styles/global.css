@@ -12,7 +12,9 @@
 body {
   background-color: var(--color-bg);
   color: var(--color-text);
-  font-weight: 400
+  font-weight: 400;
+  background-image: url("../images/wallpaper3.jpg");
+  background-size: cover;
 }
 ::-webkit-scrollbar {
   width: 14px;

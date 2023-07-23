@@ -46,19 +46,16 @@ const Prices: FC<PageProps> = ({ data }: any) => {
             <p>
               <Trans i18nKey="section1-1" />
             </p>
-            <p>
-              <Trans i18nKey="section1-2" />
-            </p>
 
             <p className="my-8">
               <Trans i18nKey="section2-1" />
-              <span className="bg-grass4 hover:bg-grass6">
+              <span className="bg-grass5 hover:bg-grass6">
                 <a href="mailto://rezerwacje@jablonkowylas.pl">
                   rezerwacje@jablonkowylas.pl
                 </a>
               </span>
               <Trans i18nKey="section2-2" />
-              <span className="bg-grass4 hover:bg-grass6">+48 601 563 030</span>
+              <span className="bg-grass5 hover:bg-grass6">+48 601 563 030</span>
               <Trans i18nKey="section2-3" />
             </p>
             <p className="my-8">
@@ -81,12 +78,12 @@ const Prices: FC<PageProps> = ({ data }: any) => {
                 <StaticImage
                   src="../images/cennik.jpg"
                   alt="Neighborhood"
-                  className="min-h-[35vh] max-h-[50vh]"
+                  className="min-h-[35vh] max-h-[60vh]"
                   objectFit="contain"
                 />
               </Link>
             </div>
-            <p className="my-8">
+            {/* <p className="my-8">
               <Trans i18nKey="section6" />
             </p>
             <p>
@@ -100,9 +97,9 @@ const Prices: FC<PageProps> = ({ data }: any) => {
             </p>
             <p className="my-8">
               <Trans i18nKey="section10" />
-            </p>
+            </p> */}
           </div>
-          <div className="self-center flex">
+          <div className="self-center flex my-16">
             <StaticImage
               src="../images/outdoor/outdoor7.jpg"
               alt="Neighborhood"

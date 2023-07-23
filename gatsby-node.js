@@ -56,7 +56,7 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  ["hunters-house", "houses", "huts"].forEach((folderName) => {
+  ["hunters-house", "houses", "huts", "camping"].forEach((folderName) => {
     createPage({
       path: `/houses-huts/gallery/${folderName}`,
       component: require.resolve("./src/templates/GalleryModal.tsx"),

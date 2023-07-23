@@ -22,9 +22,9 @@ const Contact: FC<PageProps> = () => {
             </h1>
             <p className="my-8">
               <Trans i18nKey="section1_2" />
-              <span className="bg-grass4 hover:bg-grass6">+48 601 563 030</span> 
+              <span className="bg-grass5 hover:bg-grass6">+48 601 563 030</span> 
               <Trans i18nKey="section1_3" />
-              <span className="bg-grass4 hover:bg-grass6">
+              <span className="bg-grass5 hover:bg-grass6">
                 <a href="mailto://rezerwacje@jablonkowylas.pl">
                   rezerwacje@jablonkowylas.pl
                 </a>
@@ -32,7 +32,7 @@ const Contact: FC<PageProps> = () => {
             </p>
             <p className="my-8">
               <Trans i18nKey="section1_4" />
-              <span className="bg-grass4 hover:bg-grass6">
+              <span className="bg-grass5 hover:bg-grass6">
                 <a href="mailto://info@jablonkowylas.pl">
                   info@jablonkowylas.pl
                 </a>
@@ -62,7 +62,7 @@ const Contact: FC<PageProps> = () => {
               <p className="mt-8 mb-4">
               <Trans i18nKey="section2_1" />
               </p>
-              <p className="mb-8"><a className="bg-grass4 hover:bg-grass6" href="https://goo.gl/maps/34eRjKWey5sPBgFY9">ul. Turystyczna 5 <br />14-133 Stare Jabłonki</a></p>
+              <p className="mb-8"><a className="bg-grass5 hover:bg-grass6" href="https://goo.gl/maps/34eRjKWey5sPBgFY9">ul. Turystyczna 5 <br />14-133 Stare Jabłonki</a></p>
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d37799.61769159811!2d20.05143126757827!3d53.691961996908134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471d7b914b5a9451%3A0xb084110fab9adc7c!2sTurystyczna%205%2C%2014-133%20Stare%20Jab%C5%82onki%2C%20Poland!5e0!3m2!1sen!2sfr!4v1689783892204!5m2!1sen!2sfr"
                 className="w-full h-[40vh] md:w-[50vw] mx-auto"

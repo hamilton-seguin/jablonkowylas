@@ -59,6 +59,13 @@ const config: GatsbyConfig = {
         path: `${__dirname}/src/huts`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `camping`,
+        path: `${__dirname}/src/camping`,
+      },
+    },
     // {
     //   resolve: `gatsby-source-filesystem`,
     //   options: {
