@@ -12,9 +12,14 @@ const IndexPage: React.FC<PageProps> = () => {
     <Layout>
       <main>
         <div className="relative flex items-center justify-center mt-8 md:mt-0">
-          <h1 className="absolute z-10 text-5xl md:text-6xl lg:text-8xl font-bold text-background mb-[15%]">
-            <Trans i18nKey="title" />
-          </h1>
+          <div className="absolute z-10 mb-[5%] gap-4 flex flex-col items-center">
+            <h1 className=" text-5xl md:text-6xl lg:text-8xl font-bold text-background">
+              <Trans i18nKey="title" />
+            </h1>
+            <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold text-background">
+              <Trans i18nKey="title2" />
+            </h1>
+          </div>
           <StaticImage
             src="../gallery/facilities20.jpg"
             alt=""
