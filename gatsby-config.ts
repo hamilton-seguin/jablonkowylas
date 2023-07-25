@@ -1,5 +1,4 @@
 import type { GatsbyConfig } from "gatsby";
-import { languages, defaultLanguage } from "./languages";
 
 const config: GatsbyConfig = {
   siteMetadata: {
@@ -15,7 +14,6 @@ const config: GatsbyConfig = {
     "gatsby-plugin-image",
     "gatsby-plugin-sitemap",
     "gatsby-transformer-sharp",
-    "gatsby-plugin-gatsby-cloud",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
@@ -66,13 +64,6 @@ const config: GatsbyConfig = {
         path: `${__dirname}/src/camping`,
       },
     },
-    // {
-    //   resolve: `gatsby-source-filesystem`,
-    //   options: {
-    //     name: `outdoor`,
-    //     path: `${__dirname}/src/outdoor`,
-    //   },
-    // },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
