@@ -201,7 +201,13 @@ const Houses: FC<PageProps> = () => {
 
 export default Houses;
 
-export const Head: HeadFC = () => <title>Accommodation</title>;
+export const Head: HeadFC = ({ pageContext }: any) => {
+  return (
+    <title>
+      {pageContext.language === "en" ? "Accommodation" : "Zakwaterowanie"}
+    </title>
+  );
+};
 
 export const query = graphql`
   query ($language: String!) {

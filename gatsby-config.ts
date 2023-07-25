@@ -117,12 +117,12 @@ const config: GatsbyConfig = {
     {
       resolve: "gatsby-plugin-react-i18next",
       options: {
-        languages: ["en", "pl"],
-        defaultLanguage: "en",
+        languages: ["pl", "en"],
+        defaultLanguage: "pl",
         siteUrl: "https://jablonkowylas.pl",
         i18nextOptions: {
-          fallbackLng: "en",
-          supportedLngs: ["en", "pl"],
+          fallbackLng: "pl",
+          supportedLngs: ["pl", "en"],
           defaultNS: "index",
           interpolation: {
             escapeValue: false, // not needed for react as it escapes by default

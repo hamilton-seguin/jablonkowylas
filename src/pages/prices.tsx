@@ -51,8 +51,8 @@ const Prices: FC<PageProps> = ({ data }: any) => {
             <p className="my-8">
               <Trans i18nKey="section2-1" />
               <span className="bg-grass5 hover:bg-grass6">
-                <a href="mailto://rezerwacje@jablonkowylas.pl">
-                  rezerwacje@jablonkowylas.pl
+                <a href="mailto://jablonkowylas@gmail.com">
+                  jablonkowylas@gmail.com
                 </a>
               </span>
               <Trans i18nKey="section2-2" />
@@ -76,16 +76,16 @@ const Prices: FC<PageProps> = ({ data }: any) => {
                 state={{ prevPath }}
                 onClick={saveScrollPosition}
               >
-                {i18n.language === "pl" ? (
+                {i18n.language === "en" ? (
                   <StaticImage
-                    src="../images/cennik.png"
+                    src="../images/price-list.png"
                     alt="Neighborhood"
                     className="min-h-[35vh] max-h-[80vh]"
                     objectFit="contain"
                   />
                 ) : (
                   <StaticImage
-                    src="../images/price-list.png"
+                    src="../images/cennik.png"
                     alt="Neighborhood"
                     className="min-h-[35vh] max-h-[80vh]"
                     objectFit="contain"
@@ -112,7 +112,15 @@ const Prices: FC<PageProps> = ({ data }: any) => {
 };
 
 export default Prices;
-export const Head: HeadFC = () => <title>Prices & Availibility</title>;
+export const Head: HeadFC = ({ pageContext }: any) => {
+  return (
+    <title>
+      {pageContext.language === "en"
+        ? "Prices & Reservations"
+        : "Cennik i Rezerwacje"}
+    </title>
+  );
+};
 
 export const query = graphql`
   query ($language: String!) {

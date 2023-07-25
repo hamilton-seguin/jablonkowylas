@@ -103,7 +103,13 @@ const Neighborhood: FC<PageProps> = ({ data }: any) => {
 };
 
 export default Neighborhood;
-export const Head: HeadFC = () => <title>Neighborhood</title>;
+export const Head: HeadFC = ({ pageContext }: any) => {
+  return (
+    <title>
+      {pageContext.language === "en" ? "Our Neighborhood" : "Okolica"}
+    </title>
+  );
+};
 
 export const query = graphql`
   query NeighborhoodRenderQuery($language: String!) {

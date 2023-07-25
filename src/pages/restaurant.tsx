@@ -119,7 +119,13 @@ const Restaurant: FC<PageProps> = ({ data }: any) => {
 };
 
 export default Restaurant;
-export const Head: HeadFC = () => <title>Restaurant</title>;
+export const Head: HeadFC = ({ pageContext }: any) => {
+  return (
+    <title>
+      {pageContext.language === "en" ? "Restaurant" : "Restauracja"}
+    </title>
+  );
+};
 
 export const query = graphql`
   query ($language: String!) {

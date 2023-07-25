@@ -146,7 +146,9 @@ const Gallery: FC<PageProps> = ({ data }: any) => {
 };
 
 export default Gallery;
-export const Head: HeadFC = () => <title>Gallery</title>;
+export const Head: HeadFC = ({ pageContext }: any) => {
+  return <title>{pageContext.language === "en" ? "Gallery" : "Galeria"}</title>;
+};
 
 export const query = graphql`
   query GalleryRenderQuery($language: String!) {
