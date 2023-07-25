@@ -8,7 +8,6 @@ import { Apple } from "lucide-react";
 import Layout from "../components/layout/Layout";
 
 const IndexPage: React.FC<PageProps> = () => {
-  
   return (
     <Layout>
       <main>
@@ -31,8 +30,14 @@ const IndexPage: React.FC<PageProps> = () => {
             <Trans i18nKey="section2" />
           </p>
         </div>
-        <div className="min-w-20 w-[15vw] max-w-[135px] mx-auto my-16">
-          <Apple className="fill-grass7 stroke-grass5 w-full h-full mx-auto" />
+        <div className="min-w-20 w-[55vw] max-w-[300px] mx-auto my-16">
+          {/* <Apple className="fill-grass7 stroke-grass5 w-full h-full mx-auto" /> */}
+          <StaticImage
+            src="../images/ugly-logo.png"
+            alt="apple"
+            className="w-full h-full mx-auto"
+            draggable={false}
+          />
         </div>
       </main>
     </Layout>

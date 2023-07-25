@@ -116,7 +116,7 @@ const config: GatsbyConfig = {
         start_url: "/",
         background_color: "#f3fcf3",
         theme_color: "#dff3df",
-        icon: "src/images/favicon-apple.png", // This path is relative to the root of the site.
+        icon: "src/images/favicon.png", // This path is relative to the root of the site.
         // An optional attribute which provides support for CORS check.
         // If you do not provide a crossOrigin option, it will skip CORS for manifest.
         // Any invalid keyword or empty string defaults to `anonymous`

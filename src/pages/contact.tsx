@@ -25,16 +25,8 @@ const Contact: FC<PageProps> = () => {
               <span className="bg-grass5 hover:bg-grass6">+48 601 563 030</span> 
               <Trans i18nKey="section1_3" />
               <span className="bg-grass5 hover:bg-grass6">
-                <a href="mailto://rezerwacje@jablonkowylas.pl">
-                  rezerwacje@jablonkowylas.pl
-                </a>
-              </span>
-            </p>
-            <p className="my-8">
-              <Trans i18nKey="section1_4" />
-              <span className="bg-grass5 hover:bg-grass6">
-                <a href="mailto://info@jablonkowylas.pl">
-                  info@jablonkowylas.pl
+                <a href="mailto://jablonkowylas@gmail.com">
+                  jablonkowylas@gmail.com
                 </a>
               </span>
             </p>
@@ -82,8 +74,14 @@ const Contact: FC<PageProps> = () => {
             className="h-[35vh] w-full"
           />
         </div>
-        <div className="min-w-20 w-[15vw] max-w-[135px] mx-auto my-16">
-          <Phone className="fill-grass7 stroke-grass5 w-full h-full mx-auto" />
+        <div className="min-w-20 w-[55vw] max-w-[300px] mx-auto my-16">
+          {/* <Apple className="fill-grass7 stroke-grass5 w-full h-full mx-auto" /> */}
+          <StaticImage
+            src="../images/ugly-logo.png"
+            alt="apple"
+            className="w-full h-full mx-auto"
+            draggable={false}
+          />
         </div>
       </main>
     </Layout>
