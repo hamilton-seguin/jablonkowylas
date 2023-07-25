@@ -9,11 +9,11 @@ import { Pagination } from "../components/ui/Pagination";
 import { Divider } from "../components/ui/Divider";
 import { Draggable } from "../components/Draggable";
 
-import {
-  scrollPosition,
-  saveScrollPosition,
-  scrollToSavedPosition,
-} from "../utils/scrollToPosition";
+// import {
+//   scrollPosition,
+//   saveScrollPosition,
+//   scrollToSavedPosition,
+// } from "../utils/scrollToPosition";
 
 const Gallery: FC<PageProps> = ({ data }: any) => {
   const [currentImageId, setCurrentImageId] = useState(0);
@@ -23,7 +23,7 @@ const Gallery: FC<PageProps> = ({ data }: any) => {
   );
   const imageNumber = data.allFile.edges.length;
 
-  const [prevPath, setPrevPath] = useState("");
+  // const [prevPath, setPrevPath] = useState("");
 
   const prevImage = (e: MouseEvent) => {
     e.preventDefault();
@@ -60,19 +60,19 @@ const Gallery: FC<PageProps> = ({ data }: any) => {
     window.localStorage.setItem("localStorageId", currentImageId.toString());
   }, [currentImageId]);
 
-  useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
-    }
-    setPrevPath(location.pathname);
+  // useEffect(() => {
+  //   if (typeof window === "undefined") {
+  //     return;
+  //   }
+  //   setPrevPath(location.pathname);
 
-    window.addEventListener("scroll", scrollPosition);
-    scrollToSavedPosition();
-    // Clean up the event listener when the component unmounts
-    return () => {
-      window.removeEventListener("scroll", saveScrollPosition);
-    };
-  }, []);
+  //   window.addEventListener("scroll", scrollPosition);
+  //   scrollToSavedPosition();
+  //   // Clean up the event listener when the component unmounts
+  //   return () => {
+  //     window.removeEventListener("scroll", saveScrollPosition);
+  //   };
+  // }, []);
 
   return (
     <Layout>
