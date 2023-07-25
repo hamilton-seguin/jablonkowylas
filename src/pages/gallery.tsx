@@ -9,6 +9,12 @@ import { Pagination } from "../components/ui/Pagination";
 import { Divider } from "../components/ui/Divider";
 import { Draggable } from "../components/Draggable";
 
+import {
+  scrollPosition,
+  saveScrollPosition,
+  scrollToSavedPosition,
+} from "../utils/scrollToPosition";
+
 const Gallery: FC<PageProps> = ({ data }: any) => {
   const [currentImageId, setCurrentImageId] = useState(0);
   const getCurrentImageId = data.allFile.edges[currentImageId].node;
@@ -16,7 +22,8 @@ const Gallery: FC<PageProps> = ({ data }: any) => {
     getCurrentImageId.name
   );
   const imageNumber = data.allFile.edges.length;
-  const [modalOpen, setModalOpen] = useState(true);
+
+  const [prevPath, setPrevPath] = useState("");
 
   const prevImage = (e: MouseEvent) => {
     e.preventDefault();
@@ -50,14 +57,22 @@ const Gallery: FC<PageProps> = ({ data }: any) => {
   }, []);
 
   useEffect(() => {
-    if (!modalOpen) {
-      window.localStorage.removeItem("localStorageId");
-    }
-  }, [modalOpen]);
-
-  useEffect(() => {
     window.localStorage.setItem("localStorageId", currentImageId.toString());
   }, [currentImageId]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+    setPrevPath(location.pathname);
+
+    window.addEventListener("scroll", scrollPosition);
+    scrollToSavedPosition();
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("scroll", saveScrollPosition);
+    };
+  }, []);
 
   return (
     <Layout>
@@ -74,10 +89,7 @@ const Gallery: FC<PageProps> = ({ data }: any) => {
               // ref={directionalArrows}
             >
               <div className="m-auto">
-                <Link
-                  to={`/gallery/${selectedImageName}`}
-                  state={{ prevPath: location.pathname }}
-                >
+                <Link to={`/gallery/${selectedImageName}`} state={{ prevPath }}>
                   <GatsbyImage
                     image={getImage(getCurrentImageId)!}
                     alt={getCurrentImageId.name}
