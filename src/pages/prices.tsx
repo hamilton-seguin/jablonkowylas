@@ -78,16 +78,16 @@ const Prices: FC<PageProps> = ({ data }: any) => {
               >
                 {i18n.language === "pl" ? (
                   <StaticImage
-                    src="../images/cennik.jpg"
+                    src="../images/cennik.png"
                     alt="Neighborhood"
-                    className="min-h-[35vh] max-h-[60vh]"
+                    className="min-h-[35vh] max-h-[80vh]"
                     objectFit="contain"
                   />
                 ) : (
                   <StaticImage
-                    src="../images/price-list.jpg"
+                    src="../images/price-list.png"
                     alt="Neighborhood"
-                    className="min-h-[35vh] max-h-[60vh]"
+                    className="min-h-[35vh] max-h-[80vh]"
                     objectFit="contain"
                   />
                 )}
@@ -119,7 +119,7 @@ export const query = graphql`
     allFile(
       sort: { name: ASC }
       filter: {
-        extension: { regex: "/(jpg)|(jpeg)/" }
+        extension: { regex: "/(png)/" }
         sourceInstanceName: { eq: "images" }
         name: { eq: "cennik" }
       }
@@ -127,9 +127,6 @@ export const query = graphql`
       edges {
         node {
           name
-          childImageSharp {
-            gatsbyImageData(formats: [AUTO, WEBP, AVIF])
-          }
         }
       }
     }

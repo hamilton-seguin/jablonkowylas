@@ -9,7 +9,7 @@ export const Footer = () => {
     >
       <div className="flex flex-col text-center bg-grass4 pb-8 pt-5">
           <p className="uppercase">JABŁONKOWY LAS</p>
-          <p className="uppercase">Stanica Wodna PTTK</p>
+          <p>Stanica Wodna PTTK</p>
           <p>ul. Turystyczna 5</p>
           <p>14-133 Stare Jabłonki</p>
           <p>+48 601 563 030</p>

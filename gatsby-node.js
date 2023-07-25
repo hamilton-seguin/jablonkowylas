@@ -25,7 +25,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const result = await graphql(`
     query ModalRenderQuery {
       allFile(
-        filter: { extension: { regex: "/(jpg)|(jpeg)/" } }
+        filter: { extension: { regex: "/(jpg)|(jpeg)|(png)/" } }
         sort: { name: ASC }
       ) {
         edges {
