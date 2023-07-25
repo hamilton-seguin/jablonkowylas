@@ -67,7 +67,7 @@ const Houses: FC<PageProps> = () => {
               <p>
                 <Trans i18nKey="section1_1" />
               </p>
-              <p className="my-8">
+              <p className="my-8 lg:mb-0">
                 <Trans i18nKey="section1_2" />
               </p>
             </div>

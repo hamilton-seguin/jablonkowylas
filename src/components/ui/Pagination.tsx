@@ -28,7 +28,7 @@ export const Pagination = ({
           draggable={false}
           aria-label="Previous page"
         >
-          <Button className="absolute top-8 z-50 right-4 md:right-12 px-2.5 md:px-4 !rounded-xl">
+          <Button className="absolute top-8 right-4 md:right-12 px-2.5 md:px-4 !rounded-xl">
             <X className="w-5 h-5 md:w-8 md:h-8" />
           </Button>
         </Link>
@@ -43,7 +43,7 @@ export const Pagination = ({
             id="Previous"
             onClick={prevImage}
           >
-            <Button className="group absolute top-[30vh] h-fit m-auto !rounded-xl z-50 left-4 md:left-12 px-2.5 md:px-4">
+            <Button className="group absolute top-[30vh] h-fit m-auto !rounded-xl left-4 md:left-12 px-2.5 md:px-4">
               <ChevronLeft className="w-5 h-5 md:w-8 md:h-8 group-active:-translate-x-1 transition-all" />
             </Button>
           </Link>
@@ -54,7 +54,7 @@ export const Pagination = ({
             aria-label="Next image"
             onClick={nextImage}
           >
-            <Button className="group absolute top-[30vh] h-fit m-auto !rounded-xl z-50 right-4 md:right-12 px-2.5 md:px-4">
+            <Button className="group absolute top-[30vh] h-fit m-auto !rounded-xl right-4 md:right-12 px-2.5 md:px-4">
               <ChevronRight className="w-5 h-5 md:w-8 md:h-8 group-active:translate-x-1 transition-all" />
             </Button>
           </Link>

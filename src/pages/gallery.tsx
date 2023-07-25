@@ -1,4 +1,4 @@
-import React, { FC, MouseEvent, useState } from "react";
+import React, { FC, MouseEvent, useEffect, useState } from "react";
 import { Link, HeadFC, PageProps, graphql } from "gatsby";
 import { Trans } from "gatsby-plugin-react-i18next";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
@@ -11,9 +11,12 @@ import { Draggable } from "../components/Draggable";
 
 const Gallery: FC<PageProps> = ({ data }: any) => {
   const [currentImageId, setCurrentImageId] = useState(0);
-
   const getCurrentImageId = data.allFile.edges[currentImageId].node;
+  const [selectedImageName, setSelectedImageName] = useState(
+    getCurrentImageId.name
+  );
   const imageNumber = data.allFile.edges.length;
+  const [modalOpen, setModalOpen] = useState(true);
 
   const prevImage = (e: MouseEvent) => {
     e.preventDefault();
@@ -27,6 +30,34 @@ const Gallery: FC<PageProps> = ({ data }: any) => {
     if (newCurrentImageId > imageNumber - 1) newCurrentImageId = 0;
     setCurrentImageId(newCurrentImageId);
   };
+
+  useEffect(() => {
+    const localStorageId = window.localStorage.getItem("localStorageId");
+    if (!localStorageId) return;
+    if (JSON.parse(localStorageId) > imageNumber - 1) {
+      setCurrentImageId(0);
+      return;
+    }
+    setCurrentImageId(JSON.parse(localStorageId));
+    setSelectedImageName(
+      data.allFile.edges[JSON.parse(localStorageId)].node.name
+    );
+    return () => {
+      setTimeout(() => {
+        localStorage.removeItem("savedScrollPosition");
+      }, 100);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!modalOpen) {
+      window.localStorage.removeItem("localStorageId");
+    }
+  }, [modalOpen]);
+
+  useEffect(() => {
+    window.localStorage.setItem("localStorageId", currentImageId.toString());
+  }, [currentImageId]);
 
   return (
     <Layout>
@@ -42,21 +73,25 @@ const Gallery: FC<PageProps> = ({ data }: any) => {
               className="flex flex-col h-full justify-end relative"
               // ref={directionalArrows}
             >
+              <div className="m-auto">
+                <Link
+                  to={`/gallery/${selectedImageName}`}
+                  state={{ prevPath: location.pathname }}
+                >
+                  <GatsbyImage
+                    image={getImage(getCurrentImageId)!}
+                    alt={getCurrentImageId.name}
+                    className="h-[50vh] md:h-[65vh]"
+                    imgStyle={{ objectFit: "contain" }}
+                    draggable={false}
+                  />
+                </Link>
+              </div>
               <Pagination
                 withArrows
                 prevImage={prevImage}
                 nextImage={nextImage}
               />
-              <div className="m-auto">
-                <GatsbyImage
-                  image={getImage(getCurrentImageId)!}
-                  alt={getCurrentImageId.name}
-                  className="h-[50vh] md:h-[65vh]"
-                  imgStyle={{ objectFit: "contain" }}
-                  draggable={false}
-                />
-                {/* </Link> */}
-              </div>
               <div className="mt-16">
                 <Draggable className="bg-grass3 pt-4 pb-3 md:pt-10 md:pb-8 -mx-4">
                   <div className="flex snap-x overflow-x-auto scroll-smooth gap-2 items-center h-[18vh] overflow-y-hidden">
@@ -72,6 +107,7 @@ const Gallery: FC<PageProps> = ({ data }: any) => {
                           onClick={(e) => {
                             e.preventDefault();
                             setCurrentImageId(i);
+                            setSelectedImageName(image.node.name);
                           }}
                         >
                           <GatsbyImage

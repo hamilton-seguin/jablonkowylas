@@ -1,4 +1,4 @@
-import React, { MouseEvent, useEffect, useState, createRef } from "react";
+import React, { MouseEvent, useEffect, useState } from "react";
 import { graphql, navigate, PageRenderer } from "gatsby";
 import { Link } from "gatsby-plugin-react-i18next";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
@@ -135,12 +135,6 @@ const GalleryModal = ({ data, location }: any) => {
           className="flex flex-col h-full justify-end relative"
           // ref={directionalArrows}
         >
-          <Pagination
-            withArrows
-            prevImage={prevImage}
-            nextImage={nextImage}
-            closeToGalleryModalRoute={"/houses-huts/"}
-          />
           <div className="m-auto">
             <Link
               to={`/gallery/${selectedImageName}`}
@@ -155,6 +149,13 @@ const GalleryModal = ({ data, location }: any) => {
               />
             </Link>
           </div>
+
+          <Pagination
+            withArrows
+            prevImage={prevImage}
+            nextImage={nextImage}
+            closeToGalleryModalRoute={"/houses-huts/"}
+          />
           <Draggable className="bg-grass3 pt-4 pb-3 md:pt-10 md:pb-8">
             <div className="flex snap-x overflow-x-auto scroll-smooth gap-2 items-center h-[18vh] overflow-y-hidden">
               {data.allFile.edges.map((image: any, i: number) => (
@@ -185,7 +186,6 @@ const GalleryModal = ({ data, location }: any) => {
           </Draggable>
         </div>
       </Modal>
-      /
     </>
   );
 };

@@ -14,13 +14,10 @@ const modalStyles: ReactModal.Styles = {
   },
   content: {
     backgroundColor: "#fbfefb",
-    position: "relative",
-    inset: "auto",
-    maxWidth: "960px",
-    height: "-webkit-fill-available",
+    inset: 0,
+    height: "100vh",
     boxSizing: "content-box",
-    margin: "32px auto",
-    padding: "2rem",
+    padding: 0,
     border: 0,
   },
 };
@@ -58,7 +55,6 @@ const ImageModal = ({ pageContext, location }: any) => {
   };
   return (
     <>
-      <PageRenderer key={prevPath} location={{ pathname: prevPath } as any} />
       <Modal
         isOpen={modalOpen}
         onRequestClose={closeModal}
@@ -69,15 +65,15 @@ const ImageModal = ({ pageContext, location }: any) => {
         shouldCloseOnEsc
       >
         <div id="GalleryId" className="h-full flex justify-center items-center">
-          <Pagination closeToGalleryModalRoute={`${prevPath}`} />
           <Link to={`${prevPath}`} draggable={false} aria-label="Previous page">
             <GatsbyImage
               image={pageContext.imageData}
               alt={pageContext.name}
-              className="h-[85vh]"
+              className="h-[100vh]"
               imgStyle={{ objectFit: "contain" }}
             />
           </Link>
+          <Pagination closeToGalleryModalRoute={`${prevPath}`} />
         </div>
       </Modal>
     </>
