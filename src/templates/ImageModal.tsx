@@ -27,10 +27,14 @@ const ImageModal = ({ pageContext, location }: any) => {
   let scrollPosRefX = 0;
 
   if (location.state !== null) {
-    scrollPosRef = location.state.scrollPosRef;
+    if (location.state.scrollPosRef !== undefined) {
+      scrollPosRef = location.state.scrollPosRef;
+    }
   }
   if (location.state !== null) {
-    scrollPosRefX = location.state.scrollPosRefX;
+    if (location.state.scrollPosRef !== undefined) {
+      scrollPosRefX = location.state.scrollPosRefX;
+    }
   }
 
   console.log("scrollPosRefX in ImageModal", scrollPosRefX);
