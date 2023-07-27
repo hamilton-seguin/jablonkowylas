@@ -23,8 +23,8 @@ const modalStyles: ReactModal.Styles = {
 };
 
 const ImageModal = ({ pageContext, location }: any) => {
-  const scrollPos = location.state.scrollPosRef.current;
-
+  const scrollPosRef = location.state.scrollPosRef || 0;
+  
   let prevPath: string;
 
   if (!location.state) {
@@ -64,7 +64,7 @@ const ImageModal = ({ pageContext, location }: any) => {
             to={`${prevPath}`}
             draggable={false}
             aria-label="Previous page"
-            state={{ scrollPos }}
+            state={{ scrollPosRef }}
           >
             <GatsbyImage
               image={pageContext.imageData}
@@ -75,7 +75,7 @@ const ImageModal = ({ pageContext, location }: any) => {
           </Link>
           <Pagination
             closeToGalleryModalRoute={`${prevPath}`}
-            scrollPos={scrollPos}
+            scrollPosRef={scrollPosRef}
           />
         </div>
       </Modal>

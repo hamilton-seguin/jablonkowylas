@@ -20,7 +20,12 @@ const Prices: FC<PageProps> = ({ data, location }: any) => {
     if (typeof window === "undefined") {
       return;
     }
-    window.scrollTo(0, location.state.scrollPos);
+    if (location.state.scrollPosRef !== undefined) {
+      const savedScrollRef = location.state.scrollPosRef.current;
+      if (savedScrollRef !== undefined) {
+        window.scrollTo(0, savedScrollRef);
+      }
+    }
     const onScroll = () => {
       scrollPosRef.current = window.scrollY;
     };

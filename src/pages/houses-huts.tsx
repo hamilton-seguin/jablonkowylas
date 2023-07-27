@@ -10,14 +10,17 @@ import { Button } from "../components/ui/Button";
 const Houses: FC<PageProps> = ({ location }: any) => {
   const [prevPath, setPrevPath] = useState("");
   const scrollPosRef = useRef(0);
-  console.log("scrollPosRef", scrollPosRef);
 
   useEffect(() => {
     if (typeof window === "undefined") {
       return;
     }
-    window.scrollTo(0, location.state.scrollPos);
-
+    if (location.state.scrollPosRef !== undefined) {
+      const savedScrollRef = location.state.scrollPosRef.current;
+      if (savedScrollRef !== undefined) {
+        window.scrollTo(0, savedScrollRef);
+      }
+    }
     const onScroll = () => {
       scrollPosRef.current = window.scrollY;
     };

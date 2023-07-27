@@ -28,7 +28,11 @@ const modalStyles: ReactModal.Styles = {
   },
 };
 
+
 const GalleryModal = ({ data, location }: any) => {
+
+  
+  const scrollPosRef = location.state.scrollPosRef;
   // const building = typeof window === "undefined";
   // const [, setIndexPageData] = useState(!building && window.indexPageData);
   // useEffect(() => {
@@ -110,12 +114,12 @@ const GalleryModal = ({ data, location }: any) => {
 
   return (
     <>
-      <PageRenderer
+      {/* <PageRenderer
         key={"/houses-huts/"}
         location={
-          { pathname: `${lang === "pl" ? "/pl" : ""}/houses-huts/` } as any
+          { pathname: `${lang === "en" ? "/en" : ""}/houses-huts/` } as any
         }
-      />
+      /> */}
       <Modal
         isOpen={modalOpen}
         onRequestClose={closeModal}
@@ -133,7 +137,7 @@ const GalleryModal = ({ data, location }: any) => {
           <div className="m-auto">
             <Link
               to={`/gallery/${selectedImageName}`}
-              state={{ prevPath: location.pathname }}
+              state={{ prevPath: location.pathname, scrollPosRef }}
             >
               <GatsbyImage
                 image={getImage(getCurrentImageId)!}
@@ -150,6 +154,7 @@ const GalleryModal = ({ data, location }: any) => {
             prevImage={prevImage}
             nextImage={nextImage}
             closeToGalleryModalRoute={"/houses-huts/"}
+            scrollPosRef={scrollPosRef}
           />
           <Draggable className="bg-grass3 pt-4 pb-3 md:pt-10 md:pb-8">
             <div className="flex snap-x overflow-x-auto scroll-smooth gap-2 items-center h-[18vh] overflow-y-hidden">
