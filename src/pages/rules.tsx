@@ -20,24 +20,88 @@ const rules: FC<PageProps> = () => {
             <h1 className=" text-font font-bold items-center text-2xl mt-8">
               <Trans i18nKey="section1" />
             </h1>
-            <p className="my-8">
-              <Trans i18nKey="section1_2" />
-            </p>
-            <p className="my-8">
-              <Trans i18nKey="section1_3" />
-            </p>
-            <p className="my-8">
-              <Trans i18nKey="section1_5" />
-            </p>
+            <ol className="my-8">
+              <li>
+                <Trans i18nKey="section2" />
+              </li>
+              <li>
+                <Trans i18nKey="section3" />
+              </li>
+              <li>
+                <Trans i18nKey="section4" />
+              </li>
+              <li>
+                <Trans i18nKey="section5" />
+              </li>
+              <li>
+                <Trans i18nKey="section6" />
+              </li>
+              <li>
+                <Trans i18nKey="section7" />
+              </li>
+              <li>
+                <Trans i18nKey="section8" />
+              </li>
+              <li>
+                <Trans i18nKey="section9" />
+              </li>
+              <li>
+                <Trans i18nKey="section10" />
+              </li>
+              <li>
+                <Trans i18nKey="section11" />
+              </li>
+              <li>
+                <Trans i18nKey="section12" />
+              </li>
+              <li>
+                <Trans i18nKey="section13" />
+              </li>
+              <li>
+                <Trans i18nKey="section14" />
+              </li>
+              <li>
+                <Trans i18nKey="section15" />
+              </li>
+              <li>
+                <Trans i18nKey="section16" />
+              </li>
+              <li>
+                <Trans i18nKey="section17" />
+              </li>
+              <li>
+                <Trans i18nKey="section18" />
+              </li>
+              <li>
+                <Trans i18nKey="section19" />
+              </li>
+              <li>
+                <Trans i18nKey="section20" />
+              </li>
+              <li>
+                <Trans i18nKey="section21" />
+              </li>
+              <li>
+                <Trans i18nKey="section22" />
+              </li>
+              <li>
+                <Trans i18nKey="section23" />
+              </li>
+              <li>
+                <Trans i18nKey="section24" />
+              </li>
+              <li>
+                <Trans i18nKey="section25" />
+              </li>
+            </ol>
 
             <div className="mx-auto">
               <h1 className=" text-font font-bold items-center text-2xl mb-8">
-              <Trans i18nKey="title2" />
+                <Trans i18nKey="title2" />
               </h1>
               <p className="mt-8 mb-4">
-              <Trans i18nKey="section2_1" />
+                <Trans i18nKey="section2_1" />
               </p>
-
             </div>
           </div>
         </div>
@@ -61,7 +125,9 @@ export const Head: HeadFC = () => <title>Rules</title>;
 
 export const query = graphql`
   query ($language: String!) {
-    locales: allLocale(filter: {ns: {in: ["rules"]}, language: {eq: $language}}) {
+    locales: allLocale(
+      filter: { ns: { in: ["rules"] }, language: { eq: $language } }
+    ) {
       edges {
         node {
           ns

@@ -23,19 +23,8 @@ const modalStyles: ReactModal.Styles = {
 };
 
 const ImageModal = ({ pageContext, location }: any) => {
-  let scrollPosRef = 0;
-  let scrollPosRefX = 0;
-
-  if (location.state !== null) {
-    if (location.state.scrollPosRef !== undefined) {
-      scrollPosRef = location.state.scrollPosRef;
-    }
-  }
-  if (location.state !== null) {
-    if (location.state.scrollPosRef !== undefined) {
-      scrollPosRefX = location.state.scrollPosRefX;
-    }
-  }
+  let scrollPosRef = location.state.scrollPosRef || 0;
+  let scrollPosRefX = location.state.scrollPosRefX || 0;
 
   console.log("scrollPosRefX in ImageModal", scrollPosRefX);
 
