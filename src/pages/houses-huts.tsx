@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import { HeadFC, PageProps, graphql } from "gatsby";
 import { Link, Trans } from "gatsby-plugin-react-i18next";
 import { StaticImage } from "gatsby-plugin-image";
@@ -6,27 +6,32 @@ import { Camera, Flower, ChevronRight } from "lucide-react";
 
 import Layout from "../components/layout/Layout";
 import { Button } from "../components/ui/Button";
-import {
-  scrollPosition,
-  saveScrollPosition,
-  scrollToSavedPosition,
-} from "../utils/scrollToPosition";
 
-const Houses: FC<PageProps> = () => {
+const Houses: FC<PageProps> = ({ location }: any) => {
   const [prevPath, setPrevPath] = useState("");
+  const scrollPosRef = useRef(0);
+  console.log("scrollPosRef", scrollPosRef);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+    window.scrollTo(0, location.state.scrollPos);
+
+    const onScroll = () => {
+      scrollPosRef.current = window.scrollY;
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") {
       return;
     }
     setPrevPath(location.pathname);
-
-    window.addEventListener("scroll", scrollPosition);
-    scrollToSavedPosition();
-    // Clean up the event listener when the component unmounts
-    return () => {
-      window.removeEventListener("scroll", saveScrollPosition);
-    };
   }, []);
 
   return (
@@ -48,8 +53,7 @@ const Houses: FC<PageProps> = () => {
               <Link
                 draggable={false}
                 to="/houses-huts/gallery/houses"
-                state={{ prevPath }}
-                onClick={saveScrollPosition}
+                state={{ prevPath, scrollPosRef }}
               >
                 <Button className="group absolute inset-x-0 bottom-[6%] w-max m-auto rounded">
                   <p className=" text-font m-1 font-bold flex items-center">
@@ -100,8 +104,7 @@ const Houses: FC<PageProps> = () => {
               <Link
                 draggable={false}
                 to="/houses-huts/gallery/huts"
-                state={{ prevPath }}
-                onClick={saveScrollPosition}
+                state={{ prevPath, scrollPosRef }}
               >
                 <Button className="group absolute inset-x-0 bottom-[6%] w-max m-auto rounded">
                   <p className=" text-font m-1 font-bold flex items-center">
@@ -127,8 +130,7 @@ const Houses: FC<PageProps> = () => {
               <Link
                 draggable={false}
                 to="/houses-huts/gallery/hunters-house"
-                state={{ prevPath }}
-                onClick={saveScrollPosition}
+                state={{ prevPath, scrollPosRef }}
               >
                 <Button className="group absolute inset-x-0 bottom-[6%] w-max m-auto rounded">
                   <p className=" text-font m-1 font-bold flex items-center">
@@ -176,8 +178,7 @@ const Houses: FC<PageProps> = () => {
               <Link
                 draggable={false}
                 to="/houses-huts/gallery/camping"
-                state={{ prevPath }}
-                onClick={saveScrollPosition}
+                state={{ prevPath, scrollPosRef }}
               >
                 <Button className="group absolute inset-x-0 bottom-[6%] w-max m-auto rounded">
                   <p className=" text-font m-1 font-bold flex items-center">

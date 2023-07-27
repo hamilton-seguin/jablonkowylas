@@ -12,6 +12,7 @@ interface PaginationProps {
   withArrows?: boolean;
   closeToGalleryModal?: boolean;
   closeToGalleryModalRoute?: string;
+  scrollPos?: number;
 }
 
 export const Pagination = ({
@@ -19,10 +20,22 @@ export const Pagination = ({
   nextImage,
   withArrows,
   closeToGalleryModalRoute,
+  scrollPos,
 }: PaginationProps) => {
   return (
     <>
-      {closeToGalleryModalRoute ? (
+      {closeToGalleryModalRoute && scrollPos ? (
+        <Link
+          to={closeToGalleryModalRoute!}
+          draggable={false}
+          aria-label="Previous page"
+          state={{ scrollPos }}
+        >
+          <Button className="absolute top-8 right-4 md:right-12 px-2.5 md:px-4 !rounded-xl">
+            <X className="w-5 h-5 md:w-8 md:h-8" />
+          </Button>
+        </Link>
+      ) : closeToGalleryModalRoute ? (
         <Link
           to={closeToGalleryModalRoute!}
           draggable={false}

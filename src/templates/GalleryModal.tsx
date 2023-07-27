@@ -61,11 +61,6 @@ const GalleryModal = ({ data, location }: any) => {
     setSelectedImageName(
       data.allFile.edges[JSON.parse(localStorageId)].node.name
     );
-    return () => {
-      setTimeout(() => {
-        localStorage.removeItem("savedScrollPosition");
-      }, 100);
-    };
   }, []);
 
   useEffect(() => {

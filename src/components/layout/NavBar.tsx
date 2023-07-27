@@ -36,8 +36,8 @@ export const NavBar = () => {
           <Link to="/houses-huts" title="Accommodation" draggable={false}>
             <Button className="uppercase">{t("houses")}</Button>
           </Link>
-          <Link to="/restaurant" title="Restaurant" draggable={false}>
-            <Button className="uppercase">{t("restaurant")}</Button>
+          <Link to="/tavern" title="Tavern" draggable={false}>
+            <Button className="uppercase">{t("tavern")}</Button>
           </Link>
           <Link to="/neighborhood" title="Our Neighborhood" draggable={false}>
             <Button className="uppercase">{t("our-neighborhood")}</Button>

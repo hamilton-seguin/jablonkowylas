@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { HeadFC, PageProps, graphql } from "gatsby";
 import { Trans } from "gatsby-plugin-react-i18next";
 import { StaticImage } from "gatsby-plugin-image";
-import { Phone, Instagram, Facebook } from "lucide-react";
+import { Instagram, Facebook } from "lucide-react";
 
 import Layout from "../components/layout/Layout";
 import { Divider } from "../components/ui/Divider";

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import { HeadFC, PageProps, graphql } from "gatsby";
 import { Link, Trans } from "gatsby-plugin-react-i18next";
 import { GatsbyImage, StaticImage, getImage } from "gatsby-plugin-image";
@@ -7,27 +7,32 @@ import { TreePine } from "lucide-react";
 import Layout from "../components/layout/Layout";
 import { Draggable } from "../components/Draggable";
 import { Divider } from "../components/ui/Divider";
-import {
-  scrollPosition,
-  saveScrollPosition,
-  scrollToSavedPosition,
-} from "../utils/scrollToPosition";
 
-const Neighborhood: FC<PageProps> = ({ data }: any) => {
+const Neighborhood: FC<PageProps> = ({ data, location }: any) => {
   const [prevPath, setPrevPath] = useState("");
+  const scrollPosRef = useRef(0);
+  console.log("scrollPosRef", scrollPosRef);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+    window.scrollTo(0, location.state.scrollPos);
+
+    const onScroll = () => {
+      scrollPosRef.current = window.scrollY;
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") {
       return;
     }
     setPrevPath(location.pathname);
-
-    window.addEventListener("scroll", scrollPosition);
-    scrollToSavedPosition();
-    // Clean up the event listener when the component unmounts
-    return () => {
-      window.removeEventListener("scroll", saveScrollPosition);
-    };
   }, []);
 
   return (
@@ -79,8 +84,7 @@ const Neighborhood: FC<PageProps> = ({ data }: any) => {
                     to={`/gallery/${image.node.name}`}
                     aria-label="Display image"
                     style={{ cursor: "inherit" }}
-                    state={{ prevPath }}
-                    onClick={saveScrollPosition}
+                    state={{ prevPath, scrollPosRef }}
                   >
                     <GatsbyImage
                       image={getImage(image.node)!}

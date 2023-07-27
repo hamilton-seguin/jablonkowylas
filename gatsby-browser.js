@@ -16,12 +16,8 @@ export const onPrefetchPathname = ({ loadPage }) => {
     });
   }
 };
-export const onRouteUpdate = ({ location, prevLocation }) => {
-  // Remove the saved scroll position if the previous page was a gallery page
-  // prevLocation && console.log("prevLocation.pathname", prevLocation.pathname );
-  // if (!location.pathname.includes("/gallery/") || (prevLocation.pathname.includes("/gallery/") && !location.pathname.includes("/gallery/"))) {
-  //   localStorage.removeItem("savedScrollPosition");
-  // }
+export const onRouteUpdate = ({ location }) => {
+
   // Check if the URL ends with .com
   if (location.pathname.endsWith(".com")) {
     // Redirect to the same URL with .pl

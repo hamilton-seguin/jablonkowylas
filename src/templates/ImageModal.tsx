@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { navigate, PageRenderer, Link, graphql } from "gatsby";
+import { navigate, Link, graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 import Modal from "react-modal";
 
@@ -23,6 +23,8 @@ const modalStyles: ReactModal.Styles = {
 };
 
 const ImageModal = ({ pageContext, location }: any) => {
+  const scrollPos = location.state.scrollPosRef.current;
+
   let prevPath: string;
 
   if (!location.state) {
@@ -41,13 +43,6 @@ const ImageModal = ({ pageContext, location }: any) => {
       document.getElementById("langSwitcher")?.classList.remove("hidden");
     };
   }, []);
-  
-  useEffect(() => {
-    return () => {
-      setTimeout(() => {
-        localStorage.removeItem("savedScrollPosition");
-      }, 100);}
-  })
 
   const closeModal = () => {
     setModalOpen(false);
@@ -65,7 +60,12 @@ const ImageModal = ({ pageContext, location }: any) => {
         shouldCloseOnEsc
       >
         <div id="GalleryId" className="h-full flex justify-center items-center">
-          <Link to={`${prevPath}`} draggable={false} aria-label="Previous page">
+          <Link
+            to={`${prevPath}`}
+            draggable={false}
+            aria-label="Previous page"
+            state={{ scrollPos }}
+          >
             <GatsbyImage
               image={pageContext.imageData}
               alt={pageContext.name}
@@ -73,7 +73,10 @@ const ImageModal = ({ pageContext, location }: any) => {
               imgStyle={{ objectFit: "contain" }}
             />
           </Link>
-          <Pagination closeToGalleryModalRoute={`${prevPath}`} />
+          <Pagination
+            closeToGalleryModalRoute={`${prevPath}`}
+            scrollPos={scrollPos}
+          />
         </div>
       </Modal>
     </>

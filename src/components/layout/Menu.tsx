@@ -41,12 +41,12 @@ export const Menu = ({ closeMenu }: MenuProps) => {
             <Button className="md:py-4 w-full">{t("houses")}</Button>
           </Link>
           <Link
-            to="/restaurant"
-            title="Restaurant"
+            to="/tavern"
+            title="Tavern"
             onClick={closeMenu}
             className="text-center"
           >
-            <Button className="md:py-4 w-full">{t("restaurant")}</Button>
+            <Button className="md:py-4 w-full">{t("tavern")}</Button>
           </Link>
           <Link
             to="/neighborhood"

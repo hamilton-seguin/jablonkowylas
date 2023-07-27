@@ -1,37 +1,15 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect } from "react";
 import { HeadFC, PageProps, graphql } from "gatsby";
-import { GatsbyImage, StaticImage, getImage } from "gatsby-plugin-image";
+import { StaticImage } from "gatsby-plugin-image";
 import { Carrot } from "lucide-react";
-import { Link, Trans } from "gatsby-plugin-react-i18next";
+import { Trans } from "gatsby-plugin-react-i18next";
 
 import Layout from "../components/layout/Layout";
 import { Divider } from "../components/ui/Divider";
-import { Draggable } from "../components/Draggable";
 
-import {
-  scrollPosition,
-  saveScrollPosition,
-  scrollToSavedPosition,
-} from "../utils/scrollToPosition";
+const Tavern: FC<PageProps> = () => {
 
-const Restaurant: FC<PageProps> = ({ data }: any) => {
 
-  const [prevPath, setPrevPath] = useState("");
-
-  useEffect(() => {
-    if (typeof window === "undefined") {
-      return;
-    }
-    setPrevPath(location.pathname);
-
-    window.addEventListener("scroll", scrollPosition);
-    scrollToSavedPosition();
-    // Clean up the event listener when the component unmounts
-    return () => {
-      window.removeEventListener("scroll", saveScrollPosition);
-    };
-  }, []);
-  
   return (
     <Layout>
       <main>
@@ -53,7 +31,7 @@ const Restaurant: FC<PageProps> = ({ data }: any) => {
             <div className="lg:flex lg:col-start-2 lg:row-start-1 lg:row-end-3 ">
               <StaticImage
                 src="../images/food/breakfast.jpg"
-                alt="Restaurant"
+                alt="Tavern"
                 className="h-[30vh] lg:max-w-[49vw] w-full lg:w-[49vw]"
                 objectPosition={"center"}
               />
@@ -72,7 +50,7 @@ const Restaurant: FC<PageProps> = ({ data }: any) => {
             <div className="lg:flex lg:col-start-1 lg:row-start-1 lg:row-end-3 ">
               <StaticImage
                 src="../images/food/soup.jpeg"
-                alt="Restaurant"
+                alt="Tavern"
                 className="h-[30vh] lg:max-w-[49vw] w-full lg:w-[49vw]"
                 objectPosition={"center"}
               />
@@ -94,7 +72,7 @@ const Restaurant: FC<PageProps> = ({ data }: any) => {
             <div className="lg:flex lg:col-start-2 lg:row-start-1 lg:row-end-3 ">
               <StaticImage
                 src="../images/food/aperol-spritz-1.jpg"
-                alt="Restaurant"
+                alt="Tavern"
                 className="h-[30vh] lg:max-w-[49vw] w-full lg:w-[49vw]"
                 objectPosition={"center"}
               />
@@ -109,7 +87,7 @@ const Restaurant: FC<PageProps> = ({ data }: any) => {
             </div>
           </div>
         </div>
-        
+
         <div className="min-w-20 w-[15vw] max-w-[135px] mx-auto my-16">
           <Carrot className="fill-grass7 stroke-grass5 w-full h-full mx-auto" />
         </div>
@@ -118,36 +96,21 @@ const Restaurant: FC<PageProps> = ({ data }: any) => {
   );
 };
 
-export default Restaurant;
+export default Tavern;
 export const Head: HeadFC = ({ pageContext }: any) => {
   return (
     <title>
-      {pageContext.language === "en" ? "Restaurant" : "Restauracja"}
+      {pageContext.language === "en"
+        ? "Tavern 'Latający Holender"
+        : "Tawerna Latający Holender"}
     </title>
   );
 };
 
 export const query = graphql`
   query ($language: String!) {
-    allFile(
-      sort: { name: ASC }
-      filter: {
-        extension: { regex: "/(jpg)|(jpeg)/" }
-        sourceInstanceName: { eq: "images" }
-        name: { regex: "/facilities/i" }
-      }
-    ) {
-      edges {
-        node {
-          name
-          childImageSharp {
-            gatsbyImageData(formats: [AUTO, WEBP, AVIF])
-          }
-        }
-      }
-    }
     locales: allLocale(
-      filter: { ns: { in: ["restaurant"] }, language: { eq: $language } }
+      filter: { ns: { in: ["tavern"] }, language: { eq: $language } }
     ) {
       edges {
         node {

@@ -1,6 +1,6 @@
-import React, { FC, MouseEvent, useEffect, useState } from "react";
-import { Link, HeadFC, PageProps, graphql } from "gatsby";
-import { Trans } from "gatsby-plugin-react-i18next";
+import React, { FC, MouseEvent, useEffect, useRef, useState } from "react";
+import { HeadFC, PageProps, graphql } from "gatsby";
+import { Trans, Link } from "gatsby-plugin-react-i18next";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { Camera } from "lucide-react";
 
@@ -9,13 +9,7 @@ import { Pagination } from "../components/ui/Pagination";
 import { Divider } from "../components/ui/Divider";
 import { Draggable } from "../components/Draggable";
 
-import {
-  scrollPosition,
-  saveScrollPosition,
-  scrollToSavedPosition,
-} from "../utils/scrollToPosition";
-
-const Gallery: FC<PageProps> = ({ data }: any) => {
+const Gallery: FC<PageProps> = ({ data, location }: any) => {
   const [currentImageId, setCurrentImageId] = useState(0);
   const getCurrentImageId = data.allFile.edges[currentImageId].node;
   const [selectedImageName, setSelectedImageName] = useState(
@@ -49,29 +43,35 @@ const Gallery: FC<PageProps> = ({ data }: any) => {
     setSelectedImageName(
       data.allFile.edges[JSON.parse(localStorageId)].node.name
     );
-    return () => {
-      setTimeout(() => {
-        localStorage.removeItem("savedScrollPosition");
-      }, 100);
-    };
   }, []);
 
   useEffect(() => {
     window.localStorage.setItem("localStorageId", currentImageId.toString());
   }, [currentImageId]);
 
+  const scrollPosRef = useRef(0);
+  console.log("scrollPosRef", scrollPosRef);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+    window.scrollTo(0, location.state.scrollPos);
+
+    const onScroll = () => {
+      scrollPosRef.current = window.scrollY;
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+
   useEffect(() => {
     if (typeof window === "undefined") {
       return;
     }
     setPrevPath(location.pathname);
-
-    window.addEventListener("scroll", scrollPosition);
-    scrollToSavedPosition();
-    // Clean up the event listener when the component unmounts
-    return () => {
-      window.removeEventListener("scroll", saveScrollPosition);
-    };
   }, []);
 
   return (
@@ -89,7 +89,10 @@ const Gallery: FC<PageProps> = ({ data }: any) => {
               // ref={directionalArrows}
             >
               <div className="m-auto">
-                <Link to={`/gallery/${selectedImageName}`} state={{ prevPath }}>
+                <Link
+                  to={`/gallery/${selectedImageName}`}
+                  state={{ prevPath, scrollPosRef }}
+                >
                   <GatsbyImage
                     image={getImage(getCurrentImageId)!}
                     alt={getCurrentImageId.name}
