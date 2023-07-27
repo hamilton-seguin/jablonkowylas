@@ -23,10 +23,16 @@ const modalStyles: ReactModal.Styles = {
 };
 
 const ImageModal = ({ pageContext, location }: any) => {
-  let scrollPosRef = location.state.scrollPosRef || 0;
-  let scrollPosRefX = location.state.scrollPosRefX || 0;
-
-  console.log("scrollPosRefX in ImageModal", scrollPosRefX);
+  let scrollPosRef;
+  let scrollPosRefX;
+  if (!location.state || !location.state.scrollPosRef || !location.state.scrollPosRefX) {
+    scrollPosRef = 0;
+    scrollPosRefX = 0;
+  }
+  else {
+    scrollPosRef = location.state.scrollPosRef;
+    scrollPosRefX = location.state.scrollPosRefX;
+  }
 
   let prevPath: string;
 
