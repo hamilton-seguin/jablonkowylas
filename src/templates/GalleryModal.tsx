@@ -30,9 +30,14 @@ const modalStyles: ReactModal.Styles = {
 
 
 const GalleryModal = ({ data, location }: any) => {
-
+  let scrollPosRef;
+  if (!location.state || !location.state.scrollPosRef) {
+    scrollPosRef = 0;
+  }
+  else {
+    scrollPosRef = location.state.scrollPosRef;
+  }
   
-  const scrollPosRef = location.state.scrollPosRef;
   // const building = typeof window === "undefined";
   // const [, setIndexPageData] = useState(!building && window.indexPageData);
   // useEffect(() => {

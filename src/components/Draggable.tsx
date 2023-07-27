@@ -1,15 +1,9 @@
-import React, {
-  useState,
-  ReactNode,
-  useRef,
-  MouseEvent,
-  MutableRefObject,
-} from "react";
+import React, { useState, ReactNode, useRef, MouseEvent } from "react";
 
 type DraggableProps = {
   className?: string;
   children: ReactNode;
-  scrollPosRefX: (value: number) => void;
+  scrollPosRefX?: (value: number) => void;
 };
 
 export const Draggable = ({
@@ -23,7 +17,9 @@ export const Draggable = ({
   const mouseCoords = useRef({ startX: 0, scrollLeft: 0 });
   console.log("mouseCoords", mouseCoords.current);
 
-  scrollPosRefX(mouseCoords.current.scrollLeft);
+  if (scrollPosRefX) {
+    scrollPosRefX(mouseCoords.current.scrollLeft);
+  }
 
   const handleDragStart = (e: MouseEvent<HTMLDivElement>) => {
     if (!ourRef.current) return;
