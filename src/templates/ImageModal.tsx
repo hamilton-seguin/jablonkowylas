@@ -24,6 +24,10 @@ const modalStyles: ReactModal.Styles = {
 
 const ImageModal = ({ pageContext, location }: any) => {
   const scrollPosRef = location.state.scrollPosRef || 0;
+  const scrollPosRefX = location.state.scrollPosRefX || 0;
+  
+  console.log("scrollPosRefX in ImageModal", scrollPosRefX);
+  
   
   let prevPath: string;
 
@@ -64,7 +68,7 @@ const ImageModal = ({ pageContext, location }: any) => {
             to={`${prevPath}`}
             draggable={false}
             aria-label="Previous page"
-            state={{ scrollPosRef }}
+            state={{ scrollPosRef, scrollPosRefX }}
           >
             <GatsbyImage
               image={pageContext.imageData}

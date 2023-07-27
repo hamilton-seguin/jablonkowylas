@@ -50,18 +50,34 @@ const Gallery: FC<PageProps> = ({ data, location }: any) => {
   }, [currentImageId]);
 
   const scrollPosRef = useRef(0);
-  console.log("scrollPosRef", scrollPosRef);
+
+  const scrollPosRefX = useRef(0);
+  console.log("ScrollPosRefX in gallery Out", scrollPosRefX.current);
+
+  const changeXRef = (value: number) => {
+    scrollPosRefX.current = value;
+  };
 
   useEffect(() => {
-    if (typeof window === "undefined") {
+    if (typeof window === "undefined" || typeof document === "undefined") {
       return;
     }
+    let savedScrollRef = 0;
     if (location.state.scrollPosRef !== undefined) {
-      const savedScrollRef = location.state.scrollPosRef.current;
-      if (savedScrollRef !== undefined) {
-        window.scrollTo(0, savedScrollRef);
-      }
+      savedScrollRef = location.state.scrollPosRef.current;
+      window.scrollTo(0, savedScrollRef);
     }
+
+    let savedScrollRefX = 0;
+    if (location.state.scrollPosRefX !== undefined) {
+      savedScrollRefX = location.state.scrollPosRefX.current;
+      document.getElementById("draggable")!.children[0].scrollTo({
+        top: 0,
+        left: savedScrollRefX,
+        behavior: "instant",
+      });
+    }
+
     const onScroll = () => {
       scrollPosRef.current = window.scrollY;
     };
@@ -95,7 +111,7 @@ const Gallery: FC<PageProps> = ({ data, location }: any) => {
               <div className="m-auto">
                 <Link
                   to={`/gallery/${selectedImageName}`}
-                  state={{ prevPath, scrollPosRef }}
+                  state={{ prevPath, scrollPosRef, scrollPosRefX }}
                 >
                   <GatsbyImage
                     image={getImage(getCurrentImageId)!}
@@ -112,7 +128,10 @@ const Gallery: FC<PageProps> = ({ data, location }: any) => {
                 nextImage={nextImage}
               />
               <div className="mt-16">
-                <Draggable className="bg-grass3 pt-4 pb-3 md:pt-10 md:pb-8 -mx-4">
+                <Draggable
+                  className="bg-grass3 pt-4 pb-3 md:pt-10 md:pb-8 -mx-4"
+                  scrollPosRefX={changeXRef}
+                >
                   <div className="flex snap-x overflow-x-auto scroll-smooth gap-2 items-center h-[18vh] overflow-y-hidden">
                     {data.allFile.edges.map((image: any, i: number) => (
                       <div

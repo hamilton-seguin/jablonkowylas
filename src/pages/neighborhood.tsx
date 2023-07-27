@@ -11,8 +11,43 @@ import { Divider } from "../components/ui/Divider";
 const Neighborhood: FC<PageProps> = ({ data, location }: any) => {
   const [prevPath, setPrevPath] = useState("");
   const scrollPosRef = useRef(0);
-  console.log("scrollPosRef", scrollPosRef);
 
+  const scrollPosRefX = useRef(0);
+  console.log("ScrollPosRefX in gallery Out", scrollPosRefX.current);
+
+  const changeXRef = (value: number) => {
+    scrollPosRefX.current = value;
+  };
+
+  useEffect(() => {
+    if (typeof window === "undefined" || typeof document === "undefined") {
+      return;
+    }
+    let savedScrollRef = 0;
+    if (location.state.scrollPosRef !== undefined) {
+      savedScrollRef = location.state.scrollPosRef.current;
+      window.scrollTo(0, savedScrollRef);
+    }
+
+    let savedScrollRefX = 0;
+    if (location.state.scrollPosRefX !== undefined) {
+      savedScrollRefX = location.state.scrollPosRefX.current;
+      document.getElementById("draggable")!.children[0].scrollTo({
+        top: 0,
+        left: savedScrollRefX,
+        behavior: "instant",
+      });
+    }
+    
+    const onScroll = () => {
+      scrollPosRef.current = window.scrollY;
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
+  
   useEffect(() => {
     if (typeof window === "undefined") {
       return;
@@ -77,7 +112,10 @@ const Neighborhood: FC<PageProps> = ({ data, location }: any) => {
           className="flex flex-col h-full justify-end relative"
           // ref={directionalArrows}
         >
-          <Draggable className="bg-grass3 pt-4 pb-3 md:pt-10 md:pb-8">
+          <Draggable
+            className="bg-grass3 pt-4 pb-3 md:pt-10 md:pb-8"
+            scrollPosRefX={changeXRef}
+          >
             <div className="flex snap-x overflow-x-auto scroll-smooth gap-2 items-center h-[18vh] overflow-y-hidden">
               {data.allFile.edges.map((image: any, i: number) => (
                 <div
@@ -88,7 +126,7 @@ const Neighborhood: FC<PageProps> = ({ data, location }: any) => {
                     to={`/gallery/${image.node.name}`}
                     aria-label="Display image"
                     style={{ cursor: "inherit" }}
-                    state={{ prevPath, scrollPosRef }}
+                    state={{ prevPath, scrollPosRef, scrollPosRefX }}
                   >
                     <GatsbyImage
                       image={getImage(image.node)!}

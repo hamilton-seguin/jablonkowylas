@@ -1,17 +1,29 @@
-import React, { useState, ReactNode, useRef, MouseEvent } from "react";
+import React, {
+  useState,
+  ReactNode,
+  useRef,
+  MouseEvent,
+  MutableRefObject,
+} from "react";
 
 type DraggableProps = {
   className?: string;
   children: ReactNode;
+  scrollPosRefX: (value: number) => void;
 };
 
 export const Draggable = ({
   className,
   children,
+  scrollPosRefX,
 }: DraggableProps) => {
   const ourRef = useRef<HTMLDivElement>(null);
+
   const [isMouseDown, setIsMouseDown] = useState(false);
   const mouseCoords = useRef({ startX: 0, scrollLeft: 0 });
+  console.log("mouseCoords", mouseCoords.current);
+
+  scrollPosRefX(mouseCoords.current.scrollLeft);
 
   const handleDragStart = (e: MouseEvent<HTMLDivElement>) => {
     if (!ourRef.current) return;
@@ -29,12 +41,6 @@ export const Draggable = ({
     const sliderHand = ourRef.current as HTMLDivElement;
     sliderHand.classList.remove("cursor-grabbing");
   };
-  const handleDragOut = (e: MouseEvent<HTMLDivElement>) => {
-    setIsMouseDown(false);
-    if (!ourRef.current) return;
-    const sliderHand = ourRef.current as HTMLDivElement;
-    sliderHand.classList.remove("cursor-grabbing");
-  };
   const handleDrag = (e: MouseEvent<HTMLDivElement>) => {
     if (!isMouseDown || !ourRef.current) return;
     e.preventDefault();
@@ -45,9 +51,16 @@ export const Draggable = ({
     const walkX = (x - mouseCoords.current.startX) * 1.5;
     slider.scrollLeft = mouseCoords.current.scrollLeft - walkX;
   };
+  const handleDragOut = (e: MouseEvent<HTMLDivElement>) => {
+    setIsMouseDown(false);
+    if (!ourRef.current) return;
+    const sliderHand = ourRef.current as HTMLDivElement;
+    sliderHand.classList.remove("cursor-grabbing");
+  };
 
   return (
     <div
+      id="draggable"
       ref={ourRef}
       onMouseDown={handleDragStart}
       onMouseUp={handleDragEnd}
