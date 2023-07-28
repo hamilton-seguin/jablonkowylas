@@ -124,11 +124,14 @@ const Prices: FC<PageProps> = ({ data, location }: any) => {
 export default Prices;
 export const Head: HeadFC = ({ pageContext }: any) => {
   return (
-    <title>
-      {pageContext.language === "en"
-        ? "Prices & Reservations"
-        : "Cennik i Rezerwacje"}
-    </title>
+    <>
+      <html lang={pageContext.language} />
+      <title>
+        {pageContext.language === "en"
+          ? "Prices & Reservations"
+          : "Cennik i Rezerwacje"}
+      </title>
+    </>
   );
 };
 

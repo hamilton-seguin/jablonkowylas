@@ -204,12 +204,14 @@ const Houses: FC<PageProps> = ({ location }: any) => {
 };
 
 export default Houses;
-
 export const Head: HeadFC = ({ pageContext }: any) => {
   return (
-    <title>
-      {pageContext.language === "en" ? "Accommodation" : "Zakwaterowanie"}
-    </title>
+    <>
+      <html lang={pageContext.language} />
+      <title>
+        {pageContext.language === "en" ? "Accommodation" : "Zakwaterowanie"}
+      </title>
+    </>
   );
 };
 

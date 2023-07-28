@@ -85,7 +85,7 @@ export const Menu = ({ closeMenu }: MenuProps) => {
           <div className="text-center">
             <p className="pb-4 md:py-4">{t("contact2")}</p>
             <p className="font-light lowercase break-words">
-              info@jablonkowylas.pl
+              jablonkowylas@gmail.com
             </p>
             <p className="font-light lowercase pt-4">+48 601 563 030</p>
           </div>

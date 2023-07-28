@@ -157,7 +157,8 @@ const Privacy: FC<PageProps> = () => {
                 <li className="my-8">
                   <Trans i18nKey="section20a" />
                   <b>
-                  <Trans i18nKey="section20b" /></b>
+                    <Trans i18nKey="section20b" />
+                  </b>
                 </li>
                 <li className="my-8">
                   <Trans i18nKey="section21" />
@@ -191,7 +192,18 @@ const Privacy: FC<PageProps> = () => {
 };
 
 export default Privacy;
-export const Head: HeadFC = () => <title>Privacy</title>;
+export const Head: HeadFC = ({ pageContext }: any) => {
+  return (
+    <>
+      <html lang={pageContext.language} />
+      <title>
+        {pageContext.language === "en"
+          ? "Privacy Policy"
+          : "Polityka Prywatności"}
+      </title>
+    </>
+  );
+};
 
 export const query = graphql`
   query ($language: String!) {

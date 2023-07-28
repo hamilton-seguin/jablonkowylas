@@ -3,7 +3,6 @@ import type { HeadFC, PageProps } from "gatsby";
 import { graphql } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
 import { Trans } from "gatsby-plugin-react-i18next";
-import { Apple } from "lucide-react";
 
 import Layout from "../components/layout/Layout";
 
@@ -51,10 +50,11 @@ const IndexPage: React.FC<PageProps> = () => {
 
 export default IndexPage;
 
-export const Head: HeadFC = () => {
+export const Head: HeadFC = ({ pageContext }: any) => {
   return (
     <>
-      <title>Jabłonkowy Las</title>
+      <html lang={pageContext.language}/>
+      <title>Jabɫonkowy Las</title>;
     </>
   );
 };

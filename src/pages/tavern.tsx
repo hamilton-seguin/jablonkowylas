@@ -8,8 +8,6 @@ import Layout from "../components/layout/Layout";
 import { Divider } from "../components/ui/Divider";
 
 const Tavern: FC<PageProps> = () => {
-
-
   return (
     <Layout>
       <main>
@@ -99,11 +97,14 @@ const Tavern: FC<PageProps> = () => {
 export default Tavern;
 export const Head: HeadFC = ({ pageContext }: any) => {
   return (
-    <title>
-      {pageContext.language === "en"
-        ? "Tavern 'Latający Holender"
-        : "Tawerna Latający Holender"}
-    </title>
+    <>
+      <html lang={pageContext.language} />
+      <title>
+        {pageContext.language === "en"
+          ? "Tavern 'Latający Holender"
+          : "Tawerna Latający Holender"}
+      </title>
+    </>
   );
 };
 

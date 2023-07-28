@@ -99,7 +99,10 @@ const Contact: FC<PageProps> = () => {
 export default Contact;
 export const Head: HeadFC = ({ pageContext }: any) => {
   return (
-    <title>{pageContext.language === "en" ? "Contact Us" : "Kontakt"}</title>
+    <>
+      <html lang={pageContext.language}/>
+      <title>{pageContext.language === "en" ? "Contact Us" : "Kontakt"}</title>
+    </>
   );
 };
 

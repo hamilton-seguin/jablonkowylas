@@ -206,7 +206,16 @@ const Rules: FC<PageProps> = () => {
 };
 
 export default Rules;
-export const Head: HeadFC = () => <title>Rules</title>;
+export const Head: HeadFC = ({ pageContext }: any) => {
+  return (
+    <>
+      <html lang={pageContext.language} />
+      <title>
+        {pageContext.language === "en" ? "Rules & Regulations" : "Regulamin"}
+      </title>
+    </>
+  );
+};
 
 export const query = graphql`
   query ($language: String!) {

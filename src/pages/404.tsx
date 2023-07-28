@@ -46,4 +46,11 @@ const NotFoundPage: React.FC<PageProps> = () => {
 
 export default NotFoundPage
 
-export const Head: HeadFC = () => <title>Not found</title>
+export const Head: HeadFC = ({ pageContext }: any) => {
+  return (
+    <>
+      <html lang={pageContext.language}/>
+      <title>Page Not Found</title>
+    </>
+  );
+};

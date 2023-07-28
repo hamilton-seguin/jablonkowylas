@@ -38,7 +38,7 @@ const Neighborhood: FC<PageProps> = ({ data, location }: any) => {
         behavior: "instant",
       });
     }
-    
+
     const onScroll = () => {
       scrollPosRef.current = window.scrollY;
     };
@@ -47,7 +47,7 @@ const Neighborhood: FC<PageProps> = ({ data, location }: any) => {
       window.removeEventListener("scroll", onScroll);
     };
   }, []);
-  
+
   useEffect(() => {
     if (typeof window === "undefined") {
       return;
@@ -151,9 +151,12 @@ const Neighborhood: FC<PageProps> = ({ data, location }: any) => {
 export default Neighborhood;
 export const Head: HeadFC = ({ pageContext }: any) => {
   return (
-    <title>
-      {pageContext.language === "en" ? "Our Neighborhood" : "Okolica"}
-    </title>
+    <>
+      <html lang={pageContext.language} />
+      <title>
+        {pageContext.language === "en" ? "Our Neighborhood" : "Okolica"}
+      </title>
+    </>
   );
 };
 
