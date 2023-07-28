@@ -23,7 +23,10 @@ const Rules: FC<PageProps> = () => {
             <section>
               <ol className="my-8 text-sm list-decimal text-justify">
                 <li className="my-8">
-                  <Trans i18nKey="section1" />
+                  <Trans i18nKey="section1a" />
+                  <p className="my-4">
+                    <Trans i18nKey="section1b" />
+                  </p>
                 </li>
                 <li className="my-8">
                   <Trans i18nKey="section2" />
@@ -99,6 +102,14 @@ const Rules: FC<PageProps> = () => {
                 </li>
                 <li className="my-8">
                   <Trans i18nKey="section26" />
+                  <ul className="list-disc ml-8 mt-4">
+                    <li>
+                      <Trans i18nKey="section26a" />
+                    </li>
+                    <li>
+                      <Trans i18nKey="section26b" />
+                    </li>
+                  </ul>
                 </li>
                 <li className="my-8">
                   <Trans i18nKey="section27" />
