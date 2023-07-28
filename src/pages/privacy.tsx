@@ -7,38 +7,83 @@ import { ListChecks } from "lucide-react";
 import Layout from "../components/layout/Layout";
 import { Divider } from "../components/ui/Divider";
 
-const Rules: FC<PageProps> = () => {
+const Privacy: FC<PageProps> = () => {
   return (
     <Layout>
       <main>
-        <div className="mx-8 my-8">
+        <div className="mx-4 my-8">
           <div className="text-center md:max-w-[66%] mx-auto">
             <h1 className="font-bold text-4xl lg:px-16 xl:px-[8%] xl:mt-[2vw] my-8 lg:mt-0">
               <Trans i18nKey="title1" />
             </h1>
             <Divider />
-            <h1 className=" text-font font-bold items-center text-2xl mt-8">
-              <Trans i18nKey="title2" />
-            </h1>
-            <section>
+            <section className="mx-4 mb-16">
               <ol className="my-8 text-sm list-decimal text-justify">
                 <li className="my-8">
                   <Trans i18nKey="section1" />
+                  <b>
+                    <Trans i18nKey="section1a" />
+                  </b>
+                  <Trans i18nKey="section1b" />
                 </li>
+
                 <li className="my-8">
                   <Trans i18nKey="section2" />
+                  <b>
+                    <Trans i18nKey="section2a" />
+                  </b>
+                  <Trans i18nKey="section2b" />
+                  <b>
+                    <Trans i18nKey="section2c" />
+                  </b>
+                  <Trans i18nKey="section2d" />
                 </li>
                 <li className="my-8">
                   <Trans i18nKey="section3" />
                 </li>
                 <li className="my-8">
                   <Trans i18nKey="section4" />
+                  <ul className="list-disc ml-8 mt-4">
+                    <li>
+                      <Trans i18nKey="section4a" />
+                    </li>
+                    <li>
+                      <Trans i18nKey="section4b" />
+                    </li>
+                    <li>
+                      <Trans i18nKey="section4c" />
+                    </li>
+                    <li>
+                      <Trans i18nKey="section4d" />
+                    </li>
+                  </ul>
                 </li>
                 <li className="my-8">
                   <Trans i18nKey="section5" />
+                  <ul className="list-disc ml-8 mt-4">
+                    <li>
+                      <Trans i18nKey="section5a" />
+                    </li>
+                    <li>
+                      <Trans i18nKey="section5b" />
+                    </li>
+                    <li>
+                      <Trans i18nKey="section5c" />
+                    </li>
+                    <li>
+                      <Trans i18nKey="section5d" />
+                    </li>
+                    <li>
+                      <Trans i18nKey="section5e" />
+                    </li>
+                  </ul>
                 </li>
                 <li className="my-8">
-                  <Trans i18nKey="section6" />
+                  <Trans i18nKey="section6a" />
+                  <b>
+                    <Trans i18nKey="section6b" />
+                  </b>
+                  <Trans i18nKey="section6c" />
                 </li>
                 <li className="my-8">
                   <Trans i18nKey="section7" />
@@ -54,15 +99,45 @@ const Rules: FC<PageProps> = () => {
                 </li>
                 <li className="my-8">
                   <Trans i18nKey="section11" />
+                  <ul className="list-disc ml-8 mt-4">
+                    <li>
+                      <Trans i18nKey="section11a" />
+                    </li>
+                    <li>
+                      <Trans i18nKey="section11b" />
+                    </li>
+                  </ul>
                 </li>
                 <li className="my-8">
                   <Trans i18nKey="section12" />
+                  <ul className="list-disc ml-8 mt-4">
+                    <li>
+                      <Trans i18nKey="section12a" />
+                    </li>
+                    <li>
+                      <Trans i18nKey="section12b" />
+                    </li>
+                    <li>
+                      <Trans i18nKey="section12c" />
+                    </li>
+                  </ul>
                 </li>
                 <li className="my-8">
                   <Trans i18nKey="section13" />
                 </li>
                 <li className="my-8">
                   <Trans i18nKey="section14" />
+                  <ul className="list-disc ml-8 mt-4">
+                    <li>
+                      <Trans i18nKey="section14a" />
+                    </li>
+                    <li>
+                      <Trans i18nKey="section14b" />
+                    </li>
+                    <li>
+                      <Trans i18nKey="section14c" />
+                    </li>
+                  </ul>
                 </li>
                 <li className="my-8">
                   <Trans i18nKey="section15" />
@@ -80,7 +155,9 @@ const Rules: FC<PageProps> = () => {
                   <Trans i18nKey="section19" />
                 </li>
                 <li className="my-8">
-                  <Trans i18nKey="section20" />
+                  <Trans i18nKey="section20a" />
+                  <b>
+                  <Trans i18nKey="section20b" /></b>
                 </li>
                 <li className="my-8">
                   <Trans i18nKey="section21" />
@@ -94,95 +171,14 @@ const Rules: FC<PageProps> = () => {
                 <li className="my-8">
                   <Trans i18nKey="section24" />
                 </li>
-                <li className="my-8">
-                  <Trans i18nKey="section25" />
-                </li>
-                <li className="my-8">
-                  <Trans i18nKey="section26" />
-                </li>
-                <li className="my-8">
-                  <Trans i18nKey="section27" />
-                </li>
-                <li className="my-8">
-                  <Trans i18nKey="section28" />
-                </li>
-                <li className="my-8">
-                  <Trans i18nKey="section29" />
-                </li>
-                <li className="my-8">
-                  <Trans i18nKey="section30" />
-                </li>
-                <li className="my-8">
-                  <Trans i18nKey="section31" />
-                </li>
-                <li className="my-8">
-                  <Trans i18nKey="section32" />
-                </li>
-                <li className="my-8">
-                  <Trans i18nKey="section33" />
-                </li>
-                <li className="my-8">
-                  <Trans i18nKey="section34" />
-                </li>
-                <li className="my-8">
-                  <Trans i18nKey="section35" />
-                </li>
-                <li className="my-8">
-                  <Trans i18nKey="section36" />
-                </li>
               </ol>
-            </section>
-            <section className="mx-auto">
-              <h1 className=" text-font font-bold items-center text-2xl mb-8">
-                <Trans i18nKey="title3" />
-              </h1>
-              <div className="text-justify text-sm">
-                <p className="mt-8 mb-4">
-                  <Trans i18nKey="section37" />
-                </p>
-                <ul className="list-disc ml-8">
-                  <li>
-                    <Trans i18nKey="section37a" />
-                  </li>
-                  <li>
-                    <Trans i18nKey="section37b" />
-                  </li>
-                  <li>
-                    <Trans i18nKey="section37c" />
-                  </li>
-                </ul>
-                <p className="mt-8 mb-4">
-                  <Trans i18nKey="section38" />
-                </p>
-              </div>
-            </section>
-            <section className="mt-8 mb-16">
-              <h1 className=" text-font font-bold items-center text-2xl mb-8">
-                <Trans i18nKey="title4" />
-              </h1>
-              <div className="text-justify text-sm">
-                <ul className="list-disc ml-8">
-                  <li>
-                    <Trans i18nKey="section39a" />
-                  </li>
-                  <li>
-                    <Trans i18nKey="section39b" />
-                  </li>
-                  <li>
-                    <Trans i18nKey="section39c" />
-                  </li>
-                  <li>
-                    <Trans i18nKey="section39d" />
-                  </li>
-                </ul>
-              </div>
             </section>
           </div>
         </div>
         <div>
           <StaticImage
             src="../images/outdoor/outdoor8.jpg"
-            alt="rules page"
+            alt="Privacy"
             className="h-[35vh] w-full"
           />
         </div>
@@ -194,13 +190,13 @@ const Rules: FC<PageProps> = () => {
   );
 };
 
-export default Rules;
-export const Head: HeadFC = () => <title>Rules</title>;
+export default Privacy;
+export const Head: HeadFC = () => <title>Privacy</title>;
 
 export const query = graphql`
   query ($language: String!) {
     locales: allLocale(
-      filter: { ns: { in: ["rules"] }, language: { eq: $language } }
+      filter: { ns: { in: ["privacy"] }, language: { eq: $language } }
     ) {
       edges {
         node {

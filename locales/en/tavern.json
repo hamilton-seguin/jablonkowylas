@@ -5,7 +5,7 @@
   "breakfast1_1": "Breakfast",
   "breakfast1_2": "Breakfast is a buffet that consists of a hot dish (e.g. omelette, pancakes). Everyday is something different. On top of that, we serve cheeses, meats and vegetables to the table. On some days, the cold cuts are replaced by smoked fish. Country bread, jam and honey, cereals, milk, coffee, tea are also available.",
   "lunch1_1": "Lunch",
-  "lunch1_2": "During the day, we invite you for to our tavern fpr lunch. We offer a lunch menu (soup and a main dish) or just a soup. We always try to choose dishes so that they are not only tasty, but also suitable for the Masurian countryside.",
+  "lunch1_2": "During the day, we invite you for to our tavern for lunch. We offer a lunch menu (soup and a main dish) or just a soup. We always try to choose dishes so that they are not only tasty, but also suitable for the Masurian countryside.",
   "lunch1_3": "The tavern also serves fast food such as fries and nuggets. In our menu, we also propose potatoe pancakes, sweet pancakes and soon hand made pierogi (dumplings)",
   "extra1_1": "Throughout the day you can also buy alcoholic and non-alcoholic drinks at the bar.",
   "extra1_2": "We cordially invite you to try delicious cocktails, such as Aperol Spritz, which perfectly refreshes on hot summer days, or 'Polish Tequilla': a shot of quince liquor with lemon juice.",
@@ -15,5 +15,7 @@
   "gallery": "Gallery",
   "prices": "Prices & Reservations",
   "contact": "Contact Us",
-  "contact2": "Contact:"
+  "contact2": "Contact:",
+  "privacy": "Privacy Policy",
+  "rules": "Rules & Regulations"
 }
