@@ -52,7 +52,6 @@ const Gallery: FC<PageProps> = ({ data, location }: any) => {
   const scrollPosRef = useRef(0);
 
   const scrollPosRefX = useRef(0);
-  console.log("ScrollPosRefX in gallery Out", scrollPosRefX.current);
 
   const changeXRef = (value: number) => {
     scrollPosRefX.current = value;
@@ -173,7 +172,12 @@ const Gallery: FC<PageProps> = ({ data, location }: any) => {
 
 export default Gallery;
 export const Head: HeadFC = ({ pageContext }: any) => {
-  return <title>{pageContext.language === "en" ? "Gallery" : "Galeria"}</title>;
+  return (
+    <>
+      <html lang={pageContext.language}/>
+      <title>{pageContext.language === "en" ? "Gallery" : "Galeria"}</title>;
+    </>
+  );
 };
 
 export const query = graphql`
