@@ -1,5 +1,5 @@
-import React, { MouseEvent, useEffect, useState } from "react";
-import { graphql, navigate, PageRenderer } from "gatsby";
+import React, { MouseEvent, useEffect, useRef, useState } from "react";
+import { graphql, navigate } from "gatsby";
 import { Link } from "gatsby-plugin-react-i18next";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import Modal from "react-modal";
@@ -28,16 +28,57 @@ const modalStyles: ReactModal.Styles = {
   },
 };
 
-
 const GalleryModal = ({ data, location }: any) => {
-  let scrollPosRef;
-  if (!location.state || !location.state.scrollPosRef) {
-    scrollPosRef = 0;
+console.log("returned location.state.scrollPosRefX", location.state.scrollPosRefX);
+
+
+  const scrollPosRef = useRef(0);
+  const scrollPosRefX = useRef(0);
+  if (
+    !location.state ||
+    !location.state.scrollPosRef ||
+    !location.state.scrollPosRefX
+  ) {
+    scrollPosRef.current = 0;
+    scrollPosRefX.current = 0;
+  } else {
+    scrollPosRef.current = location.state.scrollPosRef;
+    scrollPosRefX.current = location.state.scrollPosRefX;
   }
-  else {
-    scrollPosRef = location.state.scrollPosRef;
-  }
-  
+
+  const changeXRef = (value: number) => {
+    scrollPosRefX.current = value;
+  };
+  useEffect(() => {
+    // if (typeof window === "undefined" || typeof document === "undefined") {
+    //   return;
+    // }
+    let savedScrollRef = 0;
+    if (location.state.scrollPosRef !== undefined) {
+      savedScrollRef = location.state.scrollPosRef.current;
+      window.scrollTo(0, savedScrollRef);
+    }
+
+    let savedScrollRefX = 0;
+    if (location.state.scrollPosRefX !== undefined && document.getElementById("draggable")) {
+      savedScrollRefX = location.state.scrollPosRefX.current;
+      console.log("savedScrollRefX", savedScrollRefX);
+      
+      document.getElementById("draggable")!.children[0].scrollTo({
+        top: 0,
+        left: savedScrollRefX,
+        behavior: "instant",
+      });
+    }
+
+    const onScroll = () => {
+      scrollPosRef.current = window.scrollY;
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
   // const building = typeof window === "undefined";
   // const [, setIndexPageData] = useState(!building && window.indexPageData);
   // useEffect(() => {
@@ -45,8 +86,6 @@ const GalleryModal = ({ data, location }: any) => {
   //     setIndexPageData(window.indexPageData);
   //   };
   // }, []);
-
-  const lang = data.locales.edges[0].node.language;
 
   const [modalOpen, setModalOpen] = useState(true);
   const [currentImageId, setCurrentImageId] = useState(0);
@@ -142,7 +181,7 @@ const GalleryModal = ({ data, location }: any) => {
           <div className="m-auto">
             <Link
               to={`/gallery/${selectedImageName}`}
-              state={{ prevPath: location.pathname, scrollPosRef }}
+              state={{ prevPath: location.pathname, scrollPosRef, scrollPosRefX }}
             >
               <GatsbyImage
                 image={getImage(getCurrentImageId)!}
@@ -159,9 +198,12 @@ const GalleryModal = ({ data, location }: any) => {
             prevImage={prevImage}
             nextImage={nextImage}
             closeToGalleryModalRoute={"/houses-huts/"}
-            scrollPosRef={scrollPosRef}
+            scrollPosRef={scrollPosRef.current}
           />
-          <Draggable className="bg-grass3 pt-4 pb-3 md:pt-10 md:pb-8">
+          <Draggable
+            className="bg-grass3 pt-4 pb-3 md:pt-10 md:pb-8"
+            scrollPosRefX={changeXRef}
+          >
             <div className="flex snap-x overflow-x-auto scroll-smooth gap-2 items-center h-[18vh] overflow-y-hidden">
               {data.allFile.edges.map((image: any, i: number) => (
                 <div
