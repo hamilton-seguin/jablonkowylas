@@ -29,7 +29,6 @@ const modalStyles: ReactModal.Styles = {
 };
 
 const GalleryModal = ({ data, location }: any) => {
-console.log("returned location.state.scrollPosRefX", location.state.scrollPosRefX);
 
 
   const scrollPosRef = useRef(0);
@@ -42,6 +41,7 @@ console.log("returned location.state.scrollPosRefX", location.state.scrollPosRef
     scrollPosRef.current = 0;
     scrollPosRefX.current = 0;
   } else {
+    console.log("returned location.state.scrollPosRefX", location.state.scrollPosRefX);
     scrollPosRef.current = location.state.scrollPosRef;
     scrollPosRefX.current = location.state.scrollPosRefX;
   }
