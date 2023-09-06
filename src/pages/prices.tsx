@@ -10,7 +10,8 @@ import { StaticImage } from "gatsby-plugin-image";
 const Prices: FC<PageProps> = ({ data, location }: any) => {
   const { i18n } = useTranslation();
 
-  const image = data.allFile.edges[0].node;
+  const cennik = data.allFile.edges[0].node.name;
+  const priceList = data.allFile.edges[1].node.name;
 
   const [prevPath, setPrevPath] = useState("");
 
@@ -80,28 +81,35 @@ const Prices: FC<PageProps> = ({ data, location }: any) => {
               <Trans i18nKey="section5" />
             </p>
             <div className="self-center">
-              <Link
-                to={`/gallery/${image.name}`}
-                aria-label="Display image"
-                style={{ cursor: "inherit" }}
-                state={{ prevPath, scrollPosRef }}
-              >
-                {i18n.language === "en" ? (
+              {i18n.language === "en" ? (
+                <Link
+                  to={`/gallery/${priceList}`}
+                  aria-label="Display image"
+                  style={{ cursor: "inherit" }}
+                  state={{ prevPath, scrollPosRef }}
+                >
                   <StaticImage
                     src="../images/price-list.png"
                     alt="Neighborhood"
                     className="min-h-[35vh] max-h-[80vh]"
                     objectFit="contain"
                   />
-                ) : (
+                </Link>
+              ) : (
+                <Link
+                  to={`/gallery/${cennik}`}
+                  aria-label="Display image"
+                  style={{ cursor: "inherit" }}
+                  state={{ prevPath, scrollPosRef }}
+                >
                   <StaticImage
                     src="../images/cennik.png"
                     alt="Neighborhood"
                     className="min-h-[35vh] max-h-[80vh]"
                     objectFit="contain"
                   />
-                )}
-              </Link>
+                </Link>
+              )}
             </div>
           </div>
           <div className="self-center flex my-16">
@@ -142,7 +150,7 @@ export const query = graphql`
       filter: {
         extension: { regex: "/(png)/" }
         sourceInstanceName: { eq: "images" }
-        name: { eq: "cennik" }
+        name: { regex: "/(cennik)|(price-list)/i" }
       }
     ) {
       edges {
