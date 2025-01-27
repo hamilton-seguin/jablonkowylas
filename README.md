@@ -1,49 +1,39 @@
+![jablonkowylas](https://github.com/user-attachments/assets/f85ae073-a59a-4589-ae48-6e0566c6a436)
+
 <p align="center">
   <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts">
     <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
   </a>
 </p>
 <h1 align="center">
-  Gatsby Minimal TypeScript Starter
+  Built with Gatsby Minimal TypeScript Starter
 </h1>
 
+ Jablonkowy Las is a website designed for a charming summer resort in the Masurian Lake District, showcasing its beauty and appeal to visitors. Built with Gatsby and GraphQL, the website leverages modern web technologies to deliver a fast and cost-efficient experience. The integration of i18next ensures seamless internationalization, making the site accessible to a broader audience.
+<br />
+<br />
+As my first professional freelance project, I was responsible for the entire process—from design to deployment. I collaborated with the client to transform their vision from Figma designs into a functional, responsive website. Along the way, I mastered Gatsby and GraphQL, appreciating GraphQL’s ability to load only the necessary data for each page, optimizing performance and reducing costs. Learning i18next for translations was an equally rewarding experience, allowing me to expand the site’s accessibility to multiple languages.
+        
 ## 🚀 Quick start
 
-1.  **Create a Gatsby site.**
+1.  **Install dependencies.**
 
     Use the Gatsby CLI to create a new site, specifying the minimal TypeScript starter.
 
     ```shell
-    # create a new Gatsby site using the minimal TypeScript starter
-    npm init gatsby -- -ts
+    npm install
     ```
 
-2.  **Start developing.**
+2.  **Build the project.**
 
-    Navigate into your new site’s directory and start it up.
+    You can either start or build the project locally
 
     ```shell
-    cd my-gatsby-site/
-    npm run develop
+    # to start the app on local 
+    gatsby developp
     ```
-
-3.  **Open the code and start customizing!**
-
-    Your site is now running at http://localhost:8000!
-
-    Edit `src/pages/index.tsx` to see your site update in real-time!
-
-4.  **Learn more**
-
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Tutorials](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Guides](https://www.gatsbyjs.com/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
-
-## 🚀 Quick start (Netlify)
-
-Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
-
-[<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-minimal-ts)
+    
+    ```shell
+    # to build the app locally
+    gatsby build
+    ```
