@@ -1,9 +1,10 @@
 import type { GatsbyConfig } from "gatsby";
 
 const config: GatsbyConfig = {
+  pathPrefix: `/jablonkowy-las`,
   siteMetadata: {
     title: `Jabłonkowy Las`,
-    siteUrl: `http://localhost:3000/jablonkowy-las`,
+    siteUrl: `https://portfolio-ten-lilac-48.vercel.app`,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
@@ -111,7 +112,7 @@ const config: GatsbyConfig = {
         // An optional attribute which provides support for CORS check.
         // If you do not provide a crossOrigin option, it will skip CORS for manifest.
         // Any invalid keyword or empty string defaults to `anonymous`
-        crossOrigin: `use-credentials`,
+        // crossOrigin: `use-credentials`,
       },
     },
     {
@@ -119,13 +120,17 @@ const config: GatsbyConfig = {
       options: {
         languages: ["pl", "en"],
         defaultLanguage: "pl",
-        siteUrl: "http://localhost:3000/jablonkowy-las",
+        siteUrl: "https://portfolio-ten-lilac-48.vercel.app/jablonkowy-las",
         i18nextOptions: {
           fallbackLng: "pl",
           supportedLngs: ["pl", "en"],
           defaultNS: "index",
           interpolation: {
             escapeValue: false, // not needed for react as it escapes by default
+          },
+          detection: {
+            order: ["path", "htmlTag", "cookie", "localStorage", "sessionStorage", "querystring", "navigator"],
+            caches: [], // Disable caching to avoid enforced redirects
           },
         },
       },
