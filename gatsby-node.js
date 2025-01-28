@@ -11,16 +11,16 @@ exports.createPages = async ({ graphql, actions }) => {
   //   toPath: `/gallery/`,
   //   statusCode: 404
   // })
-  createRedirect({
-    fromPath: "https://jablonkowylas.com/*",
-    toPath: "https://jablonkowylas.pl/",
-    isPermanent: true,
-  });
-  createRedirect({
-    fromPath: "https://www.jablonkowylas.com/*",
-    toPath: "https://jablonkowylas.pl/",
-    isPermanent: true,
-  });
+  // createRedirect({
+  //   fromPath: "https://jablonkowylas.com/*",
+  //   toPath: "https://jablonkowylas.pl/",
+  //   isPermanent: true,
+  // });
+  // createRedirect({
+  //   fromPath: "https://www.jablonkowylas.com/*",
+  //   toPath: "https://jablonkowylas.pl/",
+  //   isPermanent: true,
+  // });
 
   const result = await graphql(`
     query ModalRenderQuery {

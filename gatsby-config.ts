@@ -3,7 +3,7 @@ import type { GatsbyConfig } from "gatsby";
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `Jabłonkowy Las`,
-    siteUrl: `https://www.yourdomain.tld`,
+    siteUrl: `http://localhost:3000/jablonkowy-las`,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
@@ -119,7 +119,7 @@ const config: GatsbyConfig = {
       options: {
         languages: ["pl", "en"],
         defaultLanguage: "pl",
-        siteUrl: "https://jablonkowylas.pl",
+        siteUrl: "http://localhost:3000/jablonkowy-las",
         i18nextOptions: {
           fallbackLng: "pl",
           supportedLngs: ["pl", "en"],
