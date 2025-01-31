@@ -1,33 +1,33 @@
-import type { GatsbyConfig } from "gatsby";
+import type { GatsbyConfig } from 'gatsby'
 
 const config: GatsbyConfig = {
   siteMetadata: {
     title: `Jabłonkowy Las`,
-    siteUrl: `/`,
+    siteUrl: ``,
   },
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
   // If you use VSCode you can also use the GraphQL plugin
   // Learn more at: https://gatsby.dev/graphql-typegen
   graphqlTypegen: true,
   plugins: [
-    "gatsby-plugin-postcss",
-    "gatsby-plugin-image",
-    "gatsby-plugin-sitemap",
-    "gatsby-transformer-sharp",
+    'gatsby-plugin-postcss',
+    'gatsby-plugin-image',
+    'gatsby-plugin-sitemap',
+    'gatsby-transformer-sharp',
     {
-      resolve: "gatsby-plugin-manifest",
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        name: "Jabłonkowy Las",
-        icon: "src/images/favicon-apple.png",
+        name: 'Jabłonkowy Las',
+        icon: 'src/images/favicon-apple.png',
       },
     },
     {
-      resolve: "gatsby-source-filesystem",
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: "images",
+        name: 'images',
         path: `${__dirname}/src/images/`,
       },
-      __key: "images",
+      __key: 'images',
     },
     {
       resolve: `gatsby-source-filesystem`,
@@ -83,18 +83,18 @@ const config: GatsbyConfig = {
       },
     },
     {
-      resolve: "@nathanpate/gatsby-omni-font-loader",
+      resolve: '@nathanpate/gatsby-omni-font-loader',
       options: {
-        mode: "async",
+        mode: 'async',
         enableListener: true,
         preconnect: [
-          "https://fonts.gstatic.com",
-          "https://fonts.googleapis.com",
+          'https://fonts.gstatic.com',
+          'https://fonts.googleapis.com',
         ],
         web: [
           {
-            name: "Roboto Flex",
-            file: "https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400;8..144,700&display=swap",
+            name: 'Roboto Flex',
+            file: 'https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,400;8..144,700&display=swap',
           },
         ],
       },
@@ -102,12 +102,12 @@ const config: GatsbyConfig = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: "Jabłonkowy Las",
-        short_name: "Jabłonkowy Las",
-        start_url: "/",
-        background_color: "#f3fcf3",
-        theme_color: "#dff3df",
-        icon: "src/images/favicon.png", // This path is relative to the root of the site.
+        name: 'Jabłonkowy Las',
+        short_name: 'Jabłonkowy Las',
+        start_url: '/',
+        background_color: '#f3fcf3',
+        theme_color: '#dff3df',
+        icon: 'src/images/favicon.png', // This path is relative to the root of the site.
         // An optional attribute which provides support for CORS check.
         // If you do not provide a crossOrigin option, it will skip CORS for manifest.
         // Any invalid keyword or empty string defaults to `anonymous`
@@ -115,26 +115,34 @@ const config: GatsbyConfig = {
       },
     },
     {
-      resolve: "gatsby-plugin-react-i18next",
+      resolve: 'gatsby-plugin-react-i18next',
       options: {
-        languages: ["pl", "en"],
-        defaultLanguage: "pl",
-        siteUrl: "/",
+        languages: ['pl', 'en'],
+        defaultLanguage: 'pl',
+        siteUrl: '',
         i18nextOptions: {
-          fallbackLng: "pl",
-          supportedLngs: ["pl", "en"],
-          defaultNS: "index",
+          fallbackLng: 'pl',
+          supportedLngs: ['pl', 'en'],
+          defaultNS: 'index',
           interpolation: {
             escapeValue: false, // not needed for react as it escapes by default
           },
           detection: {
-            order: ["path", "htmlTag", "cookie", "localStorage", "sessionStorage", "querystring", "navigator"],
+            order: [
+              'path',
+              'htmlTag',
+              'cookie',
+              'localStorage',
+              'sessionStorage',
+              'querystring',
+              'navigator',
+            ],
             caches: [], // Disable caching to avoid enforced redirects
           },
         },
       },
     },
   ],
-};
+}
 
-export default config;
+export default config
