@@ -41,7 +41,6 @@ const GalleryModal = ({ data, location }: any) => {
     scrollPosRef.current = 0;
     scrollPosRefX.current = 0;
   } else {
-    console.log("returned location.state.scrollPosRefX", location.state.scrollPosRefX);
     scrollPosRef.current = location.state.scrollPosRef;
     scrollPosRefX.current = location.state.scrollPosRefX;
   }
@@ -62,7 +61,6 @@ const GalleryModal = ({ data, location }: any) => {
     let savedScrollRefX = 0;
     if (location.state.scrollPosRefX !== undefined && document.getElementById("draggable")) {
       savedScrollRefX = location.state.scrollPosRefX.current;
-      console.log("savedScrollRefX", savedScrollRefX);
       
       document.getElementById("draggable")!.children[0].scrollTo({
         top: 0,

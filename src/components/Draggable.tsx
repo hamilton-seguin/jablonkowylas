@@ -15,7 +15,6 @@ export const Draggable = ({
 
   const [isMouseDown, setIsMouseDown] = useState(false);
   const mouseCoords = useRef({ startX: 0, scrollLeft: 0 });
-  console.log("mouseCoords", mouseCoords.current);
 
   if (scrollPosRefX) {
     scrollPosRefX(mouseCoords.current.scrollLeft);

@@ -13,7 +13,6 @@ const Neighborhood: FC<PageProps> = ({ data, location }: any) => {
   const scrollPosRef = useRef(0);
 
   const scrollPosRefX = useRef(0);
-  console.log("ScrollPosRefX in gallery Out", scrollPosRefX.current);
 
   const changeXRef = (value: number) => {
     scrollPosRefX.current = value;
